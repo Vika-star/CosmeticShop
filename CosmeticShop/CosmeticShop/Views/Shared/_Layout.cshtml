@@ -21,10 +21,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
+                        <li class="nav-item">
+                            <details>
+                                <summary>Картинка</summary>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <div>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                                        asp-action="Login">Вход</a>
+                                    </div>
+                                    <div>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                                        asp-action="Register">Регистрация</a>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div>
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="PersonalArea"
+                                        asp-action="Index">Личный кабинет</a>
+                                    </div>
+                                }
+                            </details>
+                        </li>
                         @* <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li> *@
                     </ul>
+                    
                 </div>
             </div>
         </nav>

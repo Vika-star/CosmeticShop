@@ -159,8 +159,8 @@ namespace CosmeticShop.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token = token }, protocol: HttpContext.Request.Scheme);
                 await _emailService.SendEmailAsync(model.Email, "Reset Password",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
                 return View("ForgotPasswordConfirmation");
@@ -170,9 +170,9 @@ namespace CosmeticShop.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string token = null)
         {
-            return code == null ? View("Error") : View();
+            return token == null ? View("Error") : View();
         }
 
         [HttpPost]
