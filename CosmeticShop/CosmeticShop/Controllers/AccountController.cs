@@ -45,10 +45,10 @@ namespace CosmeticShop.Controllers
                         "Account",
                         new { userId = user.Id, token = token },
                         protocol: HttpContext.Request.Scheme);
-                    
+
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account",
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{confirmationLink}'>link</a>");
-                    
+
                     return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
                 else
@@ -69,7 +69,7 @@ namespace CosmeticShop.Controllers
                 return RedirectToAction("Index", "Home");
             var user = await _userManager.FindByIdAsync(userId);
 
-            if(user == null)
+            if (user == null)
             {
                 ViewBag.ErrorMessage = $"Invalid user id: {userId}";
                 return View("NotFound");
@@ -159,8 +159,8 @@ namespace CosmeticShop.Controllers
                     return View("ForgotPasswordConfirmation");
                 }
 
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, token = token }, protocol: HttpContext.Request.Scheme);
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                 await _emailService.SendEmailAsync(model.Email, "Reset Password",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
                 return View("ForgotPasswordConfirmation");
@@ -170,9 +170,9 @@ namespace CosmeticShop.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string token = null)
+        public IActionResult ResetPassword(string code = null)
         {
-            return token == null ? View("Error") : View();
+            return code == null ? View("Error") : View();
         }
 
         [HttpPost]
