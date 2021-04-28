@@ -4,14 +4,16 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210428112225_PrdouctsEnvAdded")]
+    partial class PrdouctsEnvAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,49 +42,6 @@ namespace CosmeticShop.Migrations
                     b.HasIndex("ProductContainerId");
 
                     b.ToTable("Pictures");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("OrderHistoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderHistoryId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
-
-                    b.ToTable("OrderHistory");
                 });
 
             modelBuilder.Entity("CosmeticShop.Models.Products.Product", b =>
@@ -121,12 +80,7 @@ namespace CosmeticShop.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
 
                     b.ToTable("ProductCategory");
                 });
@@ -358,32 +312,6 @@ namespace CosmeticShop.Migrations
                     b.Navigation("ProductContainer");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Products.OrderHistory", "OrderHistory")
-                        .WithMany("Orders")
-                        .HasForeignKey("OrderHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CosmeticShop.Models.Users.User", "User")
-                        .WithOne("Order")
-                        .HasForeignKey("CosmeticShop.Models.Products.Order", "UserId");
-
-                    b.Navigation("OrderHistory");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderHistory", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Users.User", "User")
-                        .WithOne("OrderHistory")
-                        .HasForeignKey("CosmeticShop.Models.Products.OrderHistory", "UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("CosmeticShop.Models.Products.Product", b =>
                 {
                     b.HasOne("CosmeticShop.Models.Products.ProductContainer", "ProductContainer")
@@ -393,17 +321,6 @@ namespace CosmeticShop.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductContainer");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.ProductCategory", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Products.Order", "Order")
-                        .WithMany("ProductCategories")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductContainer", b =>
@@ -468,16 +385,6 @@ namespace CosmeticShop.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>
-                {
-                    b.Navigation("ProductCategories");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderHistory", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductCategory", b =>
                 {
                     b.Navigation("ProductContainers");
@@ -488,13 +395,6 @@ namespace CosmeticShop.Migrations
                     b.Navigation("Pictures");
 
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Users.User", b =>
-                {
-                    b.Navigation("Order");
-
-                    b.Navigation("OrderHistory");
                 });
 #pragma warning restore 612, 618
         }

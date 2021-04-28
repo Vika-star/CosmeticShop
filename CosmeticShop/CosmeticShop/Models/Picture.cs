@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CosmeticShop.Models.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,5 +11,8 @@ namespace CosmeticShop.Models
         public int Id { get; set; }
         public string Name { get; set; } // название картинки
         public byte[] Image { get; set; }   
+
+        public int ProductContainerId { get; set; }
+        public ProductContainer ProductContainer { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CosmeticShop.Models.Products;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace CosmeticShop.Models.Users
 {
     public class User : IdentityUser
     {
-
+        public Order Order { get; set; }
+        public OrderHistory OrderHistory { get; set; }
     }
 }

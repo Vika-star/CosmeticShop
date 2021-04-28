@@ -13,5 +13,8 @@ namespace CosmeticShop.Models.Products
 
         public DateTime CreateDate { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+        public int ProductContainerId { get; set; }
+        public ProductContainer ProductContainer { get; set; }
     }
 }
