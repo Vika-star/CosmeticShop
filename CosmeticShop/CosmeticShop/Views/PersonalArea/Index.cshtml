@@ -1,3 +1,12 @@
+@if(User.IsInRole("employee"))
+{
+    <p>You are employee</p>
+}
+@if(User.IsInRole("admin"))
+{
+    <p>You are admin</p>
+}
+
 <a asp-area="" asp-controller="PersonalArea" asp-action="PersonalData">личные данные</a>
 
 <form method="post" asp-controller="Account" asp-action="Logout">

@@ -1,5 +1,6 @@
 ﻿using CosmeticShop.Models.Users;
 using CosmeticShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticShop.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private UserManager<User> _userManager;
