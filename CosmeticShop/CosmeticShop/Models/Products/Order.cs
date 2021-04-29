@@ -10,7 +10,7 @@ namespace CosmeticShop.Models.Products
     {
         public int Id { get; set; }
         
-        public List<ProductCategory> ProductCategories { get; set; }
+        public List<ProductContainer> ProductContainers { get; set; }
 
         public int OrderHistoryId { get; set; }
         public OrderHistory OrderHistory { get; set; }

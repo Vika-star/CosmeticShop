@@ -1,6 +1,12 @@
 @if(User.IsInRole("employee"))
 {
-    <a asp-action="Index" asp-controller="ProductContainers">Продукты</a>
+    <div>
+        <a asp-action="Index" asp-controller="ProductContainers">Продукты</a>
+    </div>
+    <div>
+        <a asp-action="Index" asp-controller="ProductCategories">Категории</a>
+    </div>
+    
 }
 @if(User.IsInRole("admin"))
 {
