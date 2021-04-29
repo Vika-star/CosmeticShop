@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.CountProducts)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
@@ -37,6 +40,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.CountProducts)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
@@ -52,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.ExpirationDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductCategory.Id)
+                @Html.DisplayFor(modelItem => item.ProductCategory.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

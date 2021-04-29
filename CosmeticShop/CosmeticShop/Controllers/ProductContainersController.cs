@@ -48,7 +48,7 @@ namespace CosmeticShop.Controllers
         // GET: ProductContainers/Create
         public IActionResult Create()
         {
-            ViewData["ProductCategoryName"] = new SelectList(_context.ProductCategories, "Id", "Name");
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace CosmeticShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductCategoryName"] = new SelectList(_context.ProductCategories, "Id", "Id", productContainer.ProductCategoryId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
             return View(productContainer);
         }
 
@@ -82,7 +82,7 @@ namespace CosmeticShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Id", productContainer.ProductCategoryId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
             return View(productContainer);
         }
 
@@ -91,7 +91,7 @@ namespace CosmeticShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,Cost,Description,CreateDate,ExpirationDate,ProductCategoryId")] ProductContainer productContainer)
+        public async Task<IActionResult> Edit(int id, ProductContainer productContainer)
         {
             if (id != productContainer.Id)
             {
@@ -118,7 +118,7 @@ namespace CosmeticShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Id", productContainer.ProductCategoryId);
+            ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
             return View(productContainer);
         }
 

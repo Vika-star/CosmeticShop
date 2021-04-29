@@ -8,6 +8,9 @@ namespace CosmeticShop.Models.Products
     public class ProductContainer
     {
         public int Id { get; set; }
+
+        public int CountProducts { get; set; }
+
         public string ProductName { get; set; }
         public decimal Cost { get; set; }
         public string Description { get; set; }
