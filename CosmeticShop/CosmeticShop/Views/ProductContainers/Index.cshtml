@@ -1,0 +1,55 @@
+@model IEnumerable<CosmeticShop.Models.Products.ProductContainer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Создать Продукты</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @* @Html.DisplayNameFor(model => model.Cost) *@
+                <p>Набор продуктов</p>
+            </th>
+            <th>
+                <p>Продукты</p>
+            </th>
+            <th>
+                <p>Фотографии</p>
+            </th>
+            <th>
+                <p>Категория</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <p>@item.ProductName</p>
+                </td>
+                <td>
+                    <a href="">Перейти</a>
+                </td>
+                <td>
+                    <a>Просмотреть</a>
+                </td>
+                <td>
+                    <a>@item.ProductCategory</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

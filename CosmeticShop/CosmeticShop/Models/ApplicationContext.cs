@@ -13,9 +13,11 @@ namespace CosmeticShop.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public DbSet<Product> Products { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<ProductContainer> ProductContainers { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderHistory> OrderHistories { get; set; }
 
         public ApplicationContext(DbContextOptions options) 
             : base(options) { }
@@ -30,5 +32,7 @@ namespace CosmeticShop.Models
 
             optionsBuilder.UseSqlServer(connectionString);
         }
+
+        public DbSet<CosmeticShop.Models.Products.Order> Order { get; set; }
     }
 }

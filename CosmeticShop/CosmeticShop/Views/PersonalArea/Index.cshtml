@@ -1,6 +1,6 @@
 @if(User.IsInRole("employee"))
 {
-    <p>You are employee</p>
+    <a asp-action="Index" asp-controller="ProductContainers">Продукты</a>
 }
 @if(User.IsInRole("admin"))
 {
