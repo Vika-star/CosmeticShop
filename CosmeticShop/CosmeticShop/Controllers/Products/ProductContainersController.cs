@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CosmeticShop.Models;
 using CosmeticShop.Models.Products;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticShop.Controllers
 {
+
+    [Authorize(Roles = "employee")]
     public class ProductContainersController : Controller
     {
         private readonly ApplicationContext _context;
@@ -35,7 +38,7 @@ namespace CosmeticShop.Controllers
             }
 
             var productContainer = await _context.ProductContainers
-                .Include(p => p.ProductCategory)
+                .Include(p => p.ProductCategory).Include(imgs => imgs.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productContainer == null)
             {
@@ -78,11 +81,13 @@ namespace CosmeticShop.Controllers
             }
 
             var productContainer = await _context.ProductContainers.FindAsync(id);
+            
             if (productContainer == null)
             {
                 return NotFound();
             }
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
+
             return View(productContainer);
         }
 

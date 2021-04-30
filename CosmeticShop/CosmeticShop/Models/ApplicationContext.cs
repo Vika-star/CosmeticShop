@@ -18,6 +18,7 @@ namespace CosmeticShop.Models
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderHistory> OrderHistories { get; set; }
+        
 
         public ApplicationContext(DbContextOptions options) 
             : base(options) { }
@@ -33,6 +34,5 @@ namespace CosmeticShop.Models
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public DbSet<CosmeticShop.Models.Products.Order> Order { get; set; }
     }
 }

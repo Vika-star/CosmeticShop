@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CosmeticShop.Models;
 using CosmeticShop.Models.Products;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CosmeticShop.Controllers
 {
+    [Authorize(Roles = "employee")]
     public class ProductCategoriesController : Controller
     {
         private readonly ApplicationContext _context;
