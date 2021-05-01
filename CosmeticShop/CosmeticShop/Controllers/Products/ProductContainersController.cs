@@ -22,14 +22,12 @@ namespace CosmeticShop.Controllers
             _context = context;
         }
 
-        // GET: ProductContainers
         public async Task<IActionResult> Index()
         {
             var applicationContext = _context.ProductContainers.Include(p => p.ProductCategory);
             return View(await applicationContext.ToListAsync());
         }
 
-        // GET: ProductContainers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,16 +46,12 @@ namespace CosmeticShop.Controllers
             return View(productContainer);
         }
 
-        // GET: ProductContainers/Create
         public IActionResult Create()
         {
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name");
             return View();
         }
 
-        // POST: ProductContainers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductContainer productContainer)
@@ -72,7 +66,6 @@ namespace CosmeticShop.Controllers
             return View(productContainer);
         }
 
-        // GET: ProductContainers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,9 +84,6 @@ namespace CosmeticShop.Controllers
             return View(productContainer);
         }
 
-        // POST: ProductContainers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductContainer productContainer)
@@ -126,8 +116,90 @@ namespace CosmeticShop.Controllers
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
             return View(productContainer);
         }
+        
+        public async Task<IActionResult> EditImages(int? id)
+        {
+            if (id == null)
+                return NotFound();
 
-        // GET: ProductContainers/Delete/5
+            var pictures = await _context.Pictures
+                                            .Where(x => x.ProductContainerId == id)
+                                            .ToListAsync();
+
+            if (pictures == null)
+                return NotFound();
+
+            return View(pictures);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddImages(int id, List<Picture> pictures)
+        {
+            var productContainer = await _context.ProductContainers
+                                                    .Include(p => p.Pictures)
+                                                    .FirstOrDefaultAsync(x => x.Id == id);
+            if (productContainer == null)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    productContainer.Pictures.AddRange(pictures);
+                    _context.Update(productContainer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductContainerExists(productContainer.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(EditImages), new { id = id});
+            }
+            return View(productContainer);
+        }
+
+        public async Task<IActionResult> DeleteImage(int? id, int? imageId )
+        {
+            var productContainer = await _context.ProductContainers
+                                                    .Include(p=>p.Pictures)
+                                                    .FirstOrDefaultAsync(x=>x.Id == id);
+
+            if (id != productContainer.Id || !productContainer.Pictures.Any(x=>x.Id == imageId))
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var imageToDelete = productContainer.Pictures.FirstOrDefault(x => x.Id == imageId);
+                    productContainer.Pictures.Remove(imageToDelete);
+                    _context.Update(productContainer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductContainerExists(productContainer.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(EditImages), new { id = id });
+            }
+            return View(productContainer);
+        }
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,7 +218,6 @@ namespace CosmeticShop.Controllers
             return View(productContainer);
         }
 
-        // POST: ProductContainers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

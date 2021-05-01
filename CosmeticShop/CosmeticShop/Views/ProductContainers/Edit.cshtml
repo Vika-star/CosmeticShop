@@ -48,32 +48,9 @@
                 <select asp-for="ProductCategoryId" class="form-control" asp-items="ViewBag.ProductCategoryId"></select>
                 <span asp-validation-for="ProductCategoryId" class="text-danger"></span>
             </div>
-
-
             <div>
-                <div>
-                    <label for="countImages">Количество картинок</label>
-                    <input type="number" name="countImages" id="countImages" oninput="displayLoadImagesElements(@Model.Pictures)" />
-                </div>
-
-                <div id="images">
-                </div>
+                <a asp-action="EditImages" asp-route-id="@Model.Id" >Изменение изображений</a>
             </div>
-
-            <script>
-                function displayLoadImagesElements() {
-                    console.log("function called");
-                    var countImages = document.getElementById('countImages').value;
-                    var loadImagesInnerHtml = document.getElementById('images');
-
-                    var html = "";
-                    for (var i = 0; i < countImages; i++) {
-                        html += `<input type="file" name="Pictures[${i}].Image"/>`;
-                    }
-
-                    loadImagesInnerHtml.innerHTML = html;
-                }
-            </script>
 
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -87,5 +64,5 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

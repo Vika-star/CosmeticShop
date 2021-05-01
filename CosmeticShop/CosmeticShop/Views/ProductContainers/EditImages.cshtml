@@ -1,0 +1,59 @@
+@model IEnumerable<CosmeticShop.Models.Picture>
+
+<div>
+    <table>
+        <tr>
+            <th>Название</th>
+            <th>Картинка</th>
+            <th>Удалить</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                + Convert.ToBase64String(item.ByteImage) + "\" />")
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = item.ProductContainerId, imageId = item.Id}, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<form asp-action="AddImages" enctype="multipart/form-data">
+    <input type="number" name="Id" value="@Model.FirstOrDefault().ProductContainerId" hidden>
+    <div>
+        <div>
+            <p>Добавить картинки</p>
+            <label for="countImages">Количество картинок</label>
+            <input type="number" name="countImages" id="countImages" oninput="displayLoadImagesElements()" />
+        </div>
+
+        <div id="images">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<script>
+    function displayLoadImagesElements() {
+        var countImages = document.getElementById('countImages').value;
+        var loadImagesInnerHtml = document.getElementById('images');
+
+        var html = "";
+        for (var i = 0; i < countImages; i++) {
+            html += `<input type="file" name="Pictures[${i}].Image"/>`;
+
+        }
+
+        loadImagesInnerHtml.innerHTML = html;
+    }
+</script>
