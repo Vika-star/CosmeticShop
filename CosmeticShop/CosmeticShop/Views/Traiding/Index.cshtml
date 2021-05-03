@@ -1,40 +1,79 @@
-@model CosmeticShop.Models.Products.ViewModels.ProductListViewModel
+@model CosmeticShop.Models.Products.ViewModels.ProductsViewModel
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Home Page";
 }
+<style>
+    @@font-face {
+        font-family: 'FontAwesome';
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
+            url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
+            url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal
+    }
+
+    .glyphicon {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .glyphicon-chevron-right:before {
+        content: "\f054";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\f053";
+    }
+</style>
+<form method="get">
+    <div class="form-inline">
+        <label>Категории: </label>
+        <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
+
+        <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+    </div>
+</form>
 
 <table class="table">
     <tr>
         <th>
-            <form method="get">
-                <div class="form-inline form-group">
-                    
-                    <label class="control-label">Категории: </label>
-                    <select name="categoryId" asp-items="Model.Categories" class="form-control"></select>
-
-                    <input type="submit" value="Фильтр" class="btn btn-default" />
-                </div>
-            </form>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Имя</a>
+        </th>
+        <th>
+            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
+                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a>
         </th>
     </tr>
-    @foreach (var container in Model.Products)
+    @foreach (var product in Model.Products)
     {
-        @* <tr><td>@u.Name</td><td>@u.Age</td><td>@u.Company.Name</td></tr> *@
         <tr>
-            <td>
-                @if (container.Pictures != null && container.Pictures.Count() > 0)
-                {
-                    @if (container.Pictures.FirstOrDefault().ByteImage != null)
-                    {
-                        @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-            + Convert.ToBase64String(container.Pictures.FirstOrDefault().ByteImage) + "\" />")
-                    }
-                }
-
-                @container.ProductName
-                @container.Cost
-                @container.ProductCategory.Name</td>
+            <td>@product.ProductName</td>
+            <td>@product.Cost</td>
+            <td>@product.ProductCategory.Name</td>
         </tr>
     }
 </table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn  btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}

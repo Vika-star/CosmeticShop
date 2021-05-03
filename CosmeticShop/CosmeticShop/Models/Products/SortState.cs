@@ -2,9 +2,9 @@
 {
     public enum SortState
     {
-        NameAsc,
-        NameDesc,
-        CostAsc,
+        NameAsc,    
+        NameDesc,   
+        CostAsc, 
         CostDesc,
     }
 }
