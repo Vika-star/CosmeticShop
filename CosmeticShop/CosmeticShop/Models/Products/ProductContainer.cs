@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CosmeticShop.Models.Products
 {
+    
     public class ProductContainer
     {
         public int Id { get; set; }

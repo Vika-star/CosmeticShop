@@ -1,48 +1,40 @@
-@using CosmeticShop.Models
-@model IndexViewModel
-@addTagHelper *, FilterSortPagingApp
+@model CosmeticShop.Models.Products.ViewModels.ProductListViewModel
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Products";
 }
-<h1>Список пользователей</h1>
-<form method="get">
-    <div class="form-group form-inline">
-        <label>Имя: </label>
-        <input name="name" value="@Model.FilterViewModel.SelectedName" class = "form-control" />
- 
-        <label>Компания: </label>
-        <select name="company" asp-items="Model.FilterViewModel.Companies" class="form-control"></select>
- 
-        <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
-    </div>
-</form>
- 
+
 <table class="table">
     <tr>
         <th>
-            <a asp-action="Index"
-               asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-               asp-route-name="@(Model.FilterViewModel.SelectedName)"
-               asp-route-company="@(Model.FilterViewModel.SelectedCompany)">Имя</a>
-        </th>
-        <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.AgeSort)"
-               asp-route-name="@(Model.FilterViewModel.SelectedName)"
-               asp-route-company="@(Model.FilterViewModel.SelectedCompany)">Возраст</a>
-        </th>
-        <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CompanySort)"
-               asp-route-name="@(Model.FilterViewModel.SelectedName)"
-               asp-route-company="@(Model.FilterViewModel.SelectedCompany)">Компания</a>
+            <form method="get">
+                <div class="form-inline form-group">
+                    
+                    <label class="control-label">Категории: </label>
+                    <select name="categoryId" asp-items="Model.Categories" class="form-control"></select>
+
+                    <input type="submit" value="Фильтр" class="btn btn-default" />
+                </div>
+            </form>
         </th>
     </tr>
-    @foreach (User u in Model.Users)
+    @foreach (var container in Model.Products)
     {
-        <tr><td>@u.Name</td><td>@u.Age</td><td>@u.Company.Name</td></tr>
+        @* <tr><td>@u.Name</td><td>@u.Age</td><td>@u.Company.Name</td></tr> *@
+        <tr>
+            <td>
+                @if (container.Pictures != null && container.Pictures.Count() > 0)
+                {
+                    @if (container.Pictures.FirstOrDefault().ByteImage != null)
+                    {
+                        @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+            + Convert.ToBase64String(container.Pictures.FirstOrDefault().ByteImage) + "\" />")
+                    }
+                }
+
+                @container.ProductName
+                @container.Cost
+                @container.ProductCategory.Name</td>
+        </tr>
     }
 </table>
- 
-<page-link page-model="Model.PageViewModel" page-action="Index"
-           page-url-name="@(Model.FilterViewModel.SelectedName)"
-           page-url-company="@(Model.FilterViewModel.SelectedCompany)"
-           page-url-sortorder="@(Model.SortViewModel.Current)"></page-link>
