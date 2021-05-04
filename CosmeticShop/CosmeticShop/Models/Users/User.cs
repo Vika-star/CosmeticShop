@@ -9,6 +9,10 @@ namespace CosmeticShop.Models.Users
 {
     public class User : IdentityUser
     {
+        public User()
+        {
+            Order = new Order();
+        }
         public Order Order { get; set; }
         public OrderHistory OrderHistory { get; set; }
     }

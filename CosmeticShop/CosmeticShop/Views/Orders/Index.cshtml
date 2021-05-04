@@ -1,0 +1,10 @@
+@model CosmeticShop.Models.Products.Order
+
+<table>
+    @foreach (var item in Model.ProductContainers)
+    {
+        <td>
+            <p>@item.ProductName</p>
+        </td>
+    }
+</table>

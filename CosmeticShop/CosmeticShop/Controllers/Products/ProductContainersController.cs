@@ -31,18 +31,16 @@ namespace CosmeticShop.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
+            
 
             var productContainer = await _context.ProductContainers
                 .Include(p => p.ProductCategory)
                 .Include(imgs => imgs.ProductPictures).ThenInclude(x=>x.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (productContainer == null)
-            {
                 return NotFound();
-            }
 
             return View(productContainer);
         }

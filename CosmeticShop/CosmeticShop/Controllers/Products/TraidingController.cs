@@ -44,6 +44,23 @@ namespace CosmeticShop.Controllers.Products
             return View(viewModel);
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+
+            var productContainer = await _context.ProductContainers
+                .Include(p => p.ProductCategory)
+                .Include(x => x.ProductPictures).ThenInclude(x => x.Pictures)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (productContainer == null)
+                return NotFound();
+
+            return View(productContainer);
+        }
+
         private static IQueryable<ProductContainer> Sort(SortState sortOrder, IQueryable<ProductContainer> products) => sortOrder switch
         {
             SortState.NameAsc => products.OrderBy(s => s.ProductName),

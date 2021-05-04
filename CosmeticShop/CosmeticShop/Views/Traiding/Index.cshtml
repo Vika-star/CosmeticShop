@@ -60,6 +60,9 @@
             <td>@product.ProductName</td>
             <td>@product.Cost</td>
             <td>@product.ProductCategory.Name</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@product.Id" >Просмотр</a>
+            </td>
         </tr>
     }
 </table>

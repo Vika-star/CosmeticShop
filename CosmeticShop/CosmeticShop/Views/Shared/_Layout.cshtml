@@ -25,6 +25,9 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Traiding" asp-action="Index">Товары</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Корзина</a>
+                        </li>
+                        <li class="nav-item">
                             <details>
                                 <summary>Картинка</summary>
                                 @if (!User.Identity.IsAuthenticated)
