@@ -22,24 +22,21 @@ namespace CosmeticShop.Controllers.Products
             _context = context;
         }
 
-        public async Task<IActionResult> Index(int? categoryId, int page = 1,
-            SortState sortOrder = SortState.NameAsc)
+        public async Task<IActionResult> Index(ProductsFavorProperties properties)
         {
-
-
             IQueryable<ProductContainer> products = _context.ProductContainers.Include(x => x.ProductCategory);
 
-            products = Filter(categoryId, products);
-            products = Sort(sortOrder, products);
+            products = Filter(properties.categoryId, products);
+            products = Sort(properties.sortOrder, products);
 
             var count = await products.CountAsync();
-            var items = await products.Skip((page - 1) * _pageSize).Take(_pageSize).ToListAsync();
+            var items = await products.Skip((properties.page - 1) * _pageSize).Take(_pageSize).ToListAsync();
 
-            ProductsViewModel viewModel = new ProductsViewModel
+            var viewModel = new ProductsViewModel
             {
-                PageViewModel = new PageViewModel(count, page, _pageSize),
-                SortViewModel = new SortViewModel(sortOrder),
-                FilterViewModel = new FilterViewModel(_context.ProductCategories.ToList(), categoryId),
+                PageViewModel = new PageViewModel(count, properties.page, _pageSize),
+                SortViewModel = new SortViewModel(properties.sortOrder),
+                FilterViewModel = new FilterViewModel(_context.ProductCategories.ToList(), properties.categoryId),
                 Products = items
             };
             return View(viewModel);

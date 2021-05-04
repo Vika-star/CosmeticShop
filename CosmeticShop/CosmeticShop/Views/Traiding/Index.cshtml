@@ -53,6 +53,10 @@
     @foreach (var product in Model.Products)
     {
         <tr>
+            
+                @* @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(product) + "\" />") *@
+            
             <td>@product.ProductName</td>
             <td>@product.Cost</td>
             <td>@product.ProductCategory.Name</td>
