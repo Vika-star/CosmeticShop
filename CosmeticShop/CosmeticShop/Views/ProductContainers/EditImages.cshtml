@@ -1,4 +1,4 @@
-@model IEnumerable<CosmeticShop.Models.Picture>
+@model CosmeticShop.Models.AuxiliaryEntities.ProductPictures
 
 <div>
     <table>
@@ -7,7 +7,7 @@
             <th>Картинка</th>
             <th>Удалить</th>
         </tr>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Pictures)
         {
             <tr>
                 <td>
@@ -18,7 +18,7 @@
                 + Convert.ToBase64String(item.ByteImage) + "\" />")
                 </td>
                 <td>
-                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = item.ProductContainerId, imageId = item.Id}, null)
+                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = Model.ProductContainerId, imageId = item.Id}, null)
                 </td>
             </tr>
         }
@@ -26,7 +26,7 @@
 </div>
 
 <form asp-action="AddImages" enctype="multipart/form-data">
-    <input type="number" name="Id" value="@Model.FirstOrDefault().ProductContainerId" hidden>
+    <input type="number" name="Id" value="@Model.ProductContainerId" hidden>
     <div>
         <div>
             <p>Добавить картинки</p>
@@ -51,9 +51,10 @@
         var html = "";
         for (var i = 0; i < countImages; i++) {
             html += `<input type="file" name="Pictures[${i}].Image"/>`;
+            html += `<<input type="radio" name="PreviewNnmber" value="${i}">`;
 
         }
-
+        
         loadImagesInnerHtml.innerHTML = html;
     }
 </script>

@@ -1,4 +1,5 @@
-﻿using CosmeticShop.Models.Products;
+﻿using CosmeticShop.Models.AuxiliaryEntities;
+using CosmeticShop.Models.Products;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
@@ -39,7 +40,7 @@ namespace CosmeticShop.Models
             }
         }
 
-        public int ProductContainerId { get; set; }
-        public ProductContainer ProductContainer { get; set; }
+        public int? ProductPicturesId { get; set; }
+        public ProductPictures ProductPictures { get; set; }
     }
 }

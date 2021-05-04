@@ -24,7 +24,9 @@ namespace CosmeticShop.Controllers.Products
 
         public async Task<IActionResult> Index(ProductsFavorProperties properties)
         {
-            IQueryable<ProductContainer> products = _context.ProductContainers.Include(x => x.ProductCategory);
+            IQueryable<ProductContainer> products = _context.ProductContainers
+                                                    .Include(x=>x.ProductPictures).ThenInclude(x=>x.Pictures)
+                                                    .Include(x => x.ProductCategory);
 
             products = Filter(properties.categoryId, products);
             products = Sort(properties.sortOrder, products);

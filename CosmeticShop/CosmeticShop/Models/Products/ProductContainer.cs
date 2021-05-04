@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CosmeticShop.Models.AuxiliaryEntities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,9 +8,14 @@ using System.Threading.Tasks;
 
 namespace CosmeticShop.Models.Products
 {
-    
+
     public class ProductContainer
     {
+        public ProductContainer()
+        {
+            ProductPictures = new ProductPictures();
+        }
+
         public int Id { get; set; }
 
         public int CountProducts { get; set; }
@@ -21,7 +27,7 @@ namespace CosmeticShop.Models.Products
         public DateTime? CreateDate { get; set; }
         public DateTime? ExpirationDate { get; set; }
 
-        public List<Picture> Pictures { get; set; }
+        public ProductPictures ProductPictures { get; set; }
 
         public int ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }

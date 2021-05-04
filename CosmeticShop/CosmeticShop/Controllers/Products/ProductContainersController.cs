@@ -36,7 +36,8 @@ namespace CosmeticShop.Controllers
             }
 
             var productContainer = await _context.ProductContainers
-                .Include(p => p.ProductCategory).Include(imgs => imgs.Pictures)
+                .Include(p => p.ProductCategory)
+                .Include(imgs => imgs.ProductPictures).ThenInclude(x=>x.Pictures)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (productContainer == null)
             {
@@ -74,7 +75,7 @@ namespace CosmeticShop.Controllers
             }
 
             var productContainer = await _context.ProductContainers.FindAsync(id);
-            
+
             if (productContainer == null)
             {
                 return NotFound();
@@ -116,15 +117,16 @@ namespace CosmeticShop.Controllers
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name", productContainer.ProductCategoryId);
             return View(productContainer);
         }
-        
+
         public async Task<IActionResult> EditImages(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var pictures = await _context.Pictures
+            var pictures = await _context.ProductPictures
                                             .Where(x => x.ProductContainerId == id)
-                                            .ToListAsync();
+                                            .Include(p=>p.Pictures)
+                                            .FirstOrDefaultAsync();
 
             if (pictures == null)
                 return NotFound();
@@ -134,11 +136,11 @@ namespace CosmeticShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddImages(int id, List<Picture> pictures)
+        public async Task<IActionResult> AddImages(int id, List<Picture> pictures, int? previewNnmber)
         {
             var productContainer = await _context.ProductContainers
-                                                    .Include(p => p.Pictures)
-                                                    .FirstOrDefaultAsync(x => x.Id == id);
+                                            .Include(imgs => imgs.ProductPictures).ThenInclude(x => x.Pictures)
+                                            .FirstOrDefaultAsync(x => x.Id == id);
             if (productContainer == null)
                 return NotFound();
 
@@ -146,41 +148,9 @@ namespace CosmeticShop.Controllers
             {
                 try
                 {
-                    productContainer.Pictures.AddRange(pictures);
-                    _context.Update(productContainer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductContainerExists(productContainer.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(EditImages), new { id = id});
-            }
-            return View(productContainer);
-        }
-
-        public async Task<IActionResult> DeleteImage(int? id, int? imageId )
-        {
-            var productContainer = await _context.ProductContainers
-                                                    .Include(p=>p.Pictures)
-                                                    .FirstOrDefaultAsync(x=>x.Id == id);
-
-            if (id != productContainer.Id || !productContainer.Pictures.Any(x=>x.Id == imageId))
-                return NotFound();
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var imageToDelete = productContainer.Pictures.FirstOrDefault(x => x.Id == imageId);
-                    productContainer.Pictures.Remove(imageToDelete);
+                    
+                    productContainer.ProductPictures.PreviewNnmber = previewNnmber ?? 0;
+                    productContainer.ProductPictures.Pictures.AddRange(pictures);
                     _context.Update(productContainer);
                     await _context.SaveChangesAsync();
                 }
@@ -199,7 +169,41 @@ namespace CosmeticShop.Controllers
             }
             return View(productContainer);
         }
-        
+
+        public async Task<IActionResult> DeleteImage(int? id, int? imageId)
+        {
+            var productContainer = await _context.ProductContainers
+                                            .Include(imgs => imgs.ProductPictures).ThenInclude(x => x.Pictures)
+                                            .FirstOrDefaultAsync(x => x.Id == id);
+
+            if (id != productContainer.Id || !productContainer.ProductPictures.Pictures.Any(x => x.Id == imageId))
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var imageToDelete = productContainer.ProductPictures.Pictures.FirstOrDefault(x => x.Id == imageId);
+                    productContainer.ProductPictures.Pictures.Remove(imageToDelete);
+                    _context.Update(productContainer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductContainerExists(productContainer.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(EditImages), new { id = id });
+            }
+            return View(productContainer);
+        }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

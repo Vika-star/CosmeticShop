@@ -6,9 +6,7 @@
 <style>
     @@font-face {
         font-family: 'FontAwesome';
-        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
-            url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'),
-            url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
         font-weight: normal;
         font-style: normal
     }
@@ -43,20 +41,22 @@
     <tr>
         <th>
             <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Имя</a>
+               asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Имя</a>
         </th>
         <th>
             <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a>
+               asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a>
         </th>
     </tr>
     @foreach (var product in Model.Products)
     {
         <tr>
+
             
-                @* @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-                    + Convert.ToBase64String(product) + "\" />") *@
-            
+            <td>
+                @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />")
+            </td>
             <td>@product.ProductName</td>
             <td>@product.Cost</td>
             <td>@product.ProductCategory.Name</td>
@@ -66,8 +66,8 @@
 @if (Model.PageViewModel.HasPreviousPage)
 {
     <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn  btn-outline-dark">
+       asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+       asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn  btn-outline-dark">
         <i class="glyphicon glyphicon-chevron-left"></i>
         Назад
     </a>
@@ -75,8 +75,8 @@
 @if (Model.PageViewModel.HasNextPage)
 {
     <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
+       asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+       asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
         Вперед
         <i class="glyphicon glyphicon-chevron-right"></i>
     </a>
