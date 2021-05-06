@@ -20,6 +20,7 @@ namespace CosmeticShop.Models
         public DbSet<OrderHistory> OrderHistories { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<ProductPictures> ProductPictures { get; set; }
+        public DbSet<OrderProductAccounting> OrderProuctAccountings { get; set; }
         
 
         public ApplicationContext(DbContextOptions options) 

@@ -11,6 +11,7 @@ namespace CosmeticShop.Models.AuxiliaryEntities
 {
     public class RoleInitializer
     {
+        private List<string> _initialRoles =  new List<string> { "admin", "employee" };
         private readonly IConfiguration _configuration;
 
         public RoleInitializer(IConfiguration configuration)
@@ -20,28 +21,44 @@ namespace CosmeticShop.Models.AuxiliaryEntities
         public async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             string adminEmail = _configuration["AdminAccess:Default:Login"];
-            string password = _configuration["AdminAccess:Default:Password"];
+            string adminPassword = _configuration["AdminAccess:Default:Password"];
 
-            if (await roleManager.FindByNameAsync("admin") == null)
+            string employeeEmail = _configuration["EmployeeAccess:Default:Login"];
+            string employeePassword = _configuration["EmployeeAccess:Default:Password"];
+
+            await CreateRoles(roleManager, _initialRoles);
+            await CreateDefaultEntity(userManager, adminEmail, adminPassword, _initialRoles[0]);
+            await CreateDefaultEntity(userManager, employeeEmail, employeePassword, _initialRoles[1]);
+        }
+
+        private async Task CreateDefaultEntity(UserManager<User> userManager, string entityEmail, string adminPassword, string roleName)
+        {
+            if (await userManager.FindByNameAsync(entityEmail) == null)
             {
-                await roleManager.CreateAsync(new IdentityRole("admin"));
-            }
-            if (await roleManager.FindByNameAsync("employee") == null)
-            {
-                await roleManager.CreateAsync(new IdentityRole("employee"));
-            }
-            if (await userManager.FindByNameAsync(adminEmail) == null)
-            {
-                User admin = new User { Email = adminEmail, UserName = adminEmail };
-                IdentityResult result = await userManager.CreateAsync(admin, password);
-                var token = await userManager.GenerateEmailConfirmationTokenAsync(admin);
-                await userManager.ConfirmEmailAsync(admin, token);
+                User entity = new User { Email = entityEmail, UserName = entityEmail };
+                IdentityResult result = await userManager.CreateAsync(entity, adminPassword);
+                var token = await userManager.GenerateEmailConfirmationTokenAsync(entity);
+                await userManager.ConfirmEmailAsync(entity, token);
 
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(admin, "admin");
+                    await userManager.AddToRoleAsync(entity, roleName);
                 }
             }
+        }
+
+        private async Task CreateRoles(RoleManager<IdentityRole> roleManager, List<string> roles)
+        {
+            foreach (var role in roles)
+            {
+                await CreateRole(roleManager, role);
+            }
+        }
+
+        private async Task CreateRole(RoleManager<IdentityRole> roleManager, string name)
+        {
+            if (await roleManager.FindByNameAsync(name) == null)
+                await roleManager.CreateAsync(new IdentityRole(name));
         }
     }
 }

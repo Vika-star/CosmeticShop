@@ -14,6 +14,7 @@ namespace CosmeticShop.Models.Products
         public ProductContainer()
         {
             ProductPictures = new ProductPictures();
+            OrderProuctAccountings = new List<OrderProductAccounting>();
         }
 
         public int Id { get; set; }
@@ -28,6 +29,9 @@ namespace CosmeticShop.Models.Products
         public DateTime? ExpirationDate { get; set; }
 
         public ProductPictures ProductPictures { get; set; }
+
+
+        public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
 
         public int ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }

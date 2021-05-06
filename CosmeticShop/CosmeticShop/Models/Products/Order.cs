@@ -1,4 +1,5 @@
-﻿using CosmeticShop.Models.Users;
+﻿using CosmeticShop.Migrations;
+using CosmeticShop.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace CosmeticShop.Models.Products
 
         public Order()
         {
-            ProductContainers = new List<ProductContainer>();
+            OrderProuctAccountings = new List<OrderProductAccounting>();
         }
 
-        public List<ProductContainer> ProductContainers { get; set; }
+        public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
 
         public int? OrderHistoryId { get; set; }
         public OrderHistory OrderHistory { get; set; }

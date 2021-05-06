@@ -4,14 +4,16 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210505073417_OrderProductAccountingAdded")]
+    partial class OrderProductAccountingAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,12 +75,17 @@ namespace CosmeticShop.Migrations
                     b.Property<int?>("OrderHistoryId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("OrderProuctAccountingId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderHistoryId");
+
+                    b.HasIndex("OrderProuctAccountingId");
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -106,27 +113,14 @@ namespace CosmeticShop.Migrations
                     b.ToTable("OrderHistories");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProductAccounting", b =>
+            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProuctAccounting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountRequiredProducts")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductContainerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductContainerId");
 
                     b.ToTable("OrderProuctAccountings");
                 });
@@ -168,6 +162,9 @@ namespace CosmeticShop.Migrations
                     b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("OrderProuctAccountingId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
 
@@ -175,6 +172,8 @@ namespace CosmeticShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderProuctAccountingId");
 
                     b.HasIndex("ProductCategoryId");
 
@@ -403,11 +402,17 @@ namespace CosmeticShop.Migrations
                         .WithMany("Orders")
                         .HasForeignKey("OrderHistoryId");
 
+                    b.HasOne("CosmeticShop.Models.Products.OrderProuctAccounting", "OrderProuctAccounting")
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderProuctAccountingId");
+
                     b.HasOne("CosmeticShop.Models.Users.User", "User")
                         .WithOne("Order")
                         .HasForeignKey("CosmeticShop.Models.Products.Order", "UserId");
 
                     b.Navigation("OrderHistory");
+
+                    b.Navigation("OrderProuctAccounting");
 
                     b.Navigation("User");
                 });
@@ -421,28 +426,19 @@ namespace CosmeticShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProductAccounting", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Products.Order", "Order")
-                        .WithMany("OrderProuctAccountings")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("CosmeticShop.Models.Products.ProductContainer", "ProductContainer")
-                        .WithMany("OrderProuctAccountings")
-                        .HasForeignKey("ProductContainerId");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("ProductContainer");
-                });
-
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductContainer", b =>
                 {
+                    b.HasOne("CosmeticShop.Models.Products.OrderProuctAccounting", "OrderProuctAccounting")
+                        .WithMany("ProductContainers")
+                        .HasForeignKey("OrderProuctAccountingId");
+
                     b.HasOne("CosmeticShop.Models.Products.ProductCategory", "ProductCategory")
                         .WithMany("ProductContainers")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("OrderProuctAccounting");
 
                     b.Navigation("ProductCategory");
                 });
@@ -503,14 +499,16 @@ namespace CosmeticShop.Migrations
                     b.Navigation("Pictures");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>
-                {
-                    b.Navigation("OrderProuctAccountings");
-                });
-
             modelBuilder.Entity("CosmeticShop.Models.Products.OrderHistory", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProuctAccounting", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("ProductContainers");
                 });
 
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductCategory", b =>
@@ -520,8 +518,6 @@ namespace CosmeticShop.Migrations
 
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductContainer", b =>
                 {
-                    b.Navigation("OrderProuctAccountings");
-
                     b.Navigation("ProductPictures");
                 });
 

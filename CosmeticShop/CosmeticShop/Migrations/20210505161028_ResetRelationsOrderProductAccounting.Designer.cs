@@ -4,14 +4,16 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210505161028_ResetRelationsOrderProductAccounting")]
+    partial class ResetRelationsOrderProductAccounting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,15 +108,12 @@ namespace CosmeticShop.Migrations
                     b.ToTable("OrderHistories");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProductAccounting", b =>
+            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProuctAccounting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CountRequiredProducts")
-                        .HasColumnType("int");
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
@@ -421,7 +420,7 @@ namespace CosmeticShop.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProductAccounting", b =>
+            modelBuilder.Entity("CosmeticShop.Models.Products.OrderProuctAccounting", b =>
                 {
                     b.HasOne("CosmeticShop.Models.Products.Order", "Order")
                         .WithMany("OrderProuctAccountings")
