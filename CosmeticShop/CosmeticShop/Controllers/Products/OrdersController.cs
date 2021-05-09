@@ -3,6 +3,7 @@ using CosmeticShop.Models;
 using CosmeticShop.Models.Products;
 using CosmeticShop.Models.Users;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 
 namespace CosmeticShop.Controllers
@@ -54,10 +56,10 @@ namespace CosmeticShop.Controllers
             var user = await _userManager.GetUserAsync(User);
             var order = await _context.Orders
                 .Where(x => x.UserId.Equals(user.Id))
-                .Include(x=>x.OrderProuctAccountings)
-                .ThenInclude(x=>x.ProductContainer)
+                .Include(x => x.OrderProuctAccountings)
+                .ThenInclude(x => x.ProductContainer)
                 .FirstOrDefaultAsync();
-            
+
             var exitstingProduct = order.OrderProuctAccountings
                 .Where(x => x.ProductContainerId
                 .Equals(productId))
@@ -80,6 +82,23 @@ namespace CosmeticShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var productContainer = await _context.ProductContainers
+                .Include(p => p.ProductCategory)
+                .Include(x => x.ProductPictures)
+                .ThenInclude(x => x.Pictures)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (productContainer == null)
+                return NotFound();
+
+            return View(productContainer);
+        }
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -88,8 +107,8 @@ namespace CosmeticShop.Controllers
             var user = await _userManager.GetUserAsync(User);
             var order = await _context.Orders
                 .Where(x => x.UserId.Equals(user.Id))
-                .Include(x=>x.OrderProuctAccountings)
-                .ThenInclude(x=>x.ProductContainer)
+                .Include(x => x.OrderProuctAccountings)
+                .ThenInclude(x => x.ProductContainer)
                 .FirstOrDefaultAsync();
 
             if (order == null)
@@ -98,11 +117,31 @@ namespace CosmeticShop.Controllers
             var productToRemove = order.OrderProuctAccountings
                 .Where(x => x.ProductContainerId == id)
                 .FirstOrDefault();
-            //order.OrderProuctAccountings.Remove(productToRemove);
+
             _context.OrderProuctAccountings.Remove(productToRemove);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeRequiredProducts(int? id, int? counter)
+        {
+            if (counter == null)
+                return BadRequest();
+            var accounting = await _context.OrderProuctAccountings
+                .Include(x => x.ProductContainer)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            if (accounting == null)
+                return NotFound();
+
+            if (counter <= 0 || counter > accounting.ProductContainer.CountProducts)
+                return BadRequest();
+
+            accounting.CountRequiredProducts = counter.Value;
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

@@ -51,25 +51,22 @@
     @foreach (var product in Model.Products)
     {
         <tr>
-
-
             <td>
                 @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
             + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />")
             </td>
             <td>
-            @product.ProductName
-            @product.Cost
-            @product.ProductCategory.Name
-            
+                @product.ProductName
+                @product.Cost
+                @product.ProductCategory.Name
+
                 <a asp-action="Details" asp-route-id="@product.Id">Просмотр</a>
             </td>
             <td>
                 <form asp-controller="Orders" asp-action="Add" method="POST">
                     <input type="number" name="productId" value="@product.Id" hidden>
 
-                    <label for="add-to-order">Добавить в корзину</label>
-                    <input type="submit" name="add-to-order" value="">
+                    <input type="submit" name="add-to-order" value="Добавить в корзину">
                 </form>
             </td>
         </tr>

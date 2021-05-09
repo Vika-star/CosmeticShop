@@ -75,13 +75,6 @@
 <div>
     <form asp-controller="Orders" asp-action="Add" method="POST">
         <input type="number" name="productId" value="@Model.Id" hidden>
-        
-        <label for="count">Количество</label>
-        <input type="number" name="count">
-        
-        <label for="add-to-order">Добавить в корзину</label>
-        <input type="submit" name="add-to-order" value="">
+        <input type="submit" name="add-to-order" value="Добавить в корзину">
     </form>
-    @* <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a> *@
 </div>

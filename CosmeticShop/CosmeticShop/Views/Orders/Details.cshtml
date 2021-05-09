@@ -1,17 +1,16 @@
-﻿@model CosmeticShop.Models.Products.ProductContainer
-
+@model CosmeticShop.Models.Products.ProductContainer
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Товар</h1>
 
 <div>
     <h4>ProductContainer</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CountProducts)
+            <p>В наличии:</p>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CountProducts)
@@ -55,15 +54,11 @@
 
         <table>
             <tr>
-                <th>Название</th>
                 <th>Картинка</th>
             </tr>
             @foreach (var item in Model.ProductPictures.Pictures)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
                     <td>
                         @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
                     + Convert.ToBase64String(item.ByteImage) + "\" />")
@@ -73,9 +68,3 @@
         </table>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-
-

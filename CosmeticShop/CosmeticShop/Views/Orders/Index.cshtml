@@ -2,23 +2,86 @@
 
 <h1>Корзина</h1>
 <table>
-    @foreach (var item in Model.OrderProuctAccountings)
+    @foreach (var accounting in Model.OrderProuctAccountings)
     {
         <tr>
             <td>
                 @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-            + Convert.ToBase64String(item.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
+            + Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
             </td>
-            <td>@item.CountRequiredProducts</td>
-            <td>@item.ProductContainer.ProductName</td>
-            <td>@item.ProductContainer.Cost</td>
+            <td>
+                <div class="containter">
+                    <input type="button" value="-"
+                    onclick="decreaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
 
-            <td>
-                <a asp-controller="Traiding" asp-action="Details" asp-route-id="@item.ProductContainer.Id">Просмотр</a>
+                    <input type="number" name="counter" value="@accounting.CountRequiredProducts" style="width: 50px;" />
+
+                    <input type='button' value="+"
+                    onclick="increaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
+                </div>
+                <br>
+                <div>
+                    @accounting.ProductContainer.ProductName
+                    @accounting.ProductContainer.Cost
+                </div>
             </td>
             <td>
-                <a asp-action="Delete" asp-controller="Orders" asp-route-id="@item.ProductContainer.Id">Удалить продукт</a>
+
+            </td>
+            <td>
+                <a asp-controller="Orders" asp-action="Details" asp-route-id="@accounting.ProductContainer.Id">Просмотр</a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-controller="Orders" asp-route-id="@accounting.ProductContainer.Id">Удалить
+                    продукт</a>
             </td>
         </tr>
     }
 </table>
+
+<form action="">
+    <input type="submit" value="Оформить ззаказ">
+</form>
+
+
+<script>
+    function increaseAmount(sender, amount, opId) {
+        var input = getCounterInput(sender);
+        if (isValidCounterValue(parseInt(input.value) + 1, amount)) {
+            input.value++;
+            sendRequestResetRequiredCount(opId, input.value)
+        }
+        //else
+        //todo show error "Превышено допустимое количество товаров"
+    }
+    function decreaseAmount(sender, amount, opId) {
+        var input = getCounterInput(sender);
+        if (isValidCounterValue(parseInt(input.value) - 1, amount)) {
+            input.value--;
+            sendRequestResetRequiredCount(opId, input.value)
+        }
+    }
+    function isValidCounterValue(value, generalAmount) {
+        return parseInt(value) > 0 && value <= parseInt(generalAmount);
+    }
+    function sendRequestResetRequiredCount(id, counter) {
+        var parametres = `id=${id}&counter=${counter}`;
+        var queryUrl = `Orders/ChangeRequiredProducts?${parametres}`;
+
+        var xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", queryUrl, true);
+        xhttp.send();
+    }
+    function getCounterInput(sender) {
+        var values = sender.childNodes;
+        var counterInput = new Object();
+
+        for (var i = 0; i < values.length; i++) {
+            if (values[i].name == "counter") {
+                counterInput = values[i];
+            }
+        }
+        return counterInput;
+    }
+</script>

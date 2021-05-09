@@ -49,7 +49,6 @@ namespace CosmeticShop.Controllers.Products
             if (id == null)
                 return NotFound();
 
-
             var productContainer = await _context.ProductContainers
                 .Include(p => p.ProductCategory)
                 .Include(x => x.ProductPictures).ThenInclude(x => x.Pictures)
