@@ -16,6 +16,8 @@ namespace CosmeticShop.Models.Products
             OrderProuctAccountings = new List<OrderProductAccounting>();
         }
 
+        public OrderPresonalData PresonalData { get; set; }
+
         public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
 
         public int? OrderHistoryId { get; set; }

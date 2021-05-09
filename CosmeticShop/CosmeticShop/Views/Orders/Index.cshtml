@@ -22,7 +22,10 @@
                 <br>
                 <div>
                     @accounting.ProductContainer.ProductName
-                    @accounting.ProductContainer.Cost
+                    @{
+                        var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
+                    }
+                    @summaryCost;
                 </div>
             </td>
             <td>
@@ -40,7 +43,7 @@
 </table>
 
 <form action="">
-    <input type="submit" value="Оформить ззаказ">
+    <input type="submit" value="Оформить заказ">
 </form>
 
 

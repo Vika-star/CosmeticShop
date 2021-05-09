@@ -40,7 +40,6 @@ namespace CosmeticShop
                 options.User.RequireUniqueEmail = true;
 
                 options.SignIn.RequireConfirmedEmail = true;
-                //opts.User.AllowedUserNameCharacters = ".@abcdefghijklmnopqrstuvwxyz";
             })
             .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
@@ -48,7 +47,9 @@ namespace CosmeticShop
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton<IEmailService, EmailService>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

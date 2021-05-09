@@ -44,7 +44,7 @@ namespace CosmeticShop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(int? productId, int count = 1)
+        public async Task<IActionResult> Add(int? productId)
         {
             if (productId == null)
                 return NotFound();
@@ -67,26 +67,26 @@ namespace CosmeticShop.Controllers
 
             if (exitstingProduct != null)
             {
-                exitstingProduct.CountRequiredProducts += count;
+                if (exitstingProduct.CountRequiredProducts + 1 <= exitstingProduct.ProductContainer.CountProducts)
+                {
+                    exitstingProduct.CountRequiredProducts++;
+                }
             }
             else
             {
                 order.OrderProuctAccountings.Add(new OrderProductAccounting
                 {
-                    CountRequiredProducts = count,
+                    CountRequiredProducts = 1,
                     ProductContainer = product,
                 });
             }
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Traiding");
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-                return NotFound();
-
             var productContainer = await _context.ProductContainers
                 .Include(p => p.ProductCategory)
                 .Include(x => x.ProductPictures)
@@ -101,15 +101,11 @@ namespace CosmeticShop.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-                return NotFound();
-
             var user = await _userManager.GetUserAsync(User);
             var order = await _context.Orders
-                .Where(x => x.UserId.Equals(user.Id))
                 .Include(x => x.OrderProuctAccountings)
                 .ThenInclude(x => x.ProductContainer)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(x => x.UserId.Equals(user.Id));
 
             if (order == null)
                 return NotFound();
@@ -123,6 +119,21 @@ namespace CosmeticShop.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Ordering(int? id)
+        {
+            var order = await _context.Orders.Include(x=>x.OrderProuctAccountings)
+                .ThenInclude(x=>x.ProductContainer)
+                .ThenInclude(x=>x.ProductPictures)
+                .FirstOrDefaultAsync(x => x.Id.Equals(id));
+
+            if (order == null)
+                return NotFound();
+
+            return View(order);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> ChangeRequiredProducts(int? id, int? counter)
