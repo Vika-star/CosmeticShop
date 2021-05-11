@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MimeKit.Encodings;
+using Org.BouncyCastle.Asn1.X509.SigI;
 using Org.BouncyCastle.Math.EC.Rfc7748;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ using System.Threading.Tasks;
 namespace CosmeticShop.Controllers
 {
     [Authorize]
+
     public class OrdersController : Controller
     {
         private readonly ApplicationContext _context;
@@ -28,6 +31,9 @@ namespace CosmeticShop.Controllers
             _context = context;
             _userManager = userManager;
         }
+
+        public IActionResult OrderHistory() => View();
+        public IActionResult Pay() => View();
 
         public async Task<IActionResult> Index()
         {
@@ -122,9 +128,11 @@ namespace CosmeticShop.Controllers
 
         public async Task<IActionResult> Ordering(int? id)
         {
-            var order = await _context.Orders.Include(x=>x.OrderProuctAccountings)
-                .ThenInclude(x=>x.ProductContainer)
-                .ThenInclude(x=>x.ProductPictures)
+            var order = await _context.Orders
+                .Include(x => x.OrderProuctAccountings)
+                .ThenInclude(x => x.ProductContainer)
+                .ThenInclude(x => x.ProductPictures)
+                .ThenInclude(x => x.Pictures)
                 .FirstOrDefaultAsync(x => x.Id.Equals(id));
 
             if (order == null)
@@ -133,7 +141,27 @@ namespace CosmeticShop.Controllers
             return View(order);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Ordering(Order order)
+        {
+            var fullLoadOrder = await _context.Orders
+                .Include(x => x.PersonalData)
+                .Include(x => x.OrderProuctAccountings)
+                .ThenInclude(x => x.ProductContainer)
+                .ThenInclude(x => x.ProductPictures)
+                .ThenInclude(x => x.Pictures)
+                .FirstOrDefaultAsync(x => x.Id.Equals(order.PersonalData.OrderId));
 
+            fullLoadOrder.PersonalData = order.PersonalData;
+
+            if (!ModelState.IsValid)
+                return View(order);
+
+            if (order.PersonalData.IsPaid)
+                return RedirectToAction(nameof(Pay));
+
+            return RedirectToAction(nameof(OrderHistory));
+        }
 
         [HttpPost]
         public async Task<IActionResult> ChangeRequiredProducts(int? id, int? counter)

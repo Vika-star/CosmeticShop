@@ -42,7 +42,8 @@
     }
 </table>
 
-<form action="">
+<form asp-action="Ordering" method="GET">
+    <input name="Id" value="@Model.Id" hidden>
     <input type="submit" value="Оформить заказ">
 </form>
 
