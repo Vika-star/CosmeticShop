@@ -9,12 +9,13 @@
 
     <link rel="stylesheet" href="~/css/LayoutHeader.css" />
     <link rel="stylesheet" href="~/css/LayoutBody.css" />
+    <link rel="stylesheet" href="~/css/LayoutFooter.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                 <img src="~/image/logo.png" alt="logo-header" id="logo-header">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -51,7 +52,7 @@
                     <!-- hiden -->
                     <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                            <img src="~/image/shopping-bag.png" alt="shopping-bag">
+                        <img src="~/image/shopping-bag.png" alt="shopping-bag">
                     </button>
 
 
@@ -94,9 +95,107 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="site-footer">
         <div class="container">
-            &copy; 2021 - CosmeticShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+
+                <div class="col-xs-2 col-md-2">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="/image/logo.png" alt="logo-header" id="logo-header">
+                    </a>
+                </div>
+                <div class="col-xs-1 col-md-1"></div>
+                <div class="col-xs-1 col-md-1">
+                    <h5>Магазин</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Новинки</a></li>
+                        <li><a href="#">Лучшие товары</a></li>
+                        <li><a href="#">Парфюмерия</a></li>
+                        <li><a href="#">Макияж</a></li>
+                        <li><a href="#">Уход</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-1 col-md-1"></div>
+                <div class="col-xs-1 col-md-1">
+                    <h5>Способы</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">О доставке</a></li>
+                        <li><a href="#">Способы оплаты</a></li>
+                        <li><a href="#">Пользовательское</br>соглашение</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-1 col-md-1"></div>
+                <div class="col-xs-1 col-md-1">
+                    <h5>Компания</h5>
+                    <ul class="footer-links">
+                        <li><a href="http://scanfcode.com/about/">О нас</a></li>
+                        <li><a href="http://scanfcode.com/contact/">Сотрудничество</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-1 col-md-2"></div>
+                <div class="col-xs-2 col-md-2">
+                    <h5>Контакты</h5>
+                    <ul class="footer-links">
+                        <li><a href="tel:+375297418529"> <img src="/image/phone.png" alt="phone"> +375(29) 741-85-29</a>
+                        </li>
+                        <li><a href="mail:vicosmetic@gmail.com"> <img src="/image/email.png" alt="email">
+                                vicosmetic@gmail.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <ul class="social-icons">
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/facebook.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/instagram.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/playstore.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/app-store.png" alt="user">
+                            </button></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <p class="copyright-text">&copy;2021 Create by Einherjar - <a asp-area="" asp-controller="Home"
+                            asp-action="Privacy" class="privacyFooter">Пользовательское соглашение</a></p>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <ul class="social-icons pay-icons">
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/mastercard.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/visa.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/webmoney.png" alt="user">
+                            </button></li>
+                        <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="/image/yandex.png" alt="user">
+                            </button></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </footer>
 
