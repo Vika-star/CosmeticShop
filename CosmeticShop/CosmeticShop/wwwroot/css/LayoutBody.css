@@ -1,6 +1,8 @@
 body {
     background-color: #FFF8F4!important;
     font-family: Crimson Text!important;
+    margin: 0!important;
+    padding: 0!important;
 }
 .btn-circle {
     width: 50px;

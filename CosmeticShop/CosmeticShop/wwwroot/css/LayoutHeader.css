@@ -9,7 +9,7 @@ body header {
   font-family: Crimson Text;
   line-height: 24.84px;
 
-  margin: 10px 150px 60px 150px;
+  margin: 10px 140px 40px 140px !important;
 }
 body header .navbar .navbar-brand .logo-header{
   width: 127px;
@@ -18,8 +18,8 @@ body header .navbar .navbar-brand .logo-header{
 body header .collapse .navbar-first {
   width: auto;
   height: auto;
-  margin-right: 150px;
-  margin-left: 150px;
+  margin-right: 162px;
+  margin-left: 162px;
 }
 body header .collapse .navbar-first .nav-item{
   width: auto;

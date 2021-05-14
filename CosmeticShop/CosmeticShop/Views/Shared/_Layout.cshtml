@@ -9,94 +9,102 @@
 
     <link rel="stylesheet" href="~/css/LayoutHeader.css" />
     <link rel="stylesheet" href="~/css/LayoutBody.css" />
-    <link rel="stylesheet" href="~/css/LayoutFooter.css">
+    <link rel="stylesheet" href="~/css/LayoutFooter.css" />
+    <link rel="stylesheet" href="~/css/AdditionalHomeIndex.css" />
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/image/logo.png" alt="logo-header" id="logo-header">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-first navbar-nav justify-content-center">
-                    <a class="nav-item nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                    <a class="nav-item nav-link" asp-area="" asp-controller="Traiding" asp-action="Index">Магазин</a>
-                    <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">Доставка и
-                        Оплата</a>
-                    <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">Контакты</a>
-                    <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">О нас</a>
+        <div class="container-fluid">
 
-                </div>
-                <div class="navbar-second navbar-nav  justify-content-end">
-                    <!-- hiden -->
-                    <div class="dropdown">
-                        <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/image/logo.png" alt="logo-header" id="logo-header">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-first navbar-nav justify-content-center">
+                        <a class="nav-item nav-link active" asp-area="" asp-controller="Home"
+                            asp-action="Index">Главная</a>
+                        <a class="nav-item nav-link" asp-area="" asp-controller="Traiding"
+                            asp-action="Index">Магазин</a>
+                        <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">Доставка и
+                            Оплата</a>
+                        <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">Контакты</a>
+                        <a class="nav-item nav-link" asp-area="" asp-controller="" asp-action="Index">О нас</a>
+
+                    </div>
+                    <div class="navbar-second navbar-nav  justify-content-end">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">
+                            <img src="~/image/shopping-bag.png" alt="user" style="width: auto; height: auto;">
+                        </a>
+
+
+                        @* <!-- hiden -->
+                            <div class="dropdown">
+                            <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <img src="~/image/search.png" alt="user">
-                        </button>
-                        <div class="dropdown-menu dropdown-search" aria-labelledby="dropdownMenuButton">
+                            </button>
+                            <div class="dropdown-menu dropdown-search" aria-labelledby="dropdownMenuButton">
                             <form class="navbar form-inline">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Введите товар"
-                                    aria-label="Search">
-                                <button class="btn btn-circle my-2 my-sm-0" type="submit">
-                                    <img src="/image/search.png" alt="search" class="search">
-                                </button>
+                            <input class="form-control mr-sm-2" type="search" placeholder="Введите товар"
+                            aria-label="Search">
+                            <button class="btn btn-circle my-2 my-sm-0" type="submit">
+                            <img src="~/image/search.png" alt="search" class="search">
+                            </button>
                             </form>
-                        </div>
-                    </div>
-                    <!-- hiden -->
-                    <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img src="~/image/shopping-bag.png" alt="shopping-bag">
-                    </button>
+                            </div>
+                            </div>
+                            <!-- hiden -->
+                        *@
 
 
-                    <div class="dropdown">
-                        <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <img src="~/image/user.png" alt="user-header">
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            @if (!User.Identity.IsAuthenticated)
-                            {
-                                <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Вход в
-                                    аккаунт</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="Account"
-                                asp-action="Register">Зарегистрироваться</a>
+                        <div class="dropdown">
+                            <button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="~/image/user.png" alt="user-header">
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Вход в
+                                        аккаунт</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Account"
+                                    asp-action="Register">Зарегистрироваться</a>
 
-                            }
-                            else
-                            {
-                                <a class="dropdown-item" asp-area="" asp-controller="PersonalArea" asp-action="Index">Личный
-                                    кабинет</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="PersonalArea" asp-action="">Выход</a>
-                            }
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="PersonalArea"
+                                    asp-action="Index">Личный
+                                        кабинет</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="" asp-controller="PersonalArea"
+                                    asp-action="">Выход</a>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
+            </nav>
+        </div>
 
 
 
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="site-footer">
-        <div class="container">
+    <footer class="site-footer container-fluid">
+        <div class="container-fluid">
             <div class="row">
 
                 <div class="col-xs-2 col-md-2">
@@ -148,25 +156,25 @@
             <hr>
         </div>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12 ">
                     <ul class="social-icons">
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/facebook.png" alt="user">
+                                <img src="~/image/facebook.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/instagram.png" alt="user">
+                                <img src="~/image/instagram.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/playstore.png" alt="user">
+                                <img src="~/image/playstore.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/app-store.png" alt="user">
+                                <img src="~/image/app-store.png" alt="user">
                             </button></li>
                     </ul>
                 </div>
@@ -179,19 +187,19 @@
                     <ul class="social-icons pay-icons">
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/mastercard.png" alt="user">
+                                <img src="~/image/mastercard.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/visa.png" alt="user">
+                                <img src="~/image/visa.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/webmoney.png" alt="user">
+                                <img src="~/image/webmoney.png" alt="user">
                             </button></li>
                         <li><button class="btn btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="/image/yandex.png" alt="user">
+                                <img src="~/image/yandex.png" alt="user">
                             </button></li>
                     </ul>
                 </div>
