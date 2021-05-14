@@ -2,6 +2,7 @@
 using CosmeticShop.Models.Users;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,11 @@ namespace CosmeticShop.Models.Products
         {
             OrderProuctAccountings = new List<OrderProductAccounting>();
         }
+
+        public OrderPresonalData PersonalData { get; set; }
+
+        [NotMapped]
+        public decimal SummaryCost => OrderProuctAccountings.Sum(x => x.Cost);
 
         public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
 

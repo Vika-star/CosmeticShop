@@ -1,0 +1,81 @@
+﻿@model CosmeticShop.Models.Products.Order
+
+
+<div>
+    <p>Итого</p>
+    <div style="overflow: scroll; height: 250px">
+        @foreach (var item in Model.OrderProuctAccountings)
+        {
+            <div>
+                <p>@item.ProductContainer.ProductName</p>
+                <p>@item.CountRequiredProducts</p>
+                <p>@item.Cost</p>
+                @Html.Raw("<img style='width:50px; height:50px;' src=\"data:image/jpeg;base64,"
+            + Convert.ToBase64String(item.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
+            </div>
+            <hr>
+        }
+        @Model.SummaryCost
+    </div>
+</div>
+
+<div>
+    <form asp-action="Ordering" method="post">
+        <p>Личные данные</p>
+        <div>
+            <div>
+                <label asp-for="PersonalData.Name" id="">Имя</label>
+                <input type="text" asp-for="PersonalData.Name" id="">
+                <span asp-validation-for="PersonalData.Name"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.Surname" id="">Фамилия</label>
+                <input type="text" asp-for="PersonalData.Surname" id="">
+                <span asp-validation-for="PersonalData.Surname"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.PhoneNumber" id="">Номер телефона</label>
+                <input type="text" asp-for="PersonalData.PhoneNumber" id="phone">
+                <span asp-validation-for="PersonalData.PhoneNumber"></span>
+
+            </div>
+            <div>
+                <label asp-for="PersonalData.Email" id="">Email</label>
+                <input type="email" asp-for="PersonalData.Email" id="">
+                <span asp-validation-for="PersonalData.Email"></span>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p>Доставка</p>
+            <div>
+                <label asp-for="PersonalData.Street" id="">Улица</label>
+                <input type="text" asp-for="PersonalData.Street" id="">
+                <span asp-validation-for="PersonalData.Street"></span>
+                
+            </div>
+            <div>
+                <label asp-for="PersonalData.Home" id="">Дом</label>
+                <input type="text" asp-for="PersonalData.Home" id="">
+                <span asp-validation-for="PersonalData.Home"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.Flat" id="">Квартира</label>
+                <input type="text" asp-for="PersonalData.Flat" id="">
+            </div>
+            <div>
+                <p>Способ оплаты</p>
+                <select asp-for="PersonalData.IsPaid">
+                    <option disabled>Способ оплаты</option>
+                    <option selected value="true">Картой</option>
+                    <option value="false">При получении товара</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <input type="number" asp-for="PersonalData.OrderId" value="@Model.Id" hidden>
+            <input type="submit" value="Оформить заказ">
+        </div>
+    </form>
+</div>

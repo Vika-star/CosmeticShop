@@ -1,0 +1,12 @@
+@model CosmeticShop.Models.Products.OrderHistory
+
+История заказов
+
+@foreach (var order in Model.Orders)
+{
+    @foreach (var opa in order.OrderProuctAccountings)
+    {
+        <p>@opa.ProductContainer.ProductName</p>
+    }
+    <hr>
+}
