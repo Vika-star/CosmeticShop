@@ -32,7 +32,17 @@ namespace CosmeticShop.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult OrderHistory() => View();
+        public async Task<IActionResult> OrderHistory()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var history = await _context.OrderHistories
+                .Include(x => x.Orders
+                    .Select(x=>x.OrderProuctAccountings
+                        .Select(x=>x.ProductContainer)))
+                .FirstOrDefaultAsync(x => x.UserId.Equals(user.Id));
+            return View();
+        }
+
         public IActionResult Pay() => View();
 
         public async Task<IActionResult> Index()
@@ -159,6 +169,19 @@ namespace CosmeticShop.Controllers
 
             if (order.PersonalData.IsPaid)
                 return RedirectToAction(nameof(Pay));
+
+            var user = await _userManager.GetUserAsync(User);
+            var fullUser = await _context.Users
+                .Include(x => x.OrderHistory)
+                .Include(x => x.Order)
+                .FirstOrDefaultAsync(x => x.Id.Equals(user.Id));
+
+            user.Order = new Order();
+            if (user.OrderHistory == null)
+                user.OrderHistory = new OrderHistory();
+
+            user.OrderHistory.Orders.Add(fullLoadOrder);
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(OrderHistory));
         }

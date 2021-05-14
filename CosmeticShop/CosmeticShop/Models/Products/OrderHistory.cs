@@ -8,6 +8,11 @@ namespace CosmeticShop.Models.Products
 {
     public class OrderHistory
     {
+        public OrderHistory()
+        {
+            Orders = new List<Order>();
+        }
+
         public int Id { get; set; }
         public List<Order> Orders { get; set; }
 

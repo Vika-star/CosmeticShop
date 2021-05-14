@@ -6,11 +6,14 @@
     <div>
         <a asp-action="Index" asp-controller="ProductCategories">Категории</a>
     </div>   
+    
 }
 @if(User.IsInRole("admin"))
 {
     <p>You are admin</p>
 }
+
+<a asp-action="OrderHistory" asp-controller="Orders">История заказов</a>
 
 <a asp-area="" asp-controller="PersonalArea" asp-action="PersonalData">личные данные</a>
 
