@@ -6,7 +6,13 @@
 {
     @foreach (var opa in order.OrderProuctAccountings)
     {
-        <p>@opa.Cost</p>
+
+        <div>
+            <p>@opa.Cost</p>
+            <p>@opa.ProductContainer.ProductName</p>
+            <p>@opa.</p>
+        </div>
+
     }
     <hr>
 }

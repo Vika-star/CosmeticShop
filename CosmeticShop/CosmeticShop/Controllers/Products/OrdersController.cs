@@ -35,7 +35,11 @@ namespace CosmeticShop.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var history = await _context.OrderHistories
-                .Include(x => x.Orders.Select(x => x.OrderProuctAccountings))
+                .Include(x => x.Orders)
+                .ThenInclude(x=> x.OrderProuctAccountings)
+                .ThenInclude(x=>x.ProductContainer)
+                .ThenInclude(x=>x.ProductPictures)
+                .ThenInclude(x=>x.Pictures)
                 .FirstOrDefaultAsync(x => x.UserId.Equals(user.Id));
             
             return View(history);
