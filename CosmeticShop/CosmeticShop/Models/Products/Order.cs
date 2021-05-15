@@ -29,5 +29,11 @@ namespace CosmeticShop.Models.Products
 
         public string UserId { get; set; }
         public User User { get; set; }
+
+        public int? OrdersToDeliveryId { get; set; }
+        public OrdersToDelivery OrdersToDelivery { get; set; }
+
+        public int? OrdersToCollectId { get; set; }
+        public OrdersToCollect OrdersToCollect { get; set; }
     }
 }

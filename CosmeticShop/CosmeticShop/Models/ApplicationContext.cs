@@ -1,5 +1,6 @@
 ﻿using CosmeticShop.Models.AuxiliaryEntities;
 using CosmeticShop.Models.Products;
+using CosmeticShop.Models.Products.EmployeeOrders;
 using CosmeticShop.Models.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,11 @@ namespace CosmeticShop.Models
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<ProductPictures> ProductPictures { get; set; }
         public DbSet<OrderProductAccounting> OrderProuctAccountings { get; set; }
+        
+        public DbSet<OrdersToCollect> OrdersToCollect { get; set; }
+        public DbSet<OrdersToDelivery> OrdersToDelivery { get; set; }
+        public DbSet<OrderProcessing> OrderProcessings { get; set; }
+        
         
 
         public ApplicationContext(DbContextOptions options) 

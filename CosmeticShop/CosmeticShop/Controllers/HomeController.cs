@@ -23,8 +23,8 @@ namespace CosmeticShop.Controllers
         {
             var amountProducts = _context.ProductContainers.Count();
             var latestProducts = await _context.ProductContainers
-                .Skip(amountProducts - Constants.CountLatestProductsOnHomeIndexPage)
-                .Take(Constants.CountLatestProductsOnHomeIndexPage).ToListAsync();
+                .Skip(amountProducts - Constants.CountLatestProducts)
+                .Take(Constants.CountLatestProducts).ToListAsync();
 
             return View(latestProducts);
         }
