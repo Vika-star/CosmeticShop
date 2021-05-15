@@ -12,18 +12,21 @@ namespace CosmeticShop.Models.Products
     {
         public int Id { get; set; }
 
+        public OrderPresonalData PersonalData { get; set; }
+        public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
+        public DateTime? DeliveryDate { get; set; }
+
         public Order()
         {
             OrderProuctAccountings = new List<OrderProductAccounting>();
         }
 
-        public OrderPresonalData PersonalData { get; set; }
 
         [NotMapped]
         public decimal SummaryCost => OrderProuctAccountings.Sum(x => x.Cost);
 
-        public List<OrderProductAccounting> OrderProuctAccountings { get; set; }
-
+        
+        
         public int? OrderHistoryId { get; set; }
         public OrderHistory OrderHistory { get; set; }
 
@@ -31,9 +34,9 @@ namespace CosmeticShop.Models.Products
         public User User { get; set; }
 
         public int? OrdersToDeliveryId { get; set; }
-        public OrdersToDelivery OrdersToDelivery { get; set; }
+        public OrderToDelivery OrdersToDelivery { get; set; }
 
-        public int? OrdersToCollectId { get; set; }
-        public OrdersToCollect OrdersToCollect { get; set; }
+        public int? OrderToCollectId { get; set; }
+        public OrderToCollect OrdersToCollect { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace CosmeticShop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var amountProducts = _context.ProductContainers.Count();
+            var amountProducts = await _context.ProductContainers.CountAsync();
             var latestProducts = await _context.ProductContainers
                 .Skip(amountProducts - Constants.CountLatestProducts)
                 .Take(Constants.CountLatestProducts).ToListAsync();

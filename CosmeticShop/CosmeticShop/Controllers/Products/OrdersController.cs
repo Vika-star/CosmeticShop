@@ -181,8 +181,11 @@ namespace CosmeticShop.Controllers
             user.Order = new Order();
             if (user.OrderHistory == null)
                 user.OrderHistory = new OrderHistory();
+                
 
             user.OrderHistory.Orders.Add(fullLoadOrder);
+            await _context.OrdersToCollect.AddAsync(new OrderToCollect { Order = fullLoadOrder });
+
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(OrderHistory));
