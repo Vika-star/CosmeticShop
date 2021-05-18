@@ -15,3 +15,7 @@ body {
 .btn-circle:focus {
     box-shadow: 0 1px 1px #FFF8F4 inset, 0 0 8px #FFF8F4!important;
 }
+.main-hr{
+    width: auto;
+    margin: 0 150px 60px 150px;
+}
