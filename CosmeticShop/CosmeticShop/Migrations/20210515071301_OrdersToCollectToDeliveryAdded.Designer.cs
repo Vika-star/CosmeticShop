@@ -4,14 +4,16 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210515071301_OrdersToCollectToDeliveryAdded")]
+    partial class OrdersToCollectToDeliveryAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,18 +65,6 @@ namespace CosmeticShop.Migrations
                     b.ToTable("Pictures");
                 });
 
-            modelBuilder.Entity("CosmeticShop.Models.Products.EmployeeOrders.OrderProcessing", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrderProcessing");
-                });
-
             modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -116,15 +106,10 @@ namespace CosmeticShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("OrderProcessingId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderProcessingId");
 
                     b.HasIndex("UserId")
                         .IsUnique()
@@ -214,13 +199,7 @@ namespace CosmeticShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderProcessingId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderProcessingId")
-                        .IsUnique();
 
                     b.ToTable("OrdersToCollect");
                 });
@@ -232,13 +211,7 @@ namespace CosmeticShop.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderProcessingId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderProcessingId")
-                        .IsUnique();
 
                     b.ToTable("OrdersToDelivery");
                 });
@@ -538,10 +511,6 @@ namespace CosmeticShop.Migrations
 
             modelBuilder.Entity("CosmeticShop.Models.Products.OrderHistory", b =>
                 {
-                    b.HasOne("CosmeticShop.Models.Products.EmployeeOrders.OrderProcessing", null)
-                        .WithMany("OrderHistories")
-                        .HasForeignKey("OrderProcessingId");
-
                     b.HasOne("CosmeticShop.Models.Users.User", "User")
                         .WithOne("OrderHistory")
                         .HasForeignKey("CosmeticShop.Models.Products.OrderHistory", "UserId");
@@ -571,28 +540,6 @@ namespace CosmeticShop.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("ProductContainer");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrdersToCollect", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Products.EmployeeOrders.OrderProcessing", "OrderProcessing")
-                        .WithOne("OrdersToCollect")
-                        .HasForeignKey("CosmeticShop.Models.Products.OrdersToCollect", "OrderProcessingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OrderProcessing");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.OrdersToDelivery", b =>
-                {
-                    b.HasOne("CosmeticShop.Models.Products.EmployeeOrders.OrderProcessing", "OrderProcessing")
-                        .WithOne("OrdersToDelivery")
-                        .HasForeignKey("CosmeticShop.Models.Products.OrdersToDelivery", "OrderProcessingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OrderProcessing");
                 });
 
             modelBuilder.Entity("CosmeticShop.Models.Products.ProductContainer", b =>
@@ -660,15 +607,6 @@ namespace CosmeticShop.Migrations
             modelBuilder.Entity("CosmeticShop.Models.AuxiliaryEntities.ProductPictures", b =>
                 {
                     b.Navigation("Pictures");
-                });
-
-            modelBuilder.Entity("CosmeticShop.Models.Products.EmployeeOrders.OrderProcessing", b =>
-                {
-                    b.Navigation("OrderHistories");
-
-                    b.Navigation("OrdersToCollect");
-
-                    b.Navigation("OrdersToDelivery");
                 });
 
             modelBuilder.Entity("CosmeticShop.Models.Products.Order", b =>

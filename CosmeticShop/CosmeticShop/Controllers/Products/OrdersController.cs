@@ -20,7 +20,6 @@ using System.Threading.Tasks;
 namespace CosmeticShop.Controllers
 {
     [Authorize]
-
     public class OrdersController : Controller
     {
         private readonly ApplicationContext _context;
@@ -32,15 +31,18 @@ namespace CosmeticShop.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> OrderHistory()
+        public async Task<IActionResult> OrderHistory()   
         {
             var user = await _userManager.GetUserAsync(User);
             var history = await _context.OrderHistories
-                .Include(x => x.Orders
-                    .Select(x=>x.OrderProuctAccountings
-                        .Select(x=>x.ProductContainer)))
+                .Include(x => x.Orders)
+                .ThenInclude(x=> x.OrderProuctAccountings)
+                .ThenInclude(x=>x.ProductContainer)
+                .ThenInclude(x=>x.ProductPictures)
+                .ThenInclude(x=>x.Pictures)
                 .FirstOrDefaultAsync(x => x.UserId.Equals(user.Id));
-            return View();
+            
+            return View(history);
         }
 
         public IActionResult Pay() => View();
