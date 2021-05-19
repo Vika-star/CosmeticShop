@@ -1,5 +1,6 @@
 @if(User.IsInRole("employee"))
 {
+    <h3>Обработка</h3>
     <div>
         <a asp-action="Index" asp-controller="ProductContainers">Продукты</a>
     </div>
@@ -13,6 +14,7 @@
 }
 @if(User.IsInRole("delivery"))
 {
+    <h3>Доставка</h3>
     <div>
         <a asp-action="OrdersToDelivery" asp-controller="OrderProcessing">Доставка</a>
     </div>   
@@ -20,7 +22,7 @@
 }
 @if(User.IsInRole("admin"))
 {
-    <h2>Права администратора</h2>
+    <h3>Администрирование</h3>
     <div>
         <a asp-action="Index" asp-controller="Roles">Роли</a>
     </div>   

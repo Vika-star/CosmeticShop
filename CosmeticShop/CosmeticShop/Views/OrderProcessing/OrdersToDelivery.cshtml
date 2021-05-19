@@ -1,11 +1,14 @@
+@model IEnumerable<CosmeticShop.Models.Products.OrderToDelivery>
+
 @foreach (var item in Model)
 {
     <div>
         <p>Номер заказа: @item.Order.Id</p>
-        <a href="#">Детали</a>
+        <a asp-action="Details" asp-controller="OrderProcessing" asp-route-id="@item.Order.Id">Детали</a>
 
-        <form method="POST">
-            <input type="button" value="доставлен">
+
+        <form method="POST" asp-action="ConfirmOrderDelivering" asp-controller="OrderProcessing" asp-route-id="@item.Id">
+            <input type="submit" value="Заказ доставлен">
         </form>
     </div>
 }

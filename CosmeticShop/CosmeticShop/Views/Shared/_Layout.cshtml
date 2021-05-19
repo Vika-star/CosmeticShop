@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="~/css/LayoutFooter.css" />
     <link rel="stylesheet" href="~/css/AdditionalHomeIndex.css" />
     <link rel="stylesheet" href="~/css/CardProduct.css" />
-    <link rel="stylesheet" href="~/css/MainHomeIndex.css"/>
-    <link rel="stylesheet" href="~/css/TraidingFilter.css"/>
+    <link rel="stylesheet" href="~/css/MainHomeIndex.css" />
+    <link rel="stylesheet" href="~/css/TraidingFilter.css" />
 
 </head>
 
@@ -88,7 +88,9 @@
                                     asp-action="Index">Личный
                                         кабинет</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Выход</a>
+                                    <form method="post" asp-controller="Account" asp-action="Logout">
+                                        <input class="dropdown-item" type="submit" value="Выход" />
+                                    </form>
                                 }
                             </div>
                         </div>
@@ -211,7 +213,7 @@
     </footer>
 
 
-@* <script src="/path/to/cdn/jquery.slim.min.js"></script> *@
+    @* <script src="/path/to/cdn/jquery.slim.min.js"></script> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

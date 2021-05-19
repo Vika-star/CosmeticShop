@@ -62,6 +62,7 @@ namespace CosmeticShop.Controllers.Products
             return View(order);
         }
 
+        [HttpPost]
         [Authorize(Roles = "employee")]
         public async Task<IActionResult> ConfirmOrderCollection(int id)
         {
@@ -80,6 +81,7 @@ namespace CosmeticShop.Controllers.Products
             return RedirectToAction(nameof(OrdersToCollect));
         }
 
+        [HttpPost]
         [Authorize(Roles = "delivery")]
         public async Task<IActionResult> ConfirmOrderDelivering(int? id)
         {
