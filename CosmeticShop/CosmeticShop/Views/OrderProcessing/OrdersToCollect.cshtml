@@ -1,0 +1,13 @@
+@model IEnumerable<CosmeticShop.Models.Products.OrderToCollect>
+
+@foreach (var item in Model)
+{
+    <div>
+        <p>Номер заказа: @item.Order.Id</p>
+        <a href="#">Детали</a>
+
+        <form method="POST">
+            <input type="button" value="Заказ собран">
+        </form>
+    </div>
+}

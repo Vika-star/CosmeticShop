@@ -1,11 +1,20 @@
 @if(User.IsInRole("employee"))
 {
-    <h2>Права рабочего</h2>
     <div>
         <a asp-action="Index" asp-controller="ProductContainers">Продукты</a>
     </div>
     <div>
         <a asp-action="Index" asp-controller="ProductCategories">Категории</a>
+    </div>   
+    <div>
+        <a asp-action="OrdersToCollect" asp-controller="OrderProcessing">Заказы к сбору</a>
+    </div>   
+    <hr>
+}
+@if(User.IsInRole("delivery"))
+{
+    <div>
+        <a asp-action="OrdersToDelivery" asp-controller="OrderProcessing">Доставка</a>
     </div>   
     <hr>
 }
