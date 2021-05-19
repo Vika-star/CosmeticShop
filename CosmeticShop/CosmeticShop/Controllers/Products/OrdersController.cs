@@ -41,6 +41,7 @@ namespace CosmeticShop.Controllers
                 .ThenInclude(x=>x.ProductPictures)
                 .ThenInclude(x=>x.Pictures)
                 .FirstOrDefaultAsync(x => x.UserId.Equals(user.Id));
+
             
             return View(history);
         }

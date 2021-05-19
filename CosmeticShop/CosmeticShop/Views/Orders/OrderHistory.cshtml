@@ -2,18 +2,18 @@
 
 История заказов
 
-
-@foreach (var order in Model.Orders)
+@if(Model != null)
 {
-    @foreach (var opa in order.OrderProuctAccountings)
+    @foreach (var order in Model.Orders)
     {
-
-        <div>
-            <p>@opa.Cost</p>
-            <p>@opa.ProductContainer.ProductName</p>
-            <p>@opa.ProductContainer.CountProducts</p>
-        </div>
-
+        @foreach (var opa in order.OrderProuctAccountings)
+        {
+            <div>
+                <p>@opa.Cost</p>
+                <p>@opa.ProductContainer.ProductName</p>
+                <p>@opa.ProductContainer.CountProducts</p>
+            </div>
+        }
+        <hr>
     }
-    <hr>
 }
