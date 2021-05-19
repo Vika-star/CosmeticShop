@@ -16,7 +16,7 @@ body .carusel-element .container-fluid h2{
     line-height: 101.18%;
 
     color: #271403;
-    text-align: center;
+    margin: 0 200px;
 }
 body .carusel-element .container-fluid .carousel .carousel-inner{
     margin: 0 100px 0px 50px;

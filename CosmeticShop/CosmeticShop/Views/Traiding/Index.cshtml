@@ -50,7 +50,66 @@
     </div>
 </section>
 
-<form method="get">
+
+
+ <section class="container">
+
+    <div class="navigation">
+      <div id="aside">
+        <div class="list-group list-group-flush">
+          <div class="list-group-item">
+              <h4 class="text-title">Группа товаров:</h4>
+              <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scroll">
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="1"> Блеск для
+                          губ</label>
+                  </div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="2">
+                          Помада для губ</label></div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="3">
+                          Палетка теней</label></div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="4"> Палетка
+                          для
+                          макияжа</label></div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="5"> Тональный
+                          крем</label></div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="6"> Крем для
+                          рук</label></div>
+                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="7"> Крем для
+                          лица</label></div>
+              </div>
+          </div>
+          <div class="list-group-item">
+              <h4 class="text-title">Цена:</h4>
+              <div id="cost">
+                  <div class="text-number d-inline">
+                      <label>
+                          от <input class="numbers" type="number" value="1" min="1" step="any" />
+                      </label>
+                  </div>
+                  <div class="text-number d-inline">
+                      <label>
+                          до <input class="numbers" type="number" value="1" min="1" step="any" />
+                      </label>
+                  </div>
+              </div>
+          </div>
+          <div class="list-group-item">
+            <a href="#" class="btn btn-filter">Применить фильтр</a>
+
+          </div>
+          <div class="list-group-item">
+              <h4 class="text-title">Сортировки:</h4>
+              <div class="">
+                <a href="#" class="btn btn-filter">По возрастанию</a>
+                <a href="#" class="btn btn-filter">По убыванию</a>
+                <a href="#" class="btn btn-filter">По алфавиту</a>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="content">
+      <form method="get">
     <div class="form-inline">
         <label>Категории: </label>
         <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
@@ -112,3 +171,7 @@
         <i class="glyphicon glyphicon-chevron-right"></i>
     </a>
 }
+    </div>
+
+
+  </section>
