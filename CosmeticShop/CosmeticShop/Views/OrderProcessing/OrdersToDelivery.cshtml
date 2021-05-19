@@ -5,8 +5,7 @@
     <div>
         <p>Номер заказа: @item.Order.Id</p>
         <a asp-action="Details" asp-controller="OrderProcessing" asp-route-id="@item.Order.Id">Детали</a>
-
-
+        
         <form method="POST" asp-action="ConfirmOrderDelivering" asp-controller="OrderProcessing" asp-route-id="@item.Id">
             <input type="submit" value="Заказ доставлен">
         </form>
