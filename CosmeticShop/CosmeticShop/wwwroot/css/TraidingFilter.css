@@ -3,6 +3,7 @@ body .container {
     display: flex;
     align-items: stretch;
     margin: 0px 100px !important;
+    background-color: #FFF8F4!important;
   }
   
   body .container .navigation {
@@ -15,17 +16,19 @@ body .container {
     width: 246px;
     height: auto;
     flex-shrink: 0;
+    background-color: #FFF8F4!important;
   }
   
   body .container .navigation #aside {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    background-color: #FFF8F4!important;
   }
   body .container .navigation #aside .list-group-item{
     padding: 20px 15px;
-    margin-bottom: 1px;
     border-bottom: 1px solid rgba(61, 29, 0, 0.2);
+    background-color: #FFF8F4!important;
   }
   body .container .navigation #aside .list-group-item:last-child{
     margin-bottom: 0px;
@@ -47,6 +50,7 @@ body .container {
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
+    padding-bottom: 2px;
   }
   .text-number{
     font-family: Crimson Text;
@@ -74,12 +78,14 @@ body .container {
     margin-left: 0px;
   }
   .btn-filter{
-    padding: 20px auto !important;
+    padding: auto!important;
     margin-bottom: 8px !important;
     width: 193px !important;
     height: 35px !important;
   
+
     /* background: rgba(207, 125, 134, 0.5) !important; */
+    /* background: rgba(207, 125, 134, 0.12) !important; */
     background: rgba(214, 204, 195, 0.2) !important;
     border: 1px solid rgba(39, 20, 3, 0.5) !important;
     border-radius: 8px !important;
@@ -87,7 +93,7 @@ body .container {
     font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px !important;
+    font-size: 14px !important;
     line-height: 17px;
     text-align: center !important;
   
@@ -105,6 +111,6 @@ body .container {
   
   .content {
     height: 3000px;
-    background: #fcfcfc;
-    width: 100%;
+    background: #FFF8F4 !important;
+    width: 1200px;
   }

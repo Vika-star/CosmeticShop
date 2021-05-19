@@ -52,126 +52,126 @@
 
 
 
- <section class="container">
+<section class="container">
 
     <div class="navigation">
-      <div id="aside">
-        <div class="list-group list-group-flush">
-          <div class="list-group-item">
-              <h4 class="text-title">Группа товаров:</h4>
-              <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scroll">
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="1"> Блеск для
-                          губ</label>
-                  </div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="2">
-                          Помада для губ</label></div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="3">
-                          Палетка теней</label></div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="4"> Палетка
-                          для
-                          макияжа</label></div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="5"> Тональный
-                          крем</label></div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="6"> Крем для
-                          рук</label></div>
-                  <div class="checkbox"><label><input type="checkbox" name="brands[]" value="7"> Крем для
-                          лица</label></div>
-              </div>
-          </div>
-          <div class="list-group-item">
-              <h4 class="text-title">Цена:</h4>
-              <div id="cost">
-                  <div class="text-number d-inline">
-                      <label>
-                          от <input class="numbers" type="number" value="1" min="1" step="any" />
-                      </label>
-                  </div>
-                  <div class="text-number d-inline">
-                      <label>
-                          до <input class="numbers" type="number" value="1" min="1" step="any" />
-                      </label>
-                  </div>
-              </div>
-          </div>
-          <div class="list-group-item">
-            <a href="#" class="btn btn-filter">Применить фильтр</a>
+        <div id="aside">
+            <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                    <h4 class="text-title">Группа товаров:</h4>
+                    <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scroll">
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="1"> Блеск для
+                                губ</label>
+                        </div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="2">
+                                Помада для губ</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="3">
+                                Палетка теней</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="4"> Палетка
+                                для
+                                макияжа</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="5"> Тональный
+                                крем</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="6"> Крем для
+                                рук</label></div>
+                        <div class="checkbox"><label><input type="checkbox" name="brands[]" value="7"> Крем для
+                                лица</label></div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <h4 class="text-title">Цена:</h4>
+                    <div id="cost">
+                        <div class="text-number d-inline">
+                            <label>
+                                от <input class="numbers" type="number" value="1" min="1" step="any" />
+                            </label>
+                        </div>
+                        <div class="text-number d-inline">
+                            <label>
+                                до <input class="numbers" type="number" value="1" min="1" step="any" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item">
+                    <a href="#" class="btn btn-filter">Применить фильтр</a>
 
-          </div>
-          <div class="list-group-item">
-              <h4 class="text-title">Сортировки:</h4>
-              <div class="">
-                <a href="#" class="btn btn-filter">По возрастанию</a>
-                <a href="#" class="btn btn-filter">По убыванию</a>
-                <a href="#" class="btn btn-filter">По алфавиту</a>
-              </div>
-          </div>
-      </div>
-      </div>
+                </div>
+                <div class="list-group-item">
+                    <h4 class="text-title">Сортировки:</h4>
+                    <div class="">
+                        <a href="#" class="btn btn-filter">По возрастанию</a>
+                        <a href="#" class="btn btn-filter">По убыванию</a>
+                        <a href="#" class="btn btn-filter">По алфавиту</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="content">
-      <form method="get">
-    <div class="form-inline">
-        <label>Категории: </label>
-        <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
+        <form method="get">
+            <div class="form-inline">
+                <label>Категории: </label>
+                <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
 
-        <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+                <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+            </div>
+        </form>
+
+        <table class="table">
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                        asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Имя</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
+                        asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a>
+                </th>
+            </tr>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />")
+                    </td>
+                    <td>
+                        @product.ProductName
+                        @product.Cost
+                        @product.ProductCategory.Name
+
+                        <a asp-action="Details" asp-route-id="@product.Id">Просмотр</a>
+                    </td>
+                    <td>
+                        <form asp-controller="Orders" asp-action="Add" method="POST">
+                            <input type="number" name="productId" value="@product.Id" hidden>
+
+                            <input type="submit" name="add-to-order" value="Добавить в корзину">
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+        @if (Model.PageViewModel.HasPreviousPage)
+        {
+            <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+            asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn  btn-outline-dark">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+                Назад
+            </a>
+        }
+        @if (Model.PageViewModel.HasNextPage)
+        {
+            <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
+            asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
+                Вперед
+                <i class="glyphicon glyphicon-chevron-right"></i>
+            </a>
+        }
     </div>
-</form>
-
-<table class="table">
-    <tr>
-        <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Имя</a>
-        </th>
-        <th>
-            <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a>
-        </th>
-    </tr>
-    @foreach (var product in Model.Products)
-    {
-        <tr>
-            <td>
-                @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-            + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />")
-            </td>
-            <td>
-                @product.ProductName
-                @product.Cost
-                @product.ProductCategory.Name
-
-                <a asp-action="Details" asp-route-id="@product.Id">Просмотр</a>
-            </td>
-            <td>
-                <form asp-controller="Orders" asp-action="Add" method="POST">
-                    <input type="number" name="productId" value="@product.Id" hidden>
-
-                    <input type="submit" name="add-to-order" value="Добавить в корзину">
-                </form>
-            </td>
-        </tr>
-    }
-</table>
-@if (Model.PageViewModel.HasPreviousPage)
-{
-    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn  btn-outline-dark">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-        Назад
-    </a>
-}
-@if (Model.PageViewModel.HasNextPage)
-{
-    <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-    asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-    asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
-        Вперед
-        <i class="glyphicon glyphicon-chevron-right"></i>
-    </a>
-}
-    </div>
 
 
-  </section>
+</section>
