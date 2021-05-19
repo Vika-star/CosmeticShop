@@ -11,7 +11,7 @@ namespace CosmeticShop.Models.AuxiliaryEntities
 {
     public class RoleInitializer
     {
-        private List<string> _initialRoles =  new List<string> { "admin", "employee" };
+        private List<string> _initialRoles =  new List<string> { "admin", "employee", "delivery"};
         private readonly IConfiguration _configuration;
 
         public RoleInitializer(IConfiguration configuration)

@@ -1,4 +1,5 @@
 ﻿using CosmeticShop.Models;
+using CosmeticShop.Models.Products;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,11 +23,18 @@ namespace CosmeticShop.Controllers
         public async Task<IActionResult> Index()
         {
             var amountProducts = await _context.ProductContainers.CountAsync();
-            var latestProducts = await _context.ProductContainers
-                .Skip(amountProducts - Constants.CountLatestProducts)
-                .Take(Constants.CountLatestProducts).ToListAsync();
 
-            return View(latestProducts);
+
+            if (amountProducts >= Constants.CountLatestProducts)
+            {
+                var latestProducts = await _context.ProductContainers
+                  .Skip(amountProducts - Constants.CountLatestProducts)
+                  .Take(Constants.CountLatestProducts).ToListAsync();
+
+                return View(latestProducts);
+            }
+
+            return View(new List<ProductContainer>());
         }
 
         public IActionResult Privacy()

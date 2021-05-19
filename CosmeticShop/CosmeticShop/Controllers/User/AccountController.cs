@@ -46,9 +46,10 @@ namespace CosmeticShop.Controllers
                         new { userId = user.Id, token = token },
                         protocol: HttpContext.Request.Scheme);
 
+                    
                     await _emailService.SendEmailAsync(model.Email, "Confirm your account",
-                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{confirmationLink}'>link</a>");
-
+                    $"Подтвердите регистрацию, перейдя по ссылке: <a href='{confirmationLink}'>link</a>");
+                    
                     return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
                 else
