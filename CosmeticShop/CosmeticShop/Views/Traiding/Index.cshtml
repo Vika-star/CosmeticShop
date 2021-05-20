@@ -94,29 +94,32 @@
                     </div>
                 </div>
                 <div class="list-group-item">
-                    <a href="#" class="btn btn-filter">Применить фильтр</a>
+                    <input type="submit" value="Применить фильтр" class="btn btn-filter">
 
                 </div>
                 <div class="list-group-item">
                     <h4 class="text-title">Сортировки:</h4>
                     <div class="">
-                        <a href="#" class="btn btn-filter">По возрастанию</a>
-                        <a href="#" class="btn btn-filter">По убыванию</a>
-                        <a href="#" class="btn btn-filter">По алфавиту</a>
+                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
+                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По возрастанию</a>
+                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
+                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По убыванию</a>
+                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По алфавиту</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="content">
-        <form method="get">
+        @* <form method="get">
             <div class="form-inline">
                 <label>Категории: </label>
                 <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
 
                 <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
             </div>
-        </form>
+        </form> *@
 
         <table class="table">
             <tr>
