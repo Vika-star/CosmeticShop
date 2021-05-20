@@ -21,13 +21,13 @@ namespace CosmeticShop.Models
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<ProductPictures> ProductPictures { get; set; }
         public DbSet<OrderProductAccounting> OrderProuctAccountings { get; set; }
-        
+
         public DbSet<OrderToCollect> OrdersToCollect { get; set; }
         public DbSet<OrderToDelivery> OrdersToDelivery { get; set; }
-        
-        
 
-        public ApplicationContext(DbContextOptions options) 
+
+
+        public ApplicationContext(DbContextOptions options)
             : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,6 +40,5 @@ namespace CosmeticShop.Models
 
             optionsBuilder.UseSqlServer(connectionString);
         }
-
     }
 }

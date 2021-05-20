@@ -8,15 +8,19 @@ namespace CosmeticShop.Models.Products.ViewModels
 {
     public class FilterViewModel
     {
-        public SelectList Categories { get; private set; } 
-        public int? SelectedCategory { get; private set; }  
-        
-        public FilterViewModel(List<ProductCategory> categories, int? categoryId)
-        {
-            categories.Insert(0, new ProductCategory { Name = "Все", Id = 0 });
+        public SelectList Categories { get; private set; }
+        public int[] SelectedCategories { get; set; }
 
-            Categories = new SelectList(categories, "Id", "Name", categoryId);
-            SelectedCategory = categoryId;
+        public int SelectedCostForm { get; set; }
+        public int SelectedCostTo { get; set; }
+
+        public FilterViewModel(List<ProductCategory> categories,
+            int[] categoriesId, int? selectedCostForm, int? selectedCostTo)
+        {
+            Categories = new SelectList(categories, "Id", "Name", categoriesId);
+            SelectedCategories = categoriesId ?? new int[0];
+            SelectedCostForm = selectedCostForm ?? 0;
+            SelectedCostTo = selectedCostTo ?? int.MaxValue;
         }
     }
 }

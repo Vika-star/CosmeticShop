@@ -9,6 +9,7 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using CosmeticShop.Models.Products.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using CosmeticShop.Models.AuxiliaryEntities;
 
 namespace CosmeticShop.Controllers.Products
 {
@@ -25,23 +26,47 @@ namespace CosmeticShop.Controllers.Products
         public async Task<IActionResult> Index(ProductsFavorProperties properties)
         {
             IQueryable<ProductContainer> products = _context.ProductContainers
-                                                    .Include(x=>x.ProductPictures).ThenInclude(x=>x.Pictures)
+                                                    .Include(x => x.ProductPictures)
+                                                    .ThenInclude(x => x.Pictures)
                                                     .Include(x => x.ProductCategory);
 
-            products = Filter(properties.categoryId, products);
+            products = Filter(properties.CategoriesId, properties.CostFrom, properties.CostTo, products);
             products = Sort(properties.sortOrder, products);
 
             var count = await products.CountAsync();
-            var items = await products.Skip((properties.page - 1) * _pageSize).Take(_pageSize).ToListAsync();
+            var items = await products.Skip((properties.Page - 1) * _pageSize).Take(_pageSize).ToListAsync();
 
             var viewModel = new ProductsViewModel
             {
-                PageViewModel = new PageViewModel(count, properties.page, _pageSize),
+                PageViewModel = new PageViewModel(count, properties.Page, _pageSize),
                 SortViewModel = new SortViewModel(properties.sortOrder),
-                FilterViewModel = new FilterViewModel(_context.ProductCategories.ToList(), properties.categoryId),
+                FilterViewModel = new FilterViewModel(_context.ProductCategories.ToList(),
+                    properties.CategoriesId, properties.CostFrom, properties.CostTo),
                 Products = items
             };
             return View(viewModel);
+        }
+
+        private IQueryable<ProductContainer> Sort(SortState sortOrder, IQueryable<ProductContainer> products) => sortOrder switch
+        {
+            SortState.NameAsc => products.OrderBy(s => s.ProductName),
+            SortState.NameDesc => products.OrderByDescending(s => s.ProductName),
+            SortState.CostAsc => products.OrderBy(s => s.Cost),
+            SortState.CostDesc => products.OrderByDescending(s => s.Cost),
+            _ => products,
+        };
+
+        private IQueryable<ProductContainer> Filter(int[] categoriesId, int? costFrom, int? costTo, IQueryable<ProductContainer> products)
+        {
+            if (categoriesId != null && categoriesId.Length > 0)
+                products = products
+                    .Where(p => 
+                        categoriesId.Any(x =>
+                            x.Equals(p.ProductCategoryId)));   
+            if (costFrom != null && costTo != null)
+                products = products.Where(x => x.Cost >= costFrom && x.Cost <= costTo);
+
+            return products;
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -60,23 +85,6 @@ namespace CosmeticShop.Controllers.Products
             return View(productContainer);
         }
 
-        private static IQueryable<ProductContainer> Sort(SortState sortOrder, IQueryable<ProductContainer> products) => sortOrder switch
-        {
-            SortState.NameAsc => products.OrderBy(s => s.ProductName),
-            SortState.NameDesc => products.OrderByDescending(s => s.ProductName),
-            SortState.CostAsc => products.OrderBy(s => s.Cost),
-            SortState.CostDesc => products.OrderByDescending(s => s.Cost),
-            _ => products,
-        };
 
-        private static IQueryable<ProductContainer> Filter(int? categoryId, IQueryable<ProductContainer> products)
-        {
-            if (categoryId != null && categoryId != 0)
-            {
-                products = products.Where(p => p.ProductCategoryId == categoryId);
-            }
-
-            return products;
-        }
     }
 }
