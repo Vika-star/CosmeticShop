@@ -4,33 +4,45 @@ body .table-add-product{
     background-color: #FFF8F4!important;
 }
 body .table-add-product .create-product {
-    margin: 20px 0px;
+    margin: 40px 0px;
     width: auto;
 }
 body .table-add-product .btn-create-product{
-    padding: 17px 59px;
-    border: #A93E4D;
+    padding: 16px 55px;
+    border: 2px solid #A93E4D;
+    border-radius: 30px;
     width: auto;
     background-color: #FFF8F4!important;
+
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 107.9%;
+
+    letter-spacing: 0.02em;
+    color: #A93E4D;
 }
 body .table-add-product .table{
     background-color: #FFF8F4!important;
     padding: 40px 20px !important;
     font-family: Crimson Text;
+    border: 1px solid rgba(61, 29, 0, 0.2);
 }
 body .table-add-product .table thead{
-
+    
     background-color: rgba(214, 204, 195, 0.5);
     padding: 31px 20px;
     font-family: Crimson Text;
     font-style: normal;
     font-size: 20px;
     line-height: 33px;
-    text-align: center !important;
+    text-align: left !important;
 }
 body .table-add-product .table thead tr:last-child{
     height: 40px;
     background-color: #FFF8F4 !important;
+    border: 1px solid #FFF8F4;
 }
 body .table-add-product .table tbody {
     font-family: Crimson Text;
@@ -41,7 +53,7 @@ body .table-add-product .table tbody {
     text-align: left;
 }
 body .table-add-product .table tbody tr, .table-add-product .table thead tr{
-    border: 5px solid rgba(61, 29, 0, 0,2);
+    border: 1px solid rgba(61, 29, 0, 0.2);
 }
 body .table-add-product .table tbody td:nth-child(1) {
     width: auto;

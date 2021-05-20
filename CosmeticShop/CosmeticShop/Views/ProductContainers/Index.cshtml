@@ -9,7 +9,7 @@
 
 <section class="table-add-product">
     <div class="create-product">
-            <a asp-action="Create" class="btn-create-product">Create New</a>
+            <a asp-action="Create" class="btn-create-product">Добавить товар</a>
     </div>
     <table class="table">
         <thead>
@@ -24,12 +24,12 @@
                     Цена
                 </th>
                 <th scope="col">
-                    Описание
+                    Количество
                 </th>
                 <th scope="col">
                     Срок годность
                 </th>
-                <th scope="col"><a asp-action="Create">Create New</a></th>
+                <th scope="col"></th>
             </tr>
             <tr class="justTh">
                 <th colspan="6"></th>
@@ -70,7 +70,7 @@
                         @Html.DisplayFor(modelItem => item.Cost)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Description)
+                        @Html.DisplayFor(modelItem => item.CountProducts)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CreateDate) -

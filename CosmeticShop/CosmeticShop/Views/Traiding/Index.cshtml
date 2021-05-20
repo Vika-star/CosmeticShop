@@ -63,7 +63,7 @@
                             {
                                 <div class="checkbox">
                                     <label>
-                                        @if(Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
+                                        @if (Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
                                         {
                                             <input type="checkbox" name="CategoriesId" value="@category.Value" checked>@category.Text
                                         }
@@ -81,32 +81,33 @@
                         <div id="cost">
                             <div class="text-number d-inline">
                                 <label>
-                                    от <input class="numbers" name="CostFrom" type="number" min="0" step="any" 
-                                    value="@Model.FilterViewModel.SelectedCostForm"/>
+                                    от <input class="numbers" name="CostFrom" type="number" min="0" step="any"
+                                              value="@Model.FilterViewModel.SelectedCostForm" />
                                 </label>
                             </div>
                             <div class="text-number d-inline">
                                 <label>
-                                    до <input class="numbers" name="CostTo" type="number" min="0" step="any" 
-                                    value="@Model.FilterViewModel.SelectedCostTo"/>
+                                    до <input class="numbers" name="CostTo" type="number" min="0" step="any"
+                                              value="@Model.FilterViewModel.SelectedCostTo" />
                                 </label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="list-group-item">
-                    <input type="submit" value="Применить фильтр" class="btn btn-filter">
-
-                </div>
+                    <div class="list-group-item">
+                        @* <a href="#" class="btn btn-filter">Применить фильтр</a> *@
+                        <input class="btn btn-filter" type="submit" value="Применить фильтр">
+                    </div>
+                </form>
                 <div class="list-group-item">
                     <h4 class="text-title">Сортировки:</h4>
                     <div class="">
-                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
-                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По возрастанию</a>
-                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
-                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По убыванию</a>
-                        <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                            asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)" class="btn btn-filter">По алфавиту</a>
+
+                        <a href="#" class="btn btn-filter">По возрастанию</a>
+                        <a href="#" class="btn btn-filter">По убыванию</a>
+                        @* <a href="#" class="btn btn-filter">По алфавиту</a> *@
+                        <a class="btn btn-filter" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
+                           asp-route-CostFrom="@Model.FilterViewModel.SelectedCostForm"
+                           asp-route-CostTo="@Model.FilterViewModel.SelectedCostTo">По алфавиту</a>
                     </div>
                 </div>
             </div>
@@ -114,13 +115,13 @@
     </div>
     <div class="content">
         @* <form method="get">
-            <div class="form-inline">
-                <label>Категории: </label>
-                <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
+                <div class="form-inline">
+                    <label>Категории: </label>
+                    <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
 
-                <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
-            </div>
-        </form> *@
+                    <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+                </div>
+            </form> *@
 
         <table class="table">
             <tr>
