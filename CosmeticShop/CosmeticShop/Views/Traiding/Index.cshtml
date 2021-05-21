@@ -63,9 +63,10 @@
                             {
                                 <div class="checkbox">
                                     <label>
-                                        @if(Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
+                                        @if (Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
                                         {
-                                            <input type="checkbox" name="CategoriesId" value="@category.Value" checked>@category.Text
+                                            <input type="checkbox" name="CategoriesId" value="@category.Value"
+                                        checked>@category.Text
                                         }
                                         else
                                         {
@@ -81,34 +82,47 @@
                         <div id="cost">
                             <div class="text-number d-inline">
                                 <label>
-                                    от <input class="numbers" name="CostFrom" type="number" min="0" step="any" 
-                                    value="@Model.FilterViewModel.SelectedCostForm"/>
+                                    от <input class="numbers" name="CostFrom" type="number" min="0" step="any"
+                                        value="@Model.FilterViewModel.SelectedCostForm" />
                                 </label>
                             </div>
                             <div class="text-number d-inline">
                                 <label>
-                                    до <input class="numbers" name="CostTo" type="number" min="0" step="any" 
-                                    value="@Model.FilterViewModel.SelectedCostTo"/>
+                                    до <input class="numbers" name="CostTo" type="number" min="0" step="any"
+                                        value="@Model.FilterViewModel.SelectedCostTo" />
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="list-group-item">
-                        @* <a href="#" class="btn btn-filter">Применить фильтр</a> *@
                         <input class="btn btn-filter" type="submit" value="Применить фильтр">
                     </div>
                 </form>
                 <div class="list-group-item">
                     <h4 class="text-title">Сортировки:</h4>
                     <div class="">
-                        
-                        <a href="#" class="btn btn-filter">По возрастанию</a>
-                        <a href="#" class="btn btn-filter">По убыванию</a>
-                        @* <a href="#" class="btn btn-filter">По алфавиту</a> *@
-                        <a class="btn btn-filter" asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                        
-                        asp-route-CostFrom="@Model.FilterViewModel.SelectedCostForm"
-                        asp-route-CostTo="@Model.FilterViewModel.SelectedCostTo">По алфавиту</a>
+
+                        <form asp-action="Index">
+                            <input type="text" name="sortOrder" value="@(Model.SortViewModel.NameSort)" hidden>
+                            <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
+                            <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
+                            @foreach (var category in Model.FilterViewModel.SelectedCategories)
+                            {
+                                <input type="number" name="CategoriesId" value="@category" hidden>
+                            }
+                            <input type="submit" class="btn btn-filter" value="По алфавиту">
+                        </form>
+
+                        <form asp-action="Index">
+                            <input type="text" name="sortOrder" value="@(Model.SortViewModel.CostSort)" hidden>
+                            <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
+                            <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
+                            @foreach (var category in Model.FilterViewModel.SelectedCategories)
+                            {
+                                <input type="number" name="CategoriesId" value="@category" hidden>
+                            }
+                            <input type="submit" class="btn btn-filter" value="По Цене">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -117,24 +131,14 @@
     <div class="content">
         @* <form method="get">
             <div class="form-inline">
-                <label>Категории: </label>
-                <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
+            <label>Категории: </label>
+            <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
 
-                <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
+            <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
             </div>
-        </form> *@
+            </form> *@
 
         <table class="table">
-            <tr>
-                <th>
-                    @* <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.NameSort)"
-                        asp-route-categoriesId="@(Model.FilterViewModel.SelectedCategories)">Имя</a> *@
-                </th>
-                <th>
-                    @* <a asp-action="Index" asp-route-sortOrder="@(Model.SortViewModel.CostSort)"
-                        asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)">Цена</a> *@
-                </th>
-            </tr>
             @foreach (var product in Model.Products)
             {
                 <tr>
@@ -159,23 +163,35 @@
                 </tr>
             }
         </table>
+
         @if (Model.PageViewModel.HasPreviousPage)
         {
-            @* <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-                asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
-                <i class="glyphicon glyphicon-chevron-left"></i>
-                Назад
-                </a> *@
+            <form asp-action="Index">
+                <input type="text" name="page" value="@(Model.PageViewModel.PageNumber - 1)" hidden>
+                <input type="text" name="sortOrder" value="@(Model.SortViewModel.Current)" hidden>
+                <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
+                <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
+                @foreach (var category in Model.FilterViewModel.SelectedCategories)
+                {
+                    <input type="number" name="CategoriesId" value="@category" hidden>
+                }
+                <input type="submit" class="glyphicon glyphicon-chevron-left" value="Предыдущая">
+            </form>
         }
+        <p>@Model.PageViewModel.PageNumber</p>
         @if (Model.PageViewModel.HasNextPage)
         {
-            @* <a asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
-                asp-route-categoryId="@(Model.FilterViewModel.SelectedCategory)"
-                asp-route-sortorder="@(Model.SortViewModel.Current)" class="btn btn-outline-dark">
-                Вперед
-                <i class="glyphicon glyphicon-chevron-right"></i>
-                </a> *@
+            <form asp-action="Index">
+                <input type="text" name="page" value="@(Model.PageViewModel.PageNumber + 1)" hidden>
+                <input type="text" name="sortOrder" value="@(Model.SortViewModel.Current)" hidden>
+                <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
+                <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
+                @foreach (var category in Model.FilterViewModel.SelectedCategories)
+                {
+                    <input type="number" name="CategoriesId" value="@category" hidden>
+                }
+                <input type="submit" class="glyphicon glyphicon-chevron-left" value="Следющая">
+            </form>
         }
     </div>
 
