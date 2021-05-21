@@ -129,15 +129,6 @@
         </div>
     </div>
     <div class="content">
-        @* <form method="get">
-            <div class="form-inline">
-            <label>Категории: </label>
-            <select name="categoryId" asp-items="Model.FilterViewModel.Categories" class="form-control"></select>
-
-            <input type="submit" value="Фильтр" class="btn btn-outline-dark" />
-            </div>
-            </form> *@
-
         <table class="table">
             @foreach (var product in Model.Products)
             {
