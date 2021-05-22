@@ -48,13 +48,13 @@ body  .card-group .card .card-img{
 body .card-group .card .card-body .card-title{
     height: auto;
     margin-top:15px;
-    padding: 0px 64px 0px 64px;
+    padding: 0px 50px 0px 50px;
     
     color: #341900;
     font-family: Crimson Text;
     font-style: normal;
     font-weight: 600;
-    font-size: 28px;
+    font-size: 22px;
     line-height: 101.18%;
     text-align: center;
 }
@@ -76,7 +76,7 @@ body .card-group .card .card-body .card-price{
     font-family: 'Cormorant SC', serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 28px;
+    font-size: 26px;
     line-height: 34px;
 
     color: #341900;
