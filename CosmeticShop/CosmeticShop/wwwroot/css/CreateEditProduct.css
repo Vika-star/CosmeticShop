@@ -1,0 +1,88 @@
+body{
+    background-color: #FFF8F4!important;
+}
+body .create-product-container{
+    background-color: #FFF8F4!important;
+    margin: 50px 150px !important;
+    height: auto;
+}
+body .create-product-container  h2{
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+ }
+body .create-product-container .container-prosuct{
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 101.18%;
+    color: #271403;
+    height: auto;
+}
+body .create-product-container .container-prosuct .row{
+    border-radius: 8px;
+    border: 1px solid rgba(39, 20, 3, 0.5) !important;
+    padding: 30px 40px;
+    height: auto;
+}
+body .create-product-container .container-prosuct .row .col{
+    width: 450px;
+    margin-right: 250px;
+}
+body .create-product-container .container-prosuct .row .col:last-child{
+    margin-right: 0px;
+}
+body .create-product-container .container-prosuct .row .col .form-group{
+    margin-bottom: 25px;
+}
+body .create-product-container .container-prosuct .row .col .form-group:last-child{
+    margin-bottom: 0px;
+}
+body .create-product-container .container-prosuct .row .col .form-group .text-lable{
+    font-size: 18px;
+    line-height: 33px;
+    margin-bottom: -2px;
+}
+body .create-product-container .container-prosuct .row .col .form-group .form-input{
+    font-size: 14px;
+    color: rgba(39, 20, 3, 0.7);
+    background: rgba(214, 204, 195, 0.2);
+    border: 1px solid rgba(39, 20, 3, 0.4);
+    height: 40px;
+    border-radius: 12px;
+    padding-right: 10px;
+}
+.input-file{
+    /* width: 100px;
+    height: 35px;
+    color: rgba(39, 20, 3, 0.7);
+    background-color: rgba(214, 204, 195, 0.2) !important;
+    border: 1px solid rgba(39, 20, 3, 0.4); */
+    margin-bottom: 7px;
+}
+.input-file:first-child{
+    margin-top:15px;
+}
+.form-btn{
+    margin: 40px 360px 70px 360px;
+    width: auto;
+}
+.btn-create{
+    background-color: #A93E4D;
+    color: #fff;
+    padding: 14px 50px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+}
+.input-back{
+    color: #A93E4D;
+    font-size: 14px;
+    border:2px solid #A93E4D;
+    padding: 15px 45px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-right: 50px;
+}

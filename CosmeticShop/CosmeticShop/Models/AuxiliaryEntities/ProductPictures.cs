@@ -20,7 +20,7 @@ namespace CosmeticShop.Models.AuxiliaryEntities
             if (Pictures != null && Pictures.Count() > 0)
                 return Pictures[PreviewNnmber ?? 0].ByteImage;
 
-            var loadDefaultPicture = await System.IO.File.ReadAllBytesAsync(@"D:\img\default-image.jpg");
+            var loadDefaultPicture = await System.IO.File.ReadAllBytesAsync(@"../CosmeticShop/wwwroot/image/card/no_image.jpg");
             return loadDefaultPicture;
         }
 
