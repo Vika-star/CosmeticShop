@@ -9,7 +9,6 @@ namespace CosmeticShop.Models.Products
     public class OrderProductAccounting
     {
         public int Id { get; set; }
-        public OrderProductAccounting() => ProductContainer = new();
         public int CountRequiredProducts { get; set; }
 
         [NotMapped]
