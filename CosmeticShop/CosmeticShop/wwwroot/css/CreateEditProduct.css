@@ -43,6 +43,19 @@ body .create-product-container .container-prosuct .row .col .form-group .text-la
     line-height: 33px;
     margin-bottom: -2px;
 }
+body .create-product-container .container-prosuct .row .col .form-group .text-lable-pick{
+    font-size: 18px;
+    line-height: 33px;
+    margin-bottom: -2px;
+
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 101.18%;
+    color: #271403;
+    height: auto;
+    
+}
 body .create-product-container .container-prosuct .row .col .form-group .form-input{
     font-size: 14px;
     color: rgba(39, 20, 3, 0.7);
