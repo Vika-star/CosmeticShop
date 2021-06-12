@@ -59,44 +59,54 @@
                     <div class="list-group-item">
                         <h4 class="text-title">Группа товаров:</h4>
                         <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scroll">
-                            @foreach (var category in Model.FilterViewModel.Categories)
-                            {
+                            @* @foreach (var category in Model.FilterViewModel.Categories)
+                                {
                                 <div class="checkbox">
-                                    <label>
-                                        @if (Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
-                                        {
-                                            <input type="checkbox" name="CategoriesId" value="@category.Value"
-                                        checked>@category.Text
-                                        }
-                                        else
-                                        {
-                                            <input type="checkbox" name="CategoriesId" value="@category.Value">@category.Text
-                                        }
-                                    </label>
+                                <label>
+                                @if (Model.FilterViewModel.SelectedCategories.ToList().Contains(int.Parse(category.Value)))
+                                {
+                                <input type="checkbox" name="CategoriesId" value="@category.Value"
+                                checked>@category.Text
+                                }
+                                else
+                                {
+                                <input type="checkbox" name="CategoriesId" value="@category.Value">@category.Text
+                                }
+                                </label>
                                 </div>
-                            }
+                                } *@
                         </div>
                     </div>
                     <div class="list-group-item">
-                        <h4 class="text-title">Цена:</h4>
+                        <h4 class="text-title">Безопасная сделка:</h4>
                         <div id="cost">
                             <div class="text-number d-inline">
                                 <label>
-                                    от <input class="numbers" name="CostFrom" type="number" min="0" step="any"
-                                        value="@Model.FilterViewModel.SelectedCostForm" />
-                                </label>
-                            </div>
-                            <div class="text-number d-inline">
-                                <label>
-                                    до <input class="numbers" name="CostTo" type="number" min="0" step="any"
-                                        value="@Model.FilterViewModel.SelectedCostTo" />
+                                    @* <input class="numbers" name="CostFrom" type="number" min="0" step="any"
+                                        value="@Model.FilterViewModel.IsApprovedAnnouncements" /> *@
                                 </label>
                             </div>
                         </div>
-                    </div>
-                    <div class="list-group-item">
-                        <input class="btn btn-filter" type="submit" value="Применить фильтр">
-                    </div>
+                        <div class="list-group-item">
+                            <h4 class="text-title">Цена:</h4>
+                            <div id="cost">
+                                <div class="text-number d-inline">
+                                    <label>
+                                        от <input class="numbers" name="CostFrom" type="number" min="0" step="any"
+                                            value="@Model.FilterViewModel.SelectedCostForm" />
+                                    </label>
+                                </div>
+                                <div class="text-number d-inline">
+                                    <label>
+                                        до <input class="numbers" name="CostTo" type="number" min="0" step="any"
+                                            value="@Model.FilterViewModel.SelectedCostTo" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <input class="btn btn-filter" type="submit" value="Применить фильтр">
+                        </div>
                 </form>
                 <div class="list-group-item">
                     <h4 class="text-title">Сортировки:</h4>
@@ -106,10 +116,6 @@
                             <input type="text" name="sortOrder" value="@(Model.SortViewModel.NameSort)" hidden>
                             <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
                             <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
-                            @foreach (var category in Model.FilterViewModel.SelectedCategories)
-                            {
-                                <input type="number" name="CategoriesId" value="@category" hidden>
-                            }
                             <input type="submit" class="btn btn-filter" value="По алфавиту">
                         </form>
 
@@ -117,10 +123,7 @@
                             <input type="text" name="sortOrder" value="@(Model.SortViewModel.CostSort)" hidden>
                             <input type="number" name="CostFrom" value="@Model.FilterViewModel.SelectedCostForm" hidden>
                             <input type="number" name="CostTo" value="@Model.FilterViewModel.SelectedCostTo" hidden>
-                            @foreach (var category in Model.FilterViewModel.SelectedCategories)
-                            {
-                                <input type="number" name="CategoriesId" value="@category" hidden>
-                            }
+                            
                             <input type="submit" class="btn btn-filter" value="По Цене">
                         </form>
                     </div>
@@ -134,8 +137,9 @@
             {
                 <tr>
                     <td>
-                        @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-                    + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />")
+                        @* @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(product.ProductPictures.GetPreviewPicture().Result) + "\" />") *@
+                    <h4>Картинка объявления</h4>
                     </td>
                     <td>
                         @product.ProductName
