@@ -28,9 +28,20 @@ namespace CosmeticShop.Controllers
             if (amountProducts >= Constants.CountLatestProducts)
             {
                 var latestProducts = await _context.ProductContainers
-                  .Skip(amountProducts - Constants.CountLatestProducts)
-                  .Take(Constants.CountLatestProducts).ToListAsync();
+                .Include(x => x.ProductCategory)
+                .Include(x => x.ProductPictures)
+                    .ThenInclude(x => x.Pictures)
+                .Skip(amountProducts - Constants.CountLatestProducts)
+                .Take(Constants.CountLatestProducts).ToListAsync();
 
+                var countSymbols = 35;
+
+                foreach (var product in latestProducts)
+                {
+                    if(product.ProductName.Length > countSymbols)
+                        product.ProductName = $"{string.Join("", product.ProductName.Take(countSymbols - 3))}...";
+                }
+                latestProducts.Reverse();
                 return View(latestProducts);
             }
 

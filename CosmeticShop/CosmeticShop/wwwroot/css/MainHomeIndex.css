@@ -9,7 +9,7 @@ body .main-element .container-fluid{
 /* текст контайнер */
 body .main-element .container-fluid .text-container{
     width: 540px;
-    margin: 170px 0 170px 0px;
+    margin: 100px 0 170px 0px;
     float: left;
 }
 body .main-element .container-fluid .text-container .text-title{
@@ -19,7 +19,7 @@ body .main-element .container-fluid .text-container .text-title{
     font-size: 36px;
     line-height: 101.18%;
 
-    text-align: justify;
+    text-align: justify;    
     color: #271403;
 
     margin-bottom: 40px;

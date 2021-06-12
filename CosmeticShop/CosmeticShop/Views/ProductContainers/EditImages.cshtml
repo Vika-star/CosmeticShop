@@ -48,6 +48,8 @@
         var countImages = document.getElementById('countImages').value;
         var loadImagesInnerHtml = document.getElementById('images');
 
+        console.log('Hello world');
+
         var html = "";
         for (var i = 0; i < countImages; i++) {
             html += `<input type="file" name="Pictures[${i}].Image"/>`;
