@@ -1,51 +1,128 @@
 @model CosmeticShop.Models.Products.Order;
 
-<h1>Корзина</h1>
-<table>
+@* <h1>Корзина</h1>
+    <table>
     @foreach (var accounting in Model.OrderProuctAccountings)
     {
-        <tr>
-            <td>
-                @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-            + Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
-            </td>
-            <td>
-                <div class="containter">
-                    <input type="button" value="-"
-                    onclick="decreaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
+    <tr>
+    <td>
+    @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+    + Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
+    </td>
+    <td>
+    <div class="containter">
+    <input type="button" value="-"
+    onclick="decreaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
 
-                    <input type="number" name="counter" value="@accounting.CountRequiredProducts" style="width: 50px;" />
+    <input type="number" name="counter" value="@accounting.CountRequiredProducts" style="width: 50px;" />
 
-                    <input type='button' value="+"
-                    onclick="increaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
-                </div>
-                <br>
-                <div>
-                    @accounting.ProductContainer.ProductName
-                    @{
-                        var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
-                    }
-                    @summaryCost;
-                </div>
-            </td>
-            <td>
-
-            </td>
-            <td>
-                <a asp-controller="Orders" asp-action="Details" asp-route-id="@accounting.ProductContainer.Id">Просмотр</a>
-            </td>
-            <td>
-                <a asp-action="Delete" asp-controller="Orders" asp-route-id="@accounting.ProductContainer.Id">Удалить
-                    продукт</a>
-            </td>
-        </tr>
+    <input type='button' value="+"
+    onclick="increaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
+    </div>
+    <br>
+    <div>
+    @accounting.ProductContainer.ProductName
+    @{
+    var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
     }
-</table>
+    @summaryCost;
+    </div>
+    </td>
+    <td>
 
-<form asp-action="Ordering" method="GET">
+    </td>
+    <td>
+    <a asp-controller="Orders" asp-action="Details" asp-route-id="@accounting.ProductContainer.Id">Просмотр</a>
+    </td>
+    <td>
+    <a asp-action="Delete" asp-controller="Orders" asp-route-id="@accounting.ProductContainer.Id">Удалить
+    продукт</a>
+    </td>
+    </tr>
+    }
+    </table> *@
+
+<section class="container-orders create-product-container container-myself-info">
+
+    <h2>Корзина</h2>
+    <div class="container-order back-blur">
+
+        <table class="table-order ">
+            @foreach (var accounting in Model.OrderProuctAccountings)
+            {
+                <tr>
+                    <td>
+                        <div class="order">
+                            <div class="img-cover">
+                                @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                            +
+                            Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result)
+                            + "\" />")
+
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="text-title-product-name">
+                            <p>@accounting.ProductContainer.ProductName</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-title-cost">
+
+                            @{
+                                var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
+                            }
+                            <p>@summaryCost
+                                <br>
+                                <small class="text-center">руб.коп.</small>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="containter">
+                            <input type="button" class="btn-cir" value="-"
+                            onclick="decreaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
+
+                            <input type="number" class="btn-count" name="counter" value="@accounting.CountRequiredProducts"
+                            style="width: 50px;" />
+
+                            <input type='button' class="btn-cir" value="+"
+                            onclick="increaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-controller="Orders" asp-action="Details" asp-route-id="@accounting.ProductContainer.Id"
+                        class="btn btn-info">Просмотр</a>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-controller="Orders" asp-route-id="@accounting.ProductContainer.Id"
+                        class="btn btn-outline-danger">Удалить
+                            продукт</a>
+                    </td>
+                </tr>
+            }
+            <tr style="height: 100px" class="tr-btn">
+                <td colspan="7">
+                    <form asp-action="Ordering" method="GET">
+                        <input name="Id" value="@Model.Id" hidden>
+                        <input type="submit" value="Оформить заказ" class="btn btn-outline-pink">
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</section>
+
+
+@*
+    <form asp-action="Ordering" method="GET">
     <input name="Id" value="@Model.Id" hidden>
     <input type="submit" value="Оформить заказ">
-</form>
+    </form> *@
 
 
 <script>

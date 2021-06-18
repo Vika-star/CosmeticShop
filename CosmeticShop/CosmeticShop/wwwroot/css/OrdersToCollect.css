@@ -1,0 +1,38 @@
+.btn-order{
+    border: 2px solid #A93E4D;
+    color: #9F3D4B;
+    font-weight: 600;
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding: 5px 36px;
+    font-size: 16px;
+    background-color: rgba(169, 62, 77, 0.1) !important;
+}
+body .table-order .table tbody tr{
+    font-size: 18px !important;
+}
+
+body .table-order .table tbody td:nth-child(1) {
+    width: auto;
+}
+body .table-order .table tbody td:nth-child(2){
+    width: 100px;
+}
+body .table-order .table tbody td:nth-child(3){
+    width: 205px;
+}
+body .table-order .table tbody td:nth-child(4){
+    width: 265px;
+}
+body .table-order .table tbody td:nth-child(5) {
+    width: 350px;
+}
+
+body .table-order .table .btn-details{
+    color: #3A998E !important;
+    font-size: 24px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    margin-top: 10px;
+    font-weight: 600;
+}
