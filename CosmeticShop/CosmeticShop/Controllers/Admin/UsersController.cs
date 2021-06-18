@@ -1,8 +1,10 @@
-﻿using CosmeticShop.Models.Users;
+﻿using CosmeticShop.Models;
+using CosmeticShop.Models.Users;
 using CosmeticShop.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +15,12 @@ namespace CosmeticShop.Controllers
     [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
-        private UserManager<User> _userManager;
-
-        public UsersController(UserManager<User> userManager)
+        private readonly UserManager<User> _userManager;
+        private readonly ApplicationContext _context;
+        public UsersController(UserManager<User> userManager, ApplicationContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public IActionResult Index() => View(_userManager.Users.ToList());
@@ -88,7 +91,11 @@ namespace CosmeticShop.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            var user = await _context.Users
+                                    .Include(x=>x.Order)
+                                    .FirstOrDefaultAsync(x=>x.Id.Equals(id));
+
+            // User user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);

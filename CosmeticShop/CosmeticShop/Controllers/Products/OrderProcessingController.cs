@@ -27,6 +27,8 @@ namespace CosmeticShop.Controllers.Products
                 .Include(x=>x.Order)
                 .ThenInclude(x=>x.OrderProuctAccountings)
                 .ThenInclude(x=>x.ProductContainer)
+                .Include(x=>x.Order)
+                .ThenInclude(x=>x.PersonalData)
                 .ToListAsync();
 
             return View(orders);
@@ -39,6 +41,8 @@ namespace CosmeticShop.Controllers.Products
                 .Include(x => x.Order)
                 .ThenInclude(x => x.OrderProuctAccountings)
                 .ThenInclude(x => x.ProductContainer)
+                .Include(x=>x.Order)
+                .ThenInclude(x=>x.PersonalData)
                 .ToListAsync();
 
             return View(orders);
