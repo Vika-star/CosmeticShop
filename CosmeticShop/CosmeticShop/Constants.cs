@@ -7,7 +7,7 @@ namespace CosmeticShop
 {
     public static class Constants
     {
-        public const int CountProductsOnPage = 6;
+        public const int CountProductsOnPage = 9;
         public const int CountLatestProducts = 6;
     }
 }
