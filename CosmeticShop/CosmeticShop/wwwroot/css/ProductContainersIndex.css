@@ -22,6 +22,7 @@ body .table-add-product .btn-create-product{
 
     letter-spacing: 0.02em;
     color: #A93E4D;
+    margin-right: 20px;
 }
 body .table-add-product .table, body .table-add-product .table-categories{
     background-color: #FFF8F4!important;
@@ -39,6 +40,7 @@ body .table-add-product .table thead, body .table-add-product .table-categories 
     line-height: 33px;
     text-align: left !important;
 }
+body .table-add-product .table tbody td:first-child {text-align: center;}
 body .table-add-product .table thead tr:last-child, body .table-add-product .table-categories thead tr:last-child{
     height: 40px;
     background-color: #FFF8F4 !important;
@@ -65,10 +67,10 @@ body .table-add-product .table tbody td:nth-child(3){
     width: 155px;
 }
 body .table-add-product .table tbody td:nth-child(4){
-    width: 250px;
+    width: 150px;
 }
 body .table-add-product .table tbody td:nth-child(5) {
-    width: 250px;
+    width: 350px;
 }
 body .table-add-product .table tbody td:nth-child(6) {
     width: 315px;
