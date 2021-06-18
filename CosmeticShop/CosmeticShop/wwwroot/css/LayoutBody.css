@@ -4,6 +4,11 @@ body {
     margin: 0!important;
     padding: 0!important;
 }
+.container-myself-info
+{
+    height: auto;
+    min-height: 230px;
+}
 .btn-circle {
     width: 50px;
     height: 50px;
@@ -18,4 +23,25 @@ body {
 .main-hr{
     width: auto;
     margin: 0 150px 60px 150px;
+}
+.block-btn-persdata{
+    margin: 30px 320px 10px 320px;
+}
+.block-btn-persdata .btn-persdata{
+    margin: 0 10px;
+}
+.block-btn-persarea{
+    margin: 30px 295px;
+}
+.block-btn-persarea .btn-persdata{
+    margin: 0 10px;
+}
+
+.back-blur{
+    background: rgba(214, 204, 195, 0.2)
+}
+
+.btn-danger, .btn-outline-primary, .btn-outline-danger, .btn-success, .btn-outline-warning, .btn-outline-info, .btn-outline-success, .btn-info, .btn-warning {
+    padding: 10px 35px;
+    border-radius: 30px;
 }
