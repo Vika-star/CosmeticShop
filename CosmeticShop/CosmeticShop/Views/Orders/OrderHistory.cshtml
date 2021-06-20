@@ -1,8 +1,8 @@
 @model CosmeticShop.Models.Products.OrderHistory
 
-История заказов
+@* История заказов
 
-@if(Model != null)
+@if (Model != null)
 {
     @foreach (var order in Model.Orders)
     {
@@ -16,67 +16,72 @@
         }
         <hr>
     }
-}
+} *@
 
 
 
-<section class="ordering-container">
-    <table class="table-ordering">
-        <tr>
-            <td class="total-element">
-                <div class="total">
-                    <h3 class="text-center">Итого</h3>
-                    <div class="sroll-product">
-                            <table class="table-product ">
-                            
-                            @foreach (var order in Model.Orders)
-                                {
-                                    @foreach (var opa  in order.OrderProuctAccountings)
-                                    {
-                                        <tr>
-                                            <td>
-                                                <div class="order">
-                                                    <div class="img-cover">
-                                                        @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
-                                                    +
-                                                    Convert.ToBase64String(opa.ProductContainer.ProductPictures.GetPreviewPicture().Result)
-                                                    + "\" />")
+<section class="container-orders create-product-container container-myself-info">
 
-                                                    </div>
+    <h2>История заказов</h2>
+    <div class="container-order back-blur">
 
-                                                </div>
+        <table class="table-order-index ">
+            @if (Model != null)
+            {
 
-                                            </td>
-                                            <td>
-                                                <div class="text-title-product-name">
-                                                    <p>@opa.ProductContainer.ProductName</p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text-title-cost">
 
-                                                    @{
-                                                        var summaryCost = opa.ProductContainer.Cost * opa.CountRequiredProducts;
-                                                    }
-                                                    <p>@summaryCost
-                                                        <br>
-                                                        <small class="text-center">руб.коп.</small>
-                                                    </p>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="text-counter">
-                                                    Количество: @opa.CountRequiredProducts
-                                                </div>
-                                            </td>
-                                        </tr>
+                @foreach (var order in Model.Orders)
+                {
+
+                    @foreach (var opa in order.OrderProuctAccountings)
+                    {
+                        <tr>
+                            <td>
+                                <div class="order">
+                                    <div class="img-cover">
+                                        @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                            +
+                            Convert.ToBase64String(opa.ProductContainer.ProductPictures.GetPreviewPicture().Result)
+                            + "\" />")
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="text-title-product-name">
+                                    <p>@opa.ProductContainer.ProductName</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-title-cost">
+
+                                    @{
+                                        var summaryCost = opa.ProductContainer.Cost * opa.CountRequiredProducts;
                                     }
-                                }
-                            </table>
+                                    <p>@summaryCost
+                                        <br>
+                                        <small class="text-center">руб.коп.</small>
+                                    </p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-counter">
+                                    Количество: @opa.CountRequiredProducts
+                                </div>
+                            </td>
+                        </tr>
+                    }
 
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
+                    <tr>
+                        <td colspan="4" style="height: 10px;">
+                            <hr>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+    </div>
 </section>
