@@ -141,7 +141,14 @@ namespace CosmeticShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var productCategory = await _context.ProductCategories.FindAsync(id);
+            var productCategory = await _context.ProductCategories
+                .Include(x=>x.ProductContainers)
+                .ThenInclude(x=>x.OrderProuctAccountings)
+                .Include(x=>x.ProductContainers)
+                .ThenInclude(x=>x.ProductPictures)
+                .ThenInclude(x=>x.Pictures)
+                .FirstOrDefaultAsync(x => x.Id.Equals(id));
+                
             _context.ProductCategories.Remove(productCategory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
