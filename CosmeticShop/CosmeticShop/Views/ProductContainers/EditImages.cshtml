@@ -1,6 +1,6 @@
 @model CosmeticShop.Models.AuxiliaryEntities.ProductPictures
 
-<div>
+@* <div>
     <table>
         <tr>
             <th>Название</th>
@@ -18,30 +18,97 @@
                 + Convert.ToBase64String(item.ByteImage) + "\" />")
                 </td>
                 <td>
-                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = Model.ProductContainerId, imageId = item.Id}, null)
+                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = Model.ProductContainerId,
+                imageId = item.Id}, null)
                 </td>
             </tr>
         }
     </table>
-</div>
+</div> *@
 
-<form asp-action="AddImages" enctype="multipart/form-data">
+@* <form asp-action="AddImages" enctype="multipart/form-data">
     <input type="number" name="Id" value="@Model.ProductContainerId" hidden>
     <div>
-        <div>
-            <p>Добавить картинки</p>
-            <label for="countImages">Количество картинок</label>
-            <input type="number" name="countImages" id="countImages" oninput="displayLoadImagesElements()" />
-        </div>
+    <div>
+    <p>Добавить картинки</p>
+    <label for="countImages">Количество картинок</label>
+    <input type="number" name="countImages" id="countImages" oninput="displayLoadImagesElements()" />
+    </div>
 
-        <div id="images">
-        </div>
+    <div id="images">
+    </div>
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
+    <input type="submit" value="Save" class="btn btn-primary" />
     </div>
-</form>
+    </form> *@
+
+
+
+<section class="container-orders create-product-container container-myself-info">
+    <div class="container-order back-blur">
+
+        <table class="table-order-index ">
+            @foreach (var item in Model.Pictures)
+            {
+                <tr>
+                    <td>
+                        <div class="order">
+                            <div class="img-cover">
+
+                                @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                            + Convert.ToBase64String(item.ByteImage) + "\" />")
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="text-title-product-name">
+                            <p> @Html.DisplayFor(modelItem => item.Name)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="btn btn-outline-danger">@Html.ActionLink("Удалить", "DeleteImage", "ProductContainers",
+                        new { id = Model.ProductContainerId,
+                        imageId = item.Id}, null)</p>
+
+                    </td>
+                </tr>
+            }
+            <tr style="height: 100px" class="tr-btn">
+                <td colspan="3">
+                    @* <form asp-action="Ordering" method="GET">
+                        <input name="Id" value="@Model.Id" hidden>
+                        <input type="submit" value="Оформить заказ" class="btn btn-outline-pink">
+                        </form> *@
+                    <form asp-action="AddImages" enctype="multipart/form-data">
+                        <input type="number" name="Id" value="@Model.ProductContainerId" hidden>
+                        <div>
+                            <div>
+                                <p>Добавить картинки</p>
+                                <label for="countImages">Количество картинок</label>
+                                <input type="number" name="countImages" id="countImages"
+                                    oninput="displayLoadImagesElements()" />
+                            </div>
+
+                            <div id="images">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-5">
+                            <input type="submit" value="Сохранить" class="btn btn-outline-pink" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</section>
+
 
 <script>
     function displayLoadImagesElements() {
@@ -56,7 +123,7 @@
             html += `<<input type="radio" name="PreviewNnmber" value="${i}">`;
 
         }
-        
+
         loadImagesInnerHtml.innerHTML = html;
     }
 </script>
