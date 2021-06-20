@@ -1,4 +1,53 @@
 @model CosmeticShop.Models.Products.Order
 
-<p>@Model.Id</p>
 
+<section class="container-orders create-product-container container-myself-info">
+
+    <h2>Детали заказа</h2>
+    <div class="container-order back-blur">
+
+        <table class="table-order-index ">
+            @foreach (var accounting in Model.OrderProuctAccountings)
+            {
+                <tr>
+                    <td>
+                        <div class="order">
+                            <div class="img-cover">
+                                @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                            +
+                            Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result)
+                            + "\" />")
+
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="text-title-product-name">
+                            <p>@accounting.ProductContainer.ProductName</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-title-cost">
+
+                            @{
+                                var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
+                            }
+                            <p>@summaryCost
+                                <br>
+                                <small class="text-center">руб.коп.</small>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-counter">
+                            Количество: @accounting.CountRequiredProducts
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</section>
