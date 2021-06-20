@@ -8,56 +8,56 @@ body .container-order{
     border-radius: 12px;
     border: 1px solid rgba(61, 29, 0, 0.2);
 }
-body .table-order{
+body .table-order-index{
     width: 100%;
 }
-body .table-order tr{
+body .table-order-index tr{
     /* border-spacing: 10px 50px !important;  */
     vertical-align: middle !important;
-    height: 300px;
+
 }
-body .table-order .tr-btn td{
+body .table-order-index .tr-btn td{
     /* border-spacing: 10px 50px !important;  */
     vertical-align: middle !important;
     height: 100px !important;
 }
 
-body .table-order tr td:nth-child(2){
+body .table-order-index tr td:nth-child(2){
     text-align: left;
 }
-body .table-order tr{
+body .table-order-index tr{
     text-align: center;
 }
-body .table-order tr td{
+body .table-order-index tr td{
     height: 300px;
     padding: 10px 15px;
     /* border: 1px solid rgba(61, 29, 0, 0.2); */
 }
 
-body .table-order .order{
+body .table-order-index .order{
     background-color: #FFF8F4!important;
     width: 255px;
     height: 300px;
     margin-bottom: 40px;
     border-radius: 8px !important;
 }
-body .table-order .order:last-child{
+body .table-order-index .order:last-child{
     width: 255px;
     height: 300px;
     padding-right: 0px;
 }
-body .table-order .order .img-cover{
+body .table-order-index .order .img-cover{
     width: 290px;
     height: 340px;
 }
-body .table-order .order .card-img{
+body .table-order-index .order .card-img{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 8px !important;
 }
 
-.text-title-product-name p{
+body .table-order-index .text-title-product-name p{
     width: 300px;
     padding: 0px 20px;
     
@@ -68,7 +68,7 @@ body .table-order .order .card-img{
     font-size: 18px;
 
 }
-.text-title-cost p{
+body .table-order-index .text-title-cost p{
     width: 80px;
     
     color: #341900;
@@ -78,7 +78,7 @@ body .table-order .order .card-img{
     font-size: 20px;
 
 }
-.btn-cir{
+body .table-order-index .btn-cir{
     border-radius: 50px;
     background: rgba(214, 204, 195, 0.2);
 
@@ -86,20 +86,20 @@ body .table-order .order .card-img{
     padding: 0.2px 9px;
     color: #341900;
 }
-.btn-count{
+body .table-order-index .btn-count{
     text-align: center;
     background: rgba(214, 204, 195, 0);
     border: 0px;
     width: 5px;
 }
 
-body .table-order .btn-outline-pink{
+body .table-order-index .btn-outline-pink{
     padding: 10px 45px;
     border-radius: 30px;
     color: #9F3D4B;
     border: 1px solid #9F3D4B;
 }
-body .table-order .btn-outline-pink:hover{
+body .table-order-index .btn-outline-pink:hover{
     color: #FFF8F4;
     background-color: #9F3D4B;
 }
