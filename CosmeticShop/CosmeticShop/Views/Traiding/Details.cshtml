@@ -3,7 +3,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Товар</h1>
+@* <h1>Товар</h1>
 
 <div>
     <h4>ProductContainer</h4>
@@ -77,4 +77,126 @@
         <input type="number" name="productId" value="@Model.Id" hidden>
         <input type="submit" name="add-to-order" value="Добавить в корзину">
     </form>
-</div>
+</div> *@
+
+
+
+<section class="order-product-element">
+    <table class="order-product-container">
+        <tr>
+
+
+            @if (Model.ProductPictures.Pictures.Count() < 2)
+            {
+                <td class="one">
+                    <div class="body-img-one">
+                        <div class="img-one">
+                            @Html.Raw("<img class='card-img' src=\"data:image/jpeg;base64,"
+                        + Convert.ToBase64String(Model.ProductPictures.Pictures[0].ByteImage) + "\" />")
+                        </div>
+                    </div>
+
+                </td>
+            }
+            else
+            {
+                <td>
+
+                    <div class="carusel-element">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @{
+                                    var isActive = true;
+                                }
+                                @foreach (var item in Model.ProductPictures.Pictures)
+                                {
+                                    @if (isActive)
+                                    {
+                                        <div class="carousel-item active">
+                                            <div class="card-group">
+                                                <div class="card text-center border-0">
+                                                    <div class="img-body">
+                                                        <img class='card-img'
+                                                src="data:image/jpeg;base64, @Convert.ToBase64String(item.ByteImage)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        isActive = false;
+
+                                    }
+                                    else
+                                    {
+                                        <div class="carousel-item">
+                                            <div class="card-group">
+                                                <div class="card text-center border-0">
+                                                    <div class="img-body">
+                                                        <img class='card-img'
+                                                src="data:image/jpeg;base64, @Convert.ToBase64String(item.ByteImage)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                                <img src="/image/card/arrow-left.png" alt="">
+
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                                <img src="/image/card/arrow-right.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            }
+            <td>
+                <div class="text-container">
+                    <h2 class="text-title">@Html.DisplayFor(model => model.ProductName)</h2>
+                    <hr>
+                    <h6 class="text-collection">@Html.DisplayFor(model => model.ProductCategory.Name)</h6>
+                    <div class="text-content">
+                        <h5 class="text-cost">@Html.DisplayFor(model => model.Cost)<span>руб.коп.</span></h5>
+                       <div class="btn-add-bag">
+                        <form asp-controller="Orders" asp-action="Add" method="POST">
+                            <input type="number" name="productId" value="@Model.Id" hidden>
+                            <input type="submit" name="add-to-order" value="Добавить в корзину" class="btn btn-outline-pink">
+                        </form>
+                    </div>
+                        <h5 class="title-discrip">Описание товара</h5>
+                        <p class="discription">
+                            @Html.DisplayFor(model => model.Description)
+                        </p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="last-td">
+                <a asp-action="Index" class="btn btn-outline-primary">Вернуться назад</a>
+            </td>
+        </tr>
+    </table>
+
+
+
+    @* <div class="text-container">
+        <h1 class="text-title">Онлайн <span>ОБУЧЕНИЕ</span></h1>
+        <div class="text-content">
+        <h3 class="text-collection">Коллекция eSpoir Colorful Nude </h3>
+        <p class="discription">
+        Базовые косметики от eSpoir всегда считались хорошим соотношением цены и качества, поэтому
+        они
+        очень популярны среди корейцев. Недавно eSpoir выпустила коллекцию с широким спектром
+        фундамента, доступного как в матовой, так и в светяной отделке.
+        </p>
+        </div>
+        <a href="/page/Сourses.html" class="btn">Все курсы</a>
+        </div>*@
+
+</section>
