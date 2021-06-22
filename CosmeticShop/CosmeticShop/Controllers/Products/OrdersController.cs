@@ -170,8 +170,6 @@ namespace CosmeticShop.Controllers
             if (!ModelState.IsValid)
                 return View(order);
 
-            if (order.PersonalData.IsPaid)
-                return RedirectToAction(nameof(Pay));
 
             var user = await _userManager.GetUserAsync(User);
             var fullUser = await _context.Users
@@ -188,6 +186,10 @@ namespace CosmeticShop.Controllers
             await _context.OrdersToCollect.AddAsync(new OrderToCollect { Order = fullLoadOrder });
 
             await _context.SaveChangesAsync();
+
+
+            if (order.PersonalData.IsPaid)
+                return RedirectToAction(nameof(Pay));
 
             return RedirectToAction(nameof(OrderHistory));
         }

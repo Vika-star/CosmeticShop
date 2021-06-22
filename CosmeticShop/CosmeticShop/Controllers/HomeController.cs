@@ -48,10 +48,10 @@ namespace CosmeticShop.Controllers
             return View(new List<ProductContainer>());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        public IActionResult Privacy() => View();
+
+        public IActionResult Contacts() => View();
+        public IActionResult AboutUs() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
