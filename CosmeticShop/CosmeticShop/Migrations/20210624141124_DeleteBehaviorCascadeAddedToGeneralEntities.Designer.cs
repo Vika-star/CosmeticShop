@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210624094015_DeleteBehaviourCascadePicturesCollectingOPA")]
-    partial class DeleteBehaviourCascadePicturesCollectingOPA
+    [Migration("20210624141124_DeleteBehaviorCascadeAddedToGeneralEntities")]
+    partial class DeleteBehaviorCascadeAddedToGeneralEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -510,7 +510,7 @@ namespace CosmeticShop.Migrations
                     b.HasOne("CosmeticShop.Models.Users.User", "User")
                         .WithOne("Order")
                         .HasForeignKey("CosmeticShop.Models.Products.Order", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("OrderHistory");
 

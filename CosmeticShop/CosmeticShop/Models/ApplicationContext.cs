@@ -52,7 +52,7 @@ namespace CosmeticShop.Models
             builder.Entity<Order>()
                 .HasOne(e => e.User)
                 .WithOne(e => e.Order)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<Order>()
                 .HasOne(e => e.OrderHistory)
@@ -87,9 +87,6 @@ namespace CosmeticShop.Models
                 .HasOne(e => e.ProductPictures)
                 .WithMany(e => e.Pictures)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
-
         }
     }
 }

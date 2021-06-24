@@ -2,10 +2,14 @@
 
 namespace CosmeticShop.Migrations
 {
-    public partial class DeleteBehaviourCascadePicturesCollectingOPA : Migration
+    public partial class DeleteBehaviorCascadeAddedToGeneralEntities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_OrderHistories_AspNetUsers_UserId",
+                table: "OrderHistories");
+
             migrationBuilder.DropForeignKey(
                 name: "FK_OrderPresonalData_Orders_OrderId",
                 table: "OrderPresonalData");
@@ -17,6 +21,10 @@ namespace CosmeticShop.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_OrderProuctAccountings_ProductContainers_ProductContainerId",
                 table: "OrderProuctAccountings");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Orders_AspNetUsers_UserId",
+                table: "Orders");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_OrderHistories_OrderHistoryId",
@@ -33,6 +41,14 @@ namespace CosmeticShop.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Pictures_ProductPictures_ProductPicturesId",
                 table: "Pictures");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrderHistories_AspNetUsers_UserId",
+                table: "OrderHistories",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_OrderPresonalData_Orders_OrderId",
@@ -57,6 +73,13 @@ namespace CosmeticShop.Migrations
                 principalTable: "ProductContainers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Orders_AspNetUsers_UserId",
+                table: "Orders",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Orders_OrderHistories_OrderHistoryId",
@@ -94,6 +117,10 @@ namespace CosmeticShop.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_OrderHistories_AspNetUsers_UserId",
+                table: "OrderHistories");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_OrderPresonalData_Orders_OrderId",
                 table: "OrderPresonalData");
 
@@ -104,6 +131,10 @@ namespace CosmeticShop.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_OrderProuctAccountings_ProductContainers_ProductContainerId",
                 table: "OrderProuctAccountings");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Orders_AspNetUsers_UserId",
+                table: "Orders");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Orders_OrderHistories_OrderHistoryId",
@@ -120,6 +151,14 @@ namespace CosmeticShop.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Pictures_ProductPictures_ProductPicturesId",
                 table: "Pictures");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrderHistories_AspNetUsers_UserId",
+                table: "OrderHistories",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_OrderPresonalData_Orders_OrderId",
@@ -142,6 +181,14 @@ namespace CosmeticShop.Migrations
                 table: "OrderProuctAccountings",
                 column: "ProductContainerId",
                 principalTable: "ProductContainers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Orders_AspNetUsers_UserId",
+                table: "Orders",
+                column: "UserId",
+                principalTable: "AspNetUsers",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
 

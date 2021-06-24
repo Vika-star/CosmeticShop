@@ -508,7 +508,7 @@ namespace CosmeticShop.Migrations
                     b.HasOne("CosmeticShop.Models.Users.User", "User")
                         .WithOne("Order")
                         .HasForeignKey("CosmeticShop.Models.Products.Order", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("OrderHistory");
 
