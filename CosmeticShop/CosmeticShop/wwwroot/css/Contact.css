@@ -1,0 +1,52 @@
+body .contact-container{
+    margin: 10px 200px 10px 200px;
+}
+body .contact-container h2{
+    margin: 10px 0 50px 0px;
+    color: #271403;
+}
+body .contact-container .map{
+    margin: 80px 0 50px 0px;
+}
+body .contact-container .table{
+    margin: 10px 0 50px 0px;
+    color: #271403;
+}
+body .contact-container  .table{
+    margin: 10px 0 50px 0px;
+    color: #271403;
+}
+body .contact-container  .table tr td i {
+    font-size: 45px;
+    margin: 10px 0 15px;
+    /* color: #ffc320; */
+    color: #c15990
+}
+body .contact-container  .table tr td .title-info{
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 100%;
+    /* identical to box height, or 21px */
+
+    letter-spacing: 0.03em;
+
+    /* Основной цвет текста */
+
+    color: #271403;
+}
+body .contact-container  .table tr td p{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+
+    color: #271403;
+    margin-top: 15px;
+}
+/* new-container */
+body .new-container{
+    margin-top: 60px;
+}

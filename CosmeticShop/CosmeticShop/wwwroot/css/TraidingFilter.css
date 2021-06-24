@@ -110,7 +110,11 @@ body .container {
   
   
   .content {
-    height: 3000px;
     background: #FFF8F4 !important;
-    width: 1200px;
+    
+    min-height: 600px;
+      height: auto;
+    max-height: 1900px;
+    /* background: #FFF8F4 !important; */
+    width: 1680px;
   }

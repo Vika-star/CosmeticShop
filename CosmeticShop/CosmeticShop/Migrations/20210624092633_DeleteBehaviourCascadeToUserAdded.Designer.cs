@@ -4,14 +4,16 @@ using CosmeticShop.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CosmeticShop.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210624092633_DeleteBehaviourCascadeToUserAdded")]
+    partial class DeleteBehaviourCascadeToUserAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -482,8 +484,7 @@ namespace CosmeticShop.Migrations
                 {
                     b.HasOne("CosmeticShop.Models.AuxiliaryEntities.ProductPictures", "ProductPictures")
                         .WithMany("Pictures")
-                        .HasForeignKey("ProductPicturesId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductPicturesId");
 
                     b.Navigation("ProductPictures");
                 });
@@ -492,18 +493,15 @@ namespace CosmeticShop.Migrations
                 {
                     b.HasOne("CosmeticShop.Models.Products.OrderHistory", "OrderHistory")
                         .WithMany("Orders")
-                        .HasForeignKey("OrderHistoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderHistoryId");
 
                     b.HasOne("CosmeticShop.Models.Products.OrderToCollect", "OrdersToCollect")
                         .WithOne("Order")
-                        .HasForeignKey("CosmeticShop.Models.Products.Order", "OrderToCollectId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CosmeticShop.Models.Products.Order", "OrderToCollectId");
 
                     b.HasOne("CosmeticShop.Models.Products.OrderToDelivery", "OrdersToDelivery")
                         .WithOne("Order")
-                        .HasForeignKey("CosmeticShop.Models.Products.Order", "OrdersToDeliveryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CosmeticShop.Models.Products.Order", "OrdersToDeliveryId");
 
                     b.HasOne("CosmeticShop.Models.Users.User", "User")
                         .WithOne("Order")
@@ -533,8 +531,7 @@ namespace CosmeticShop.Migrations
                 {
                     b.HasOne("CosmeticShop.Models.Products.Order", "Order")
                         .WithOne("PersonalData")
-                        .HasForeignKey("CosmeticShop.Models.Products.OrderPresonalData", "OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CosmeticShop.Models.Products.OrderPresonalData", "OrderId");
 
                     b.Navigation("Order");
                 });
@@ -543,13 +540,11 @@ namespace CosmeticShop.Migrations
                 {
                     b.HasOne("CosmeticShop.Models.Products.Order", "Order")
                         .WithMany("OrderProuctAccountings")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("CosmeticShop.Models.Products.ProductContainer", "ProductContainer")
                         .WithMany("OrderProuctAccountings")
-                        .HasForeignKey("ProductContainerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductContainerId");
 
                     b.Navigation("Order");
 

@@ -118,3 +118,8 @@ body .pagination-container nav .pagination .page-item .page-linl-disabled:hover{
     background-color: rgba(214, 204, 195, 0.2);;
 }
 
+body .pagination-container{
+    margin-left: 330px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

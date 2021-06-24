@@ -2,21 +2,21 @@
 
 @* История заказов
 
-@if (Model != null)
-{
+    @if (Model != null)
+    {
     @foreach (var order in Model.Orders)
     {
-        @foreach (var opa in order.OrderProuctAccountings)
-        {
-            <div>
-                <p>@opa.Cost</p>
-                <p>@opa.ProductContainer.ProductName</p>
-                <p>@opa.ProductContainer.CountProducts</p>
-            </div>
-        }
-        <hr>
+    @foreach (var opa in order.OrderProuctAccountings)
+    {
+    <div>
+    <p>@opa.Cost</p>
+    <p>@opa.ProductContainer.ProductName</p>
+    <p>@opa.ProductContainer.CountProducts</p>
+    </div>
     }
-} *@
+    <hr>
+    }
+    } *@
 
 
 
@@ -39,10 +39,11 @@
                             <td>
                                 <div class="order">
                                     <div class="img-cover">
-                                        @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
-                            +
-                            Convert.ToBase64String(opa.ProductContainer.ProductPictures.GetPreviewPicture().Result)
-                            + "\" />")
+
+                                            @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                                                +
+                                                Convert.ToBase64String(opa.ProductContainer.ProductPictures.GetPreviewPicture().Result)
+                                                + "\" />")
 
                                     </div>
 
