@@ -40,53 +40,6 @@ namespace CosmeticShop.Models
 
             optionsBuilder.UseSqlServer(connectionString);
         }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<OrderHistory>()
-                .HasOne(e => e.User)
-                .WithOne(e => e.OrderHistory)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Order>()
-                .HasOne(e => e.User)
-                .WithOne(e => e.Order)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.Entity<Order>()
-                .HasOne(e => e.OrderHistory)
-                .WithMany(e => e.Orders)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Order>()
-                .HasOne(e => e.PersonalData)
-                .WithOne(e=>e.Order)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Order>()
-                .HasOne(e => e.OrdersToCollect)
-                .WithOne(e => e.Order)
-                .OnDelete(DeleteBehavior.Cascade);
-            builder.Entity<Order>()
-                .HasOne(e => e.OrdersToDelivery)
-                .WithOne(e => e.Order)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<OrderProductAccounting>()
-                .HasOne(e => e.Order)
-                .WithMany(e => e.OrderProuctAccountings)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<OrderProductAccounting>()
-                .HasOne(e => e.ProductContainer)
-                .WithMany(e => e.OrderProuctAccountings)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Picture>()
-                .HasOne(e => e.ProductPictures)
-                .WithMany(e => e.Pictures)
-                .OnDelete(DeleteBehavior.Cascade);
-        }
+        
     }
 }
