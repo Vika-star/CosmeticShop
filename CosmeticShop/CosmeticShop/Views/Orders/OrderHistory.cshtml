@@ -1,22 +1,10 @@
 @model CosmeticShop.Models.Products.OrderHistory
 
-@* История заказов
-
-    @if (Model != null)
-    {
-    @foreach (var order in Model.Orders)
-    {
-    @foreach (var opa in order.OrderProuctAccountings)
-    {
-    <div>
-    <p>@opa.Cost</p>
-    <p>@opa.ProductContainer.ProductName</p>
-    <p>@opa.ProductContainer.CountProducts</p>
-    </div>
+<style>
+    body {
+        background-color: #1A1310 !important;
     }
-    <hr>
-    }
-    } *@
+</style>
 
 
 

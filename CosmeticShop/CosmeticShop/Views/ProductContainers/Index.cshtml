@@ -5,7 +5,11 @@
 }
 
 
-
+<style>
+    body {
+        background-color: #1A1310 !important;
+    }
+</style>
 
 <section class="table-add-product">
     <div class="create-product">
@@ -34,27 +38,7 @@
             <tr class="justTh">
                 <th colspan="6"></th>
             </tr>
-            @* <tr>
-                <th>
-                @Html.DisplayNameFor(model => model.CountProducts)
-                </th>
-                <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-                </th>
-                <th>
-                @Html.DisplayNameFor(model => model.Cost)
-                </th>
-                <th>
-                @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                Срок годности
-                </th>
-                <th>
-                @Html.DisplayNameFor(model => model.ProductCategory)
-                </th>
-                <th></th> *@
-            </tr>
+        
         </thead>
         <tbody>
             @foreach (var item in Model)
@@ -83,32 +67,7 @@
                     </td>
                 </tr>
 
-                @* <tr>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.CountProducts)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.Cost)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.CreateDate) -
-                    @Html.DisplayFor(modelItem => item.ExpirationDate)
-                    </td>
-                    <td>
-                    @Html.DisplayFor(modelItem => item.ProductCategory.Name)
-                    </td>
-                    <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>
-                    </tr> *@
+               
             }
         </tbody>
     </table>

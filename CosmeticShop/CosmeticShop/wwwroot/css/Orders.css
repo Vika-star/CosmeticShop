@@ -1,15 +1,20 @@
 body .container-orders{
-    background-color: #FFF8F4!important;
     margin: 50px 80px !important;
     height: auto;
+    background-color: #1A1310 !important;
+}
+body .container-orders{
+    color: #fff;
 }
 body .container-order{
     padding: 40px 20px;
     border-radius: 12px;
-    border: 1px solid rgba(61, 29, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 1);
+    background-color: #1A1310 !important;
 }
 body .table-order-index{
     width: 100%;
+    background-color: #1A1310 !important;
 }
 body .table-order-index tr{
     /* border-spacing: 10px 50px !important;  */
@@ -35,7 +40,7 @@ body .table-order-index tr td{
 }
 
 body .table-order-index .order{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     width: 255px;
     height: 300px;
     margin-bottom: 40px;
@@ -61,8 +66,7 @@ body .table-order-index .text-title-product-name p{
     width: 300px;
     padding: 0px 20px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -71,8 +75,7 @@ body .table-order-index .text-title-product-name p{
 body .table-order-index .text-title-cost p{
     width: 80px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -82,24 +85,25 @@ body .table-order-index .btn-cir{
     border-radius: 50px;
     background: rgba(214, 204, 195, 0.2);
 
-    border: 0.2px solid rgba(39, 20, 3, 0.5);   
+    border: 0.2px solid rgba(255, 255, 255, 0.5);   
     padding: 0.2px 9px;
-    color: #341900;
+    color: #ffffff;
 }
 body .table-order-index .btn-count{
     text-align: center;
     background: rgba(214, 204, 195, 0);
     border: 0px;
     width: 5px;
+    color: #ffffff;
 }
 
 body .table-order-index .btn-outline-pink{
     padding: 10px 45px;
     border-radius: 30px;
-    color: #9F3D4B;
-    border: 1px solid #9F3D4B;
+    color: #F9BA01;
+    border: 1px solid #F9BA01;
 }
 body .table-order-index .btn-outline-pink:hover{
     color: #FFF8F4;
-    background-color: #9F3D4B;
+    background-color: #F9BA01;
 }

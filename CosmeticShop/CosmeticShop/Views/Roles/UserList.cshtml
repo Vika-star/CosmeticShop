@@ -1,16 +1,9 @@
 @model IEnumerable<CosmeticShop.Models.Users.User>
-@*
-    <table class="table">
-    @foreach (var user in Model)
-    {
-    <tr>
-    <td>@user.Email</td>
-    <td>
-    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-userid="@user.Id">Права доступа</a>
-    </td>
-    </tr>
+<style>
+    body {
+        background-color: #1A1310 !important;
     }
-    </table> *@
+</style>
 
 
 <section class="table-roles container-myself-info">

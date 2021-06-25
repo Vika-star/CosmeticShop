@@ -2,9 +2,10 @@ body .order-product-element{
     margin: 50px 150px;
     width: auto;
     height: auto;
-    border: 1px solid rgba(61, 29, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 40px 40px;
     border-radius: 6px;
+    background-color: #1A1310 !important;
 }
 body .order-product-element .order-product-container{
     /* padding: 54px 61px; */
@@ -43,7 +44,7 @@ body body .order-product-element .order-product-container .carusel-element .caro
 }
 
 body .order-product-element .order-product-container .card-group .card{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     width: 300px;
     height: auto;
     /* padding-right: 20px; */
@@ -66,13 +67,13 @@ body  .order-product-element .order-product-container .carusel-element .carousel
 /* body-img-one */
 
 body .order-product-element .order-product-container .body-img-one{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     width:auto;
     height: auto;
     /* padding-right: 20px; */
 }
 body .order-product-element .order-product-container .one{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     width:300px;
     height: auto;
     /* padding-right: 20px; */
@@ -99,41 +100,41 @@ body .order-product-element .order-product-container .text-container{
 }
 body .order-product-element .order-product-container .text-container hr{
 
-    color: rgba(214, 204, 195, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 
 }
 body .order-product-element .order-product-container .text-container .text-title{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 32px;
     line-height: 101.18%;
 
-    color: #271403;
+    color: #ffffff;
 }
 body .order-product-element .order-product-container .text-container .text-collection{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
     line-height: 19px;
     text-align: left;
 
-    color: rgba(61, 29, 0, 0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 body .order-product-element .order-product-container .text-container .text-cost{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 30px;
     line-height: 101.18%;
 
-    color: #271403;
+    color: #ffffff;
 
     margin: 10px 170px 30px 170px;
 }
 body .order-product-element .order-product-container .text-container .text-cost span{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -141,22 +142,22 @@ body .order-product-element .order-product-container .text-container .text-cost 
     letter-spacing: 0.015em;
     margin: 0 5px;
 
-    color: rgba(39, 20, 3, 0.7);
+    color: rgba(255, 255, 255, 0.7);
 }
 body .order-product-element .order-product-container .text-container .title-discrip{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     line-height: 16px;
     text-decoration: underline;
     /* Края доп меню */
 
-    color: rgba(39, 20, 3, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 
 }
 body .order-product-element .order-product-container .text-container .discription, 
 body .order-product-element .order-product-container .text-container .date-product{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -165,7 +166,7 @@ body .order-product-element .order-product-container .text-container .date-produ
     width: 500px;
     /* Края доп меню */
 
-    color: rgba(39, 20, 3, 0.8);
+    color: rgba(255, 255, 255, 0.8);
 
 }
 
@@ -176,12 +177,13 @@ body .order-product-element .order-product-container .text-container .date-produ
 
 
 body .btn-add-bag .btn-outline-pink{
-    padding: 10px 45px;
+    padding: 14px 40px;
     border-radius: 30px;
-    color: #9F3D4B;
-    border: 1px solid #9F3D4B;
+    font-weight: 600;
+    color: #ba7900 !important;
+    border:1px solid #F6AF3D !important;
 }
 body .btn-add-bag .btn-outline-pink:hover{
-    color: #FFF8F4;
-    background-color: #9F3D4B;
+    color: #fff!important;
+    background-color:  #F6AF3D !important;
 }

@@ -1,16 +1,10 @@
 @model IEnumerable<CosmeticShop.Models.Products.OrderToCollect>
 
-@* @foreach (var item in Model)
-{
-    <div>
-        <p>Номер заказа: @item.Order.Id</p>
-        <a asp-action="Details" asp-controller="OrderProcessing" asp-route-id="@item.Order.Id">Детали</a>
-
-        <form method="POST" asp-action="ConfirmOrderCollection" asp-controller="OrderProcessing" asp-route-id="@item.Id">
-            <input type="submit" value="Заказ собран">
-        </form>
-    </div>
-} *@
+<style>
+    body {
+        background-color: #1A1310 !important;
+    }
+</style>
 
 
 <section class="table-order container-myself-info table-add-product">

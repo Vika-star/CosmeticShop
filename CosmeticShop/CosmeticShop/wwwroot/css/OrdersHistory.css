@@ -8,11 +8,11 @@ body .total-element-history .total{
     padding: 40px;
     border-radius: 8px;
     background: rgba(214, 204, 195, 0.2);
-    border: 1.5px solid rgba(39, 20, 3, 0.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
 }
 
 body .total-element-history .total h3{
-    font-family: Crimson Text;
+
     font-style: normal;
     font-weight: normal;
     font-size: 32px;
@@ -23,7 +23,7 @@ body .total-element-history .total h3{
 
     /* Текст */
 
-    color: rgba(61, 29, 0, 0.9)
+    color: rgba(255, 255, 255, 0.9)
 }
 
 
@@ -31,14 +31,13 @@ body .total-element-history .total h3{
 
 
 body .container-orders{
-    background-color: #FFF8F4!important;
     margin: 50px 80px !important;
     height: auto;
 }
 body .container-order{
     padding: 40px 20px;
     border-radius: 12px;
-    border: 1px solid rgba(61, 29, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 body .table-product{
     width: 100%;
@@ -67,7 +66,6 @@ body .table-product tr td{
 }
 
 body .table-product .order{
-    background-color: #FFF8F4!important;
     width: 150px;
     height: 200px;
     margin-bottom: 40px;
@@ -92,8 +90,7 @@ body .table-product .order .card-img{
 body .table-product  .text-title-product-name p{
     width: 150px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -102,8 +99,7 @@ body .table-product  .text-title-product-name p{
 body .table-product .text-title-cost p{
     width: 80px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -112,8 +108,7 @@ body .table-product .text-title-cost p{
 body .table-product .text-counter{
     width: 80px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #cacaca;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;

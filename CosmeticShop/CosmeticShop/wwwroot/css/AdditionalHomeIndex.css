@@ -1,5 +1,5 @@
 body .additional-menu{
-    border: 1px solid rgba(39, 20, 3, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     width: auto;
     padding: 10px 160px;
     margin: 0px 150px 60px 150px;
@@ -18,9 +18,8 @@ body .additional-menu .container-fluid .nav .nav-item:last-child{
 }
 body .additional-menu .container-fluid .nav .nav-item a{
     text-decoration: none;
-    color: rgba(39, 20, 3, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 18px;
-    font-family: Crimson Text;
 }
 
 

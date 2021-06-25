@@ -1,84 +1,58 @@
 body .main-element{
     width: auto;
-    margin: 60px 144px 60px 144px;
+    margin: 60px 144px 120px 144px;
 
 }
 body .main-element .container-fluid{
     width: auto;
     margin: 0px;
 }
-/* текст контайнер */
+
+
 body .main-element .container-fluid .text-container{
-    width: 540px;
+    width: 700px;
     margin: 100px 0 170px 0px;
-    float: left;
 }
 body .main-element .container-fluid .text-container .text-title{
-    font-family: Crimson Text;
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 300;
+    letter-spacing: 1px;
     font-size: 36px;
-    line-height: 101.18%;
-
-    text-align: justify;    
-    color: #271403;
-
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    color: #fff;
 }
-body .main-element .container-fluid .text-container .text-title .quote{
-    font-family: Crimson Text;
-    font-style: italic;
-    font-weight: normal;
-    font-size: 11px;
-    line-height: 101.18%;
-    
-    /* text-align: center; */
-    color: rgba(61, 29, 0, 0.9);
+body .main-element .container-fluid .text-container .text-title span{
+    font-family: 'Montserrat', sans-serif;
+    color: #F9BA01;
+    font-weight: 600;
+    font-size: 42px;
 }
 body .main-element .container-fluid .text-container .btn{
     width: 260px;
     height: 55px;
     margin-top: 30px;
-    padding: 20px 38.5px;
+    padding: 18px 38.5px;
     border-radius: 30px !important;
-    background-color: #A93E4D;
     
     color: #fff;
-    font-family: 'Raleway', sans-serif;
     font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 16px;
     line-height: 107.9%;
     letter-spacing: 0.02em;
+
+    background-color: #F9BA01;
+    
 }
 body .main-element .container-fluid .text-container .text-title .text-content{
     width: 540px;
 }
-body .main-element .container-fluid .text-container .text-content h3{
-    font-family: Crimson Text;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 28px;
-    line-height: 101.18%;
-
-    text-align: justify;
-    color: #3D1D00;
-    margin-bottom: 20px;
-}
 body .main-element .container-fluid .text-container .text-content p{
-    font-family: Crimson Text;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 103.18%;
-
-    text-align: justify;
-    letter-spacing: 0.015em;
-
-    color: rgba(61, 29, 0, 0.9);
+    color: rgba(255, 255, 255, 0.7);
+    width: 420px;
+    margin-bottom: 30px;
 }
-
-/* контейнер картинки */
 
 body .main-element .container-fluid .image-container{
     width: 622px;

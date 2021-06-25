@@ -1,6 +1,5 @@
 body {
-    background-color: #FFF8F4!important;
-    font-family: Crimson Text!important;
+    font-family: 'Montserrat', sans-serif !important;
     margin: 0!important;
     padding: 0!important;
 }
@@ -25,13 +24,13 @@ body {
     margin: 0 150px 60px 150px;
 }
 .block-btn-persdata{
-    margin: 30px 320px 10px 320px;
+    margin: 30px 300px 10px 300px;
 }
 .block-btn-persdata .btn-persdata{
     margin: 0 10px;
 }
 .block-btn-persarea{
-    margin: 30px 295px;
+    margin: 30px 200px;
 }
 .block-btn-persarea .btn-persdata{
     margin: 0 10px;
@@ -47,8 +46,9 @@ body {
 }
 
 .btn-create{
-    background-color: #A93E4D !important;
-    color: #fff !important;
+    color: #ba7900 !important;
+    background-color:  #F6AF3D !important;
+    
     font-size: 16px ;
     font-weight: 500;
 }

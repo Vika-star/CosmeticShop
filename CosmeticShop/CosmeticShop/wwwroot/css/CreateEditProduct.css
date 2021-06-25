@@ -1,8 +1,6 @@
-body{
-    background-color: #FFF8F4!important;
-}
+
 body .create-product-container{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     margin: 50px 150px !important;
     height: auto;
 }
@@ -10,18 +8,19 @@ body .create-product-container  h2{
     text-align: center;
     font-size: 32px;
     margin-bottom: 30px;
+    color: #ffffff;
  }
 body .create-product-container .container-prosuct{
-    font-family: Crimson Text;
+    
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
-    color: #271403;
+    color: #ffffff;
     height: auto;
 }
 body .create-product-container .container-prosuct .row{
     border-radius: 8px;
-    border: 1px solid rgba(39, 20, 3, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
     padding: 30px 40px;
     height: auto;
 }
@@ -48,29 +47,23 @@ body .create-product-container .container-prosuct .row .col .form-group .text-la
     line-height: 33px;
     margin-bottom: -2px;
 
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
-    color: #271403;
+    color: #ffffff;
     height: auto;
     
 }
 body .create-product-container .container-prosuct .row .col .form-group .form-input{
     font-size: 14px;
-    color: rgba(39, 20, 3, 0.7);
+    color: rgba(255, 255, 255, 0.7);
     background: rgba(214, 204, 195, 0.2);
-    border: 1px solid rgba(39, 20, 3, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     height: 40px;
     border-radius: 12px;
     padding-right: 10px;
 }
 .input-file{
-    /* width: 100px;
-    height: 35px;
-    color: rgba(39, 20, 3, 0.7);
-    background-color: rgba(214, 204, 195, 0.2) !important;
-    border: 1px solid rgba(39, 20, 3, 0.4); */
     margin-bottom: 7px;
 }
 .input-file:first-child{
@@ -82,9 +75,9 @@ body .create-product-container .container-prosuct .row .col .form-group .form-in
 }
 
 .input-back{
-    color: #A93E4D;
+    color: #F9BA01;
     font-size: 14px;
-    border:2px solid #A93E4D;
+    border:2px solid #F9BA01;
     padding: 15px 45px;
     font-size: 16px;
     font-weight: 500;

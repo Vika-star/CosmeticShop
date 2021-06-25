@@ -1,46 +1,9 @@
 @model CosmeticShop.Models.Products.Order;
-
-@* <h1>Корзина</h1>
-    <table>
-    @foreach (var accounting in Model.OrderProuctAccountings)
-    {
-    <tr>
-    <td>
-    @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
-    + Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
-    </td>
-    <td>
-    <div class="containter">
-    <input type="button" value="-"
-    onclick="decreaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
-
-    <input type="number" name="counter" value="@accounting.CountRequiredProducts" style="width: 50px;" />
-
-    <input type='button' value="+"
-    onclick="increaseAmount(this.parentElement, @accounting.ProductContainer.CountProducts, @accounting.Id)" />
-    </div>
-    <br>
-    <div>
-    @accounting.ProductContainer.ProductName
-    @{
-    var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
+<style>
+    body {
+        background-color: #1A1310 !important;
     }
-    @summaryCost;
-    </div>
-    </td>
-    <td>
-
-    </td>
-    <td>
-    <a asp-controller="Orders" asp-action="Details" asp-route-id="@accounting.ProductContainer.Id">Просмотр</a>
-    </td>
-    <td>
-    <a asp-action="Delete" asp-controller="Orders" asp-route-id="@accounting.ProductContainer.Id">Удалить
-    продукт</a>
-    </td>
-    </tr>
-    }
-    </table> *@
+</style>
 
 <section class="container-orders create-product-container container-myself-info">
 

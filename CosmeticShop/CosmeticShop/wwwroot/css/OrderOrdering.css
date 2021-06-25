@@ -11,22 +11,26 @@ body .total-element .total{
     padding: 40px;
     border-radius: 8px;
     background: rgba(214, 204, 195, 0.2);
-    border: 1.5px solid rgba(39, 20, 3, 0.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
 }
 
 body .total-element .total h3{
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     font-size: 32px;
     line-height: 101.18%;
-    /* or 32px */
-
+    
     text-align: center;
-
-    /* Текст */
-
-    color: rgba(61, 29, 0, 0.9)
+    color: rgba(255, 255, 255, 0.9)
+}
+body .total-element .total .total-cost{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 101.18%;
+    
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9)
 }
 body .total-element .total .sroll-product{
     overflow: auto;
@@ -38,25 +42,23 @@ body .total-element .total .sroll-product{
 
 
 body .container-orders{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     margin: 50px 80px !important;
     height: auto;
 }
 body .container-order{
     padding: 40px 20px;
     border-radius: 12px;
-    border: 1px solid rgba(61, 29, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 body .table-product{
     width: 100%;
 }
 body .table-product tr{
-    /* border-spacing: 10px 50px !important;  */
     vertical-align: middle !important;
     height: 200px;
 }
 body .table-product .tr-btn td{
-    /* border-spacing: 10px 50px !important;  */
     vertical-align: middle !important;
     height: 100px !important;
 }
@@ -70,11 +72,10 @@ body .table-product tr{
 body .table-product tr td{
     height: 200px;
     padding: 10px 15px;
-    /* border: 1px solid rgba(61, 29, 0, 0.2); */
 }
 
 body .table-product .order{
-    background-color: #FFF8F4!important;
+    background-color: #1A1310 !important;
     width: 150px;
     height: 200px;
     margin-bottom: 40px;
@@ -99,8 +100,7 @@ body .table-product .order .card-img{
 body .table-product  .text-title-product-name p{
     width: 150px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -109,8 +109,7 @@ body .table-product  .text-title-product-name p{
 body .table-product .text-title-cost p{
     width: 80px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -119,8 +118,7 @@ body .table-product .text-title-cost p{
 body .table-product .text-counter{
     width: 80px;
     
-    color: #341900;
-    font-family: Crimson Text;
+    color: #ffffff;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -133,13 +131,13 @@ body .table-ordering .ordering-element .form-ordering .container-ordering-form .
 body .table-ordering .ordering-element .form-ordering .container-ordering-form .btn-form-group .btn-outline-pink{
     padding: 10px 45px;
     border-radius: 30px;
-    color: #9F3D4B;
-    border: 1px solid #9F3D4B;
+    color: #F9BA01;
+    border: 1px solid #F9BA01;
     text-align: center;
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form .btn-form-group .btn-outline-pink:hover{
     color: #FFF8F4;
-    background-color: #9F3D4B;
+    background-color: #F9BA01;
     
 }
 
@@ -151,13 +149,12 @@ body .table-ordering .ordering-element {
     padding: 20px;
 }
 body .table-ordering .ordering-element .form-ordering h3{
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     font-size: 28px;
     line-height: 101.18%;
     margin-bottom: 20px;
-    color: rgba(61, 29, 0, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form {
     margin-bottom: 20px;
@@ -176,34 +173,34 @@ body .table-ordering .ordering-element .form-ordering .container-ordering-form .
     font-size: 16px;
     line-height: 33px;
     margin-bottom: -2px;
+    color: #ffffff;
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form .data-personal-container .form-group .text-lable-pick{
     font-size: 16px;
     line-height: 33px;
     margin-bottom: -2px;
 
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
-    color: #271403;
+    color: #ffffff;
     height: auto;
     
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form .data-personal-container .form-group .form-input{
     font-size: 12px;
-    color: rgba(39, 20, 3, 0.7);
+    color: rgba(255, 255, 255, 0.7);
     background: rgba(214, 204, 195, 0.2);
-    border: 1px solid rgba(39, 20, 3, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     height: 40px;
     border-radius: 12px;
     padding-right: 10px;
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form .data-personal-container .form-group .form-select{
     font-size: 16px;
-    color: rgba(39, 20, 3, 0.7);
+    color: rgba(154, 154, 154, 0.7);
     background: rgba(214, 204, 195, 0.2);
-    border: 1px solid rgba(39, 20, 3, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     height: 40px;
     border-radius: 12px;
     padding-right: 10px;
@@ -215,10 +212,9 @@ body .table-ordering .ordering-element .form-ordering .container-ordering-form #
 }
 body .table-ordering .ordering-element .form-ordering .container-ordering-form #delivery-data-container h4{
     margin-bottom: 15px;
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
     margin-bottom: 20px;
-    color: rgba(61, 29, 0, 0.9);
+    color: rgba(255, 255, 255, 0.9);
 }
