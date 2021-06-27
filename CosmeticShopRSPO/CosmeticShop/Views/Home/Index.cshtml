@@ -1,0 +1,347 @@
+﻿@model List<CosmeticShop.Models.Products.ProductContainer>
+
+@{
+  ViewData["Title"] = "Home Page";
+}
+@* <section class="additional-menu container-fluid">
+  <div class="container-fluid">
+  <ul class="nav">
+  <li class="nav-item">
+  <a class="nav-link" href="#">Макияж</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="#">Парфюмерия</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="#">Волосы</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="#">Уход</a>
+  </li>
+  <li class="nav-item">
+  <a class="nav-link" href="#">Тело</a>
+  </li>
+  </ul>
+  </div>
+  </section> *@
+
+<section class="main-element container-fluid">
+  <div class="container-fluid">
+    <div class="text-container">
+      <h1 class="text-title">“Мода исчезает, только</br>
+        стиль остается прежним” <small class="quote">- Coco Chanel</small></h1>
+      <div class="text-content">
+        <h3 class="text-collection">Коллекция eSpoir Colorful Nude </h3>
+        <p class="discription">
+          Базовые косметики от eSpoir всегда считались хорошим соотношением цены и качества, поэтому они
+          очень популярны среди корейцев. Недавно eSpoir выпустила коллекцию с широким спектром
+          фундамента, доступного как в матовой, так и в светяной отделке.
+        </p>
+      </div>
+      <a  asp-action="Index" asp-controller="Traiding" class="btn">Перейти в магазин</a>
+    </div>
+    <div class="image-container">
+      <!-- <div></div> -->
+      <img src="~/image/card/main.png" alt="main">
+      <!-- <div></div> -->
+    </div>
+  </div>
+</section>
+
+<hr class="main-hr">
+@if (Model.Count() >= 6)
+{
+
+  <section class="carusel-element container-fluid">
+    <div class="container-fluid">
+
+      <h2>Новинки</h2>
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+        @* <img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+          + Convert.ToBase64String(item.ByteImage) + "\" /> *@
+
+
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="card-group">
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[0].Id">
+                  <div class="img-body">
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[0].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[0].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[0].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[0].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[0].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[1].Id">
+                  <div class="img-body">
+
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[1].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[1].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[1].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[1].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[1].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[2].Id">
+                  <div class="img-body">
+
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[2].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[2].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[2].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[2].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[2].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+
+          <div class="carousel-item">
+            <div class="card-group">
+
+
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[3].Id">
+                  <div class="img-body">
+
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[3].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[3].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[3].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[3].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[3].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[4].Id">
+                  <div class="img-body">
+
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[4].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[4].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[4].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[4].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[4].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+
+              <div class="card text-center border-0">
+                <a asp-action="Details" asp-controller="Traiding" asp-route-id="@Model[5].Id">
+                  <div class="img-body">
+
+                    <img
+                    src='data:image/jpeg;base64, @(Convert.ToBase64String(Model[5].ProductPictures.GetPreviewPicture().Result))'
+                    class="card-img card-img-top" alt="...">
+                  </div>
+                </a>
+                <div class="card-body">
+                  <h5 class="card-title">@Model[5].ProductName</h5>
+                  <h6 class="card-subtitle text-muted">@Model[5].ProductCategory.Name</h6>
+                  <h4 class="card-price">@Model[5].Cost<small class="card-price-cost text-muted">руб.коп.</small>
+                  </h4>
+                  <form asp-controller="Orders" asp-action="Add" method="POST">
+                    <input type="number" name="productId" value="@Model[5].Id" hidden>
+
+                    <input type="submit" name="add-to-order" class="btn" value="Добавить в корзину">
+                  </form>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+        @*<div class="carousel-inner">
+
+
+
+
+
+          <div class="carousel-item active">
+          <div class="card-group">
+
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/second.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/second.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/third.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+          </div>
+          </div>
+
+
+
+          <div class="carousel-item">
+          <div class="card-group">
+
+
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/fourth.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/fifth.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+
+          <div class="card text-center border-0">
+          <img src="/image/card/sisxth.png" class="card-img card-img-top" alt="...">
+          <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle text-muted">Card subtitle</h6>
+          <h4 class="card-price">120<small class="card-price-cost text-muted">руб.коп.</small>
+          </h4>
+          <a href="#" class="btn">Добавить в корзину</a>
+          </div>
+          </div>
+
+
+
+          </div>
+          </div>
+
+
+          </div> *@
+
+
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <img src="/image/card/arrow-left.png" alt="">
+
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <img src="/image/card/arrow-right.png" alt="">
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+}

@@ -1,0 +1,293 @@
+﻿@model CosmeticShop.Models.Products.Order
+
+
+@* <div>
+    <p>Итого</p>
+    <div style="overflow: scroll; height: 250px">
+        @foreach (var item in Model.OrderProuctAccountings)
+        {
+            <div>
+                <p>@item.ProductContainer.ProductName</p>
+                <p>@item.CountRequiredProducts</p>
+                <p>@item.Cost</p>
+                @Html.Raw("<img style='width:50px; height:50px;' src=\"data:image/jpeg;base64,"
+            + Convert.ToBase64String(item.ProductContainer.ProductPictures.GetPreviewPicture().Result) + "\" />")
+            </div>
+            <hr>
+        }
+        @Model.SummaryCost
+    </div>
+</div> *@
+
+@* <div>
+    <form asp-action="Ordering" method="post">
+        <p>Личные данные</p>
+        <div>
+            <div>
+                <label asp-for="PersonalData.Name" id="">Имя</label>
+                <input type="text" asp-for="PersonalData.Name" id="">
+                <span asp-validation-for="PersonalData.Name"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.Surname" id="">Фамилия</label>
+                <input type="text" asp-for="PersonalData.Surname" id="">
+                <span asp-validation-for="PersonalData.Surname"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.PhoneNumber" id="">Номер телефона</label>
+                <input type="text" asp-for="PersonalData.PhoneNumber" id="phone">
+                <span asp-validation-for="PersonalData.PhoneNumber"></span>
+
+            </div>
+            <div>
+                <label asp-for="PersonalData.Email" id="">Email</label>
+                <input type="email" asp-for="PersonalData.Email" id="">
+                <span asp-validation-for="PersonalData.Email"></span>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <p>Доставка</p>
+            <div>
+                <label asp-for="PersonalData.Street" id="">Улица</label>
+                <input type="text" asp-for="PersonalData.Street" id="">
+                <span asp-validation-for="PersonalData.Street"></span>
+                
+            </div>
+            <div>
+                <label asp-for="PersonalData.Home" id="">Дом</label>
+                <input type="text" asp-for="PersonalData.Home" id="">
+                <span asp-validation-for="PersonalData.Home"></span>
+            </div>
+            <div>
+                <label asp-for="PersonalData.Flat" id="">Квартира</label>
+                <input type="text" asp-for="PersonalData.Flat" id="">
+            </div>
+            <div>
+                <p>Способ оплаты</p>
+                <select asp-for="PersonalData.IsPaid">
+                    <option disabled>Способ оплаты</option>
+                    <option selected value="true">Картой</option>
+                    <option value="false">При получении товара</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <input type="number" asp-for="PersonalData.OrderId" value="@Model.Id" hidden>
+            <input type="submit" value="Оформить заказ">
+        </div>
+    </form>
+</div> *@
+
+
+<section class="ordering-container">
+    <table class="table-ordering">
+        <tr>
+            <td class="ordering-element">
+                <div class="form-ordering">
+                    <h3 class="text-center">Личные данные</h3>
+                    <form asp-action="Ordering" method="post">
+                        <div class="container-ordering-form">
+
+                        
+                        <div class="data-personal-container">
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Name" class="text-lable control-label">Имя</label>
+                                <input type="text" asp-for="PersonalData.Name" class="form-input form-control" id="">
+                                <span asp-validation-for="PersonalData.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Surname" class="text-lable control-label">Фамилия</label>
+                                <input type="text" asp-for="PersonalData.Surname" class="form-input form-control">
+                                <span asp-validation-for="PersonalData.Surname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PersonalData.PhoneNumber" class="text-lable control-label">Номер телефона</label>
+                                <input type="text" asp-for="PersonalData.PhoneNumber" class="form-input form-control" id="phone">
+                                <span asp-validation-for="PersonalData.PhoneNumber" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Email" class="text-lable control-label">Email</label>
+                                <input type="email" asp-for="PersonalData.Email" class="form-input form-control" >
+                                <span asp-validation-for="PersonalData.Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="data-personal-container" id="delivery-data-container">
+                            <h4 class="text-center">Доставка</h4>
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Street" class="text-lable control-label">Улица</label>
+                                <input type="text" asp-for="PersonalData.Street" class="form-input form-control">
+                                <span asp-validation-for="PersonalData.Street" class="text-danger"></span>
+                                
+                            </div class="form-group">
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Home" class="text-lable control-label">Дом</label>
+                                <input type="text" asp-for="PersonalData.Home" class="form-input form-control">
+                                <span asp-validation-for="PersonalData.Home" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PersonalData.Flat" class="text-lable control-label">Квартира</label>
+                                <input type="text" asp-for="PersonalData.Flat" class="form-input form-control">
+                            </div >
+                            <div class="form-group">
+                                <h5 >Способы оплаты</h5>
+                                <select asp-for="PersonalData.IsPaid" class="form-select form-control">
+                                    <option disabled>Способ оплаты</option>
+                                    <option selected value="true">Картой</option>
+                                    <option value="false">При получении товара</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="btn-form-group">
+                            <input type="number" asp-for="PersonalData.OrderId" value="@Model.Id" hidden>
+                            <input type="submit" value="Оформить заказ" class="btn btn-outline-pink">
+                        </div>
+                    </form>
+                </div>
+            </td>
+            
+            <td class="total-element">
+                <div class="total">
+                    <h3 class="text-center">Итого</h3>
+                    <div class="sroll-product">
+                            <table class="table-product ">
+                                @foreach (var accounting in Model.OrderProuctAccountings)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="order">
+                                                <div class="img-cover">
+                                                    @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                                                +
+                                                Convert.ToBase64String(accounting.ProductContainer.ProductPictures.GetPreviewPicture().Result)
+                                                + "\" />")
+
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="text-title-product-name">
+                                                <p>@accounting.ProductContainer.ProductName</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-title-cost">
+
+                                                @{
+                                                    var summaryCost = accounting.ProductContainer.Cost * accounting.CountRequiredProducts;
+                                                }
+                                                <p>@summaryCost
+                                                    <br>
+                                                    <small class="text-center">руб.коп.</small>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-counter">
+                                                Количество: @accounting.CountRequiredProducts
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+  
+                    </div>
+                    <div class="total-cost">
+                        Итоговая цена <span>@Model.SummaryCost</span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</section>
+
+@* <section class="create-product-container">
+    <h2>Добавление товара</h2>
+    <div class="container-prosuct">
+        <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="text-lable control-label">Название товара:</label>
+                        <input asp-for="ProductName" class="form-input form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProductCategoryId" class="text-lable control-label">Категория товара:</label>
+                        <select asp-for="ProductCategoryId" class="form-input form-control"
+                            asp-items="ViewBag.ProductCategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CountProducts" class="text-lable control-label">Количество товара:</label>
+                        <input asp-for="CountProducts" class="form-input form-control" />
+                        <span asp-validation-for="CountProducts" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cost" class="text-lable control-label">Стоимость товара:</label>
+                        <input asp-for="Cost" class="form-input form-control" />
+                        <span asp-validation-for="Cost" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="Description" class="text-lable control-label">Описание:</label>
+                        <input asp-for="Description" class="form-input form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CreateDate" class="text-lable control-label">Дата создания:</label>
+                        <input asp-for="CreateDate" class="form-input form-control" />
+                        <span asp-validation-for="CreateDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExpirationDate" class="text-lable control-label">Срок годность до:</label>
+                        <input asp-for="ExpirationDate" class="form-input form-control" />
+                        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="countImages" class="text-lable">Количество картинок</label>
+                            <input type="number" name="countImages" id="countImages"
+                                oninput="displayLoadImagesElements()" min="0" class="form-input form-control" />
+                        </div>
+
+                        <div id="images">
+                        </div>
+                    </div>
+                    <script>
+                        function displayLoadImagesElements() {
+                            var countImages = document.getElementById('countImages').value;
+                            var loadImagesInnerHtml = document.getElementById('images');
+
+
+                            var html = "";
+                            for (var i = 0; i < countImages; i++) {
+                                html += `<input type="file" class="input-file" name="ProductPictures.Pictures[${i}].Image"/>`;
+                                html += `<input type="radio" name="ProductPictures.PreviewNnmber" value="${i}">`;
+                            }
+
+                            loadImagesInnerHtml.innerHTML = html;
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="form-btn form-group">
+                <div class="d-inline">
+                    <a asp-action="Index" class="input-back">Вернуться назад</a>
+                </div>
+                <div class="d-inline">
+                    <input type="submit" value="Добавить товар" class="btn-create btn" />
+
+                </div>
+            </div>
+        </form>
+    </div>
+   
+</section> *@

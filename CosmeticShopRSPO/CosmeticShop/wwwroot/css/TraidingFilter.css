@@ -1,0 +1,120 @@
+body .container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    margin: 0px 100px !important;
+    background-color: #FFF8F4!important;
+  }
+  
+  body .container .navigation {
+    /* padding: 25px 19px 25px 19px;  */
+  
+    border: 1px solid rgba(61, 29, 0, 0.2);
+    border-left: 0 !important;
+  
+    border-radius: 2px;
+    width: 246px;
+    height: auto;
+    flex-shrink: 0;
+    background-color: #FFF8F4!important;
+  }
+  
+  body .container .navigation #aside {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #FFF8F4!important;
+  }
+  body .container .navigation #aside .list-group-item{
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(61, 29, 0, 0.2);
+    background-color: #FFF8F4!important;
+  }
+  body .container .navigation #aside .list-group-item:last-child{
+    margin-bottom: 0px;
+    border-bottom: 1px solid rgba(61, 29, 0, 0);
+  }
+  body .container .navigation #aside .list-group-item .text-title{
+    margin-bottom: 16px;
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+  
+    color: #271403;
+  }
+  .checkbox{
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 2px;
+  }
+  .text-number{
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #271403;
+    
+  }
+  .scroll {
+    height:120px;
+    overflow-y: scroll;
+  }
+  .numbers{
+    margin-left: 4px;
+    margin-right: 10px;
+    max-width: 74px;
+    height: 25px;
+    border-radius: 8px;
+    background: rgba(214, 204, 195, 0.2);
+    border: 1px solid rgba(39, 20, 3, 0.5);
+  }
+  .number:last-child{
+    margin-left: 0px;
+  }
+  .btn-filter{
+    padding: auto!important;
+    margin-bottom: 8px !important;
+    width: 193px !important;
+    height: 35px !important;
+  
+
+    /* background: rgba(207, 125, 134, 0.5) !important; */
+    /* background: rgba(207, 125, 134, 0.12) !important; */
+    background: rgba(214, 204, 195, 0.2) !important;
+    border: 1px solid rgba(39, 20, 3, 0.5) !important;
+    border-radius: 8px !important;
+  
+    font-family: Crimson Text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px !important;
+    line-height: 17px;
+    text-align: center !important;
+  
+    color: #271403;
+  }
+  .btn-filter:last-child{
+    margin-bottom: 0px !important;
+  }
+  
+  
+  
+  
+  
+  
+  
+  .content {
+    background: #FFF8F4 !important;
+    
+    min-height: 600px;
+      height: auto;
+    max-height: 1900px;
+    /* background: #FFF8F4 !important; */
+    width: 1680px;
+  }

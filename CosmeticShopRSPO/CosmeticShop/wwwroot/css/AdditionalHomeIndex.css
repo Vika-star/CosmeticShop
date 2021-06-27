@@ -1,0 +1,27 @@
+body .additional-menu{
+    border: 1px solid rgba(39, 20, 3, 0.5);
+    width: auto;
+    padding: 10px 160px;
+    margin: 0px 150px 60px 150px;
+    border-radius: 4px;
+    background-color: rgba(214, 204, 195, 0.5);
+}
+body .additional-menu .container-fluid{
+    width: auto;
+    text-align: center;
+}
+body .additional-menu .container-fluid .nav .nav-item{
+    margin-right: 94px;
+}
+body .additional-menu .container-fluid .nav .nav-item:last-child{
+    margin-right: 0px;
+}
+body .additional-menu .container-fluid .nav .nav-item a{
+    text-decoration: none;
+    color: rgba(39, 20, 3, 0.8);
+    font-size: 18px;
+    font-family: Crimson Text;
+}
+
+
+

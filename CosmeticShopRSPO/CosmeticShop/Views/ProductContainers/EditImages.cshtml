@@ -1,0 +1,129 @@
+@model CosmeticShop.Models.AuxiliaryEntities.ProductPictures
+
+@* <div>
+    <table>
+        <tr>
+            <th>Название</th>
+            <th>Картинка</th>
+            <th>Удалить</th>
+        </tr>
+        @foreach (var item in Model.Pictures)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.Raw("<img style='width:250px; height:250px;' src=\"data:image/jpeg;base64,"
+                + Convert.ToBase64String(item.ByteImage) + "\" />")
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "DeleteImage", "ProductContainers", new { id = Model.ProductContainerId,
+                imageId = item.Id}, null)
+                </td>
+            </tr>
+        }
+    </table>
+</div> *@
+
+@* <form asp-action="AddImages" enctype="multipart/form-data">
+    <input type="number" name="Id" value="@Model.ProductContainerId" hidden>
+    <div>
+    <div>
+    <p>Добавить картинки</p>
+    <label for="countImages">Количество картинок</label>
+    <input type="number" name="countImages" id="countImages" oninput="displayLoadImagesElements()" />
+    </div>
+
+    <div id="images">
+    </div>
+    </div>
+
+    <div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+    </form> *@
+
+
+
+<section class="container-orders create-product-container container-myself-info">
+    <div class="container-order back-blur">
+
+        <table class="table-order-index ">
+            @foreach (var item in Model.Pictures)
+            {
+                <tr>
+                    <td>
+                        <div class="order">
+                            <div class="img-cover">
+
+                                @Html.Raw("<img class=\"card-img card-img-top\"' src=\"data:image/jpeg;base64,"
+                            + Convert.ToBase64String(item.ByteImage) + "\" />")
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td>
+                        <div class="text-title-product-name">
+                            <p> @Html.DisplayFor(modelItem => item.Name)</p>
+                        </div>
+                    </td>
+                    <td>
+                        <p class="btn btn-outline-danger">@Html.ActionLink("Удалить", "DeleteImage", "ProductContainers",
+                        new { id = Model.ProductContainerId,
+                        imageId = item.Id}, null)</p>
+
+                    </td>
+                </tr>
+            }
+            <tr style="height: 100px" class="tr-btn">
+                <td colspan="3">
+                    @* <form asp-action="Ordering" method="GET">
+                        <input name="Id" value="@Model.Id" hidden>
+                        <input type="submit" value="Оформить заказ" class="btn btn-outline-pink">
+                        </form> *@
+                    <form asp-action="AddImages" enctype="multipart/form-data">
+                        <input type="number" name="Id" value="@Model.ProductContainerId" hidden>
+                        <div>
+                            <div>
+                                <p>Добавить картинки</p>
+                                <label for="countImages">Количество картинок</label>
+                                <input type="number" name="countImages" id="countImages"
+                                    oninput="displayLoadImagesElements()" />
+                            </div>
+
+                            <div id="images">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-5">
+                            <input type="submit" value="Сохранить" class="btn btn-outline-pink" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</section>
+
+
+<script>
+    function displayLoadImagesElements() {
+        var countImages = document.getElementById('countImages').value;
+        var loadImagesInnerHtml = document.getElementById('images');
+
+        console.log('Hello world');
+
+        var html = "";
+        for (var i = 0; i < countImages; i++) {
+            html += `<input type="file" name="Pictures[${i}].Image"/>`;
+            html += `<<input type="radio" name="PreviewNnmber" value="${i}">`;
+
+        }
+
+        loadImagesInnerHtml.innerHTML = html;
+    }
+</script>
