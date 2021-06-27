@@ -1,3 +1,5 @@
+@model int
+
 <style>
     body {
         background-color: #1A1310 !important;
@@ -8,7 +10,7 @@
 
         <div class="row">
             <div class="col">
-                <form asp-action="OrderHistory" asp-controller="Orders">
+                <form asp-controller="Orders" asp-action="Pay">
                     <div class="col-md-7 col-sm-12 p-0 box">
                         <div class="card rounded-0 border-0 card2" id="paypage">
                             <div class="form-card">
@@ -32,6 +34,13 @@
                                             placeholder="&#9679;&#9679;&#9679;" class="placeicon" minlength="3"
                                             maxlength="3">
                                     </div>
+                                </div>
+                                <div>
+                                    <input type="number" name="id" value="@Model" hidden>
+                                </div>
+                                <div>
+                                    <label for="createCheck">Создать чек</label>
+                                    <input type="checkbox" name="createCheck" value="true">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12"> <label class="pay">Expiration Date</label> </div>

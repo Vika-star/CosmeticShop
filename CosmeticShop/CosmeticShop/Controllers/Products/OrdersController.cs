@@ -1,5 +1,6 @@
 ﻿using CosmeticShop.Migrations;
 using CosmeticShop.Models;
+using CosmeticShop.Models.PDF.Check;
 using CosmeticShop.Models.Products;
 using CosmeticShop.Models.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -46,7 +47,46 @@ namespace CosmeticShop.Controllers
             return View(history);
         }
 
-        public IActionResult Pay() => View();
+        public IActionResult Pay(int? id)
+        {
+            return View(id);
+        }
+
+        [HttpPost, ActionName("Pay")]
+        public async Task<IActionResult> PayConfirmation(int? id, bool createCheck)
+        {
+            var order = await _context.Orders
+                .Include(e=>e.OrderProuctAccountings)
+                .ThenInclude(e=>e.ProductContainer)
+                .FirstOrDefaultAsync(e => e.Id.Equals(id));
+            if(createCheck)
+            {
+                var check = new Check
+                {
+                    CompanyName = "VIVISHOP",
+                    Href = "VIVISOP.COM",
+                    INN = "12342131",
+                    Number = order.Id,
+                    Outcome = Convert.ToInt32(order.SummaryCost)
+                };
+                check.InitHeader();
+
+                foreach (var product in order.OrderProuctAccountings)
+                {
+                    var checkProduct = new CheckProduct
+                    {
+                        Cost = Convert.ToInt32(product.Cost),
+                        Count = product.CountRequiredProducts,
+                        Name = product.ProductContainer.ProductName
+                    };
+                    check.AddProduct(checkProduct);
+                }
+
+                return File(check.GetDocument(), "application/pdf");
+            }
+
+            return RedirectToAction(nameof(OrderHistory));
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -189,7 +229,7 @@ namespace CosmeticShop.Controllers
 
 
             if (order.PersonalData.IsPaid)
-                return RedirectToAction(nameof(Pay));
+                return RedirectToAction(nameof(Pay), new { id = order.PersonalData.OrderId });
 
             return RedirectToAction(nameof(OrderHistory));
         }
