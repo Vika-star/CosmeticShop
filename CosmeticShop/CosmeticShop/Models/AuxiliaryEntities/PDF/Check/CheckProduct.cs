@@ -17,13 +17,13 @@ namespace CosmeticShop.Models.PDF.Check
         public override string ToString()
         {
             return Name + new string(' ', 10) +
-                Cost +
+                ((float)Cost).ToString(".00") +
                 "*" + 
                 Count + 
                 new string(' ', 4) +
                 "=" +
                 new string(' ', 4) +
-                SummuryCost; 
+                ((float)SummuryCost).ToString(".00"); 
         }
     }
 }
