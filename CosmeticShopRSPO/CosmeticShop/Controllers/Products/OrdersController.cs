@@ -1,5 +1,6 @@
 ﻿using CosmeticShop.Migrations;
 using CosmeticShop.Models;
+using CosmeticShop.Models.PDF.Check;
 using CosmeticShop.Models.Products;
 using CosmeticShop.Models.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -193,7 +194,38 @@ namespace CosmeticShop.Controllers
 
             return RedirectToAction(nameof(OrderHistory));
         }
+        public async Task<IActionResult> Check()
+        {
+            var lastOrder = await _context.OrdersToCollect
+                .Include(e=>e.Order)
+                .ThenInclude(e=>e.OrderProuctAccountings)
+                .ThenInclude(e=>e.ProductContainer)
+                .OrderBy(e=>e.Id)
+                .LastAsync();
+            
+            var check = new Check
+            {
+                CompanyName = "IL Piacere",
+                Href = "ilpiacere.com",
+                INN = "12342131",
+                Number = lastOrder.Id,
+                Outcome = Convert.ToInt32(lastOrder.Order.SummaryCost)
+            };
+            check.InitHeader();
 
+            foreach (var product in lastOrder.Order.OrderProuctAccountings)
+            {
+                var checkProduct = new CheckProduct
+                {
+                    Cost = Convert.ToInt32(product.Cost),
+                    Count = product.CountRequiredProducts,
+                    Name = product.ProductContainer.ProductName
+                };
+                check.AddProduct(checkProduct);
+            }
+
+            return File(check.GetDocument(), "application/pdf");
+        }
         [HttpPost]
         public async Task<IActionResult> ChangeRequiredProducts(int? id, int? counter)
         {
