@@ -31,7 +31,7 @@ body .card-group{
     
 }
 body .card-group .card{
-    background-color: #1A1310 !important;
+     
     width: 288px;
     height: auto;
     padding-right: 20px;
@@ -113,7 +113,7 @@ body .card-group .card .card-body .btn{
     
     color: #F6AF3D;
     border: 1px solid #F6AF3D;
-    background-color: #1A1310 !important;
+     
 }
 
 

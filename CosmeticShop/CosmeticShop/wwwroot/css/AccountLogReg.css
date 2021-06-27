@@ -1,5 +1,4 @@
 body .account-log-reg{
-    background-color: #FFF8F4!important;
     margin: 50px 500px !important;
     height: auto;
 }
@@ -7,18 +6,18 @@ body .account-log-reg  h2{
     text-align: center;
     font-size: 32px;
     margin-bottom: 30px;
+    color: #ffffff;
  }
 body .account-log-reg .container-prosuct{
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
-    color: #271403;
+    color: #ffffff;
     height: auto;
 }
 body .account-log-reg .container-prosuct .row{
     border-radius: 8px;
-    border: 1px solid rgba(39, 20, 3, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
     padding: 30px 40px;
     height: auto;
     background: rgba(214, 204, 195, 0.1)
@@ -46,19 +45,18 @@ body .account-log-reg .container-prosuct .row .col .form-group .text-lable-pick{
     line-height: 33px;
     margin-bottom: -2px;
 
-    font-family: Crimson Text;
     font-style: normal;
     font-weight: normal;
     line-height: 101.18%;
-    color: #271403;
+    color: #ffffff;
     height: auto;
     
 }
 body .account-log-reg .container-prosuct .row .col .form-group .form-input{
     font-size: 14px;
-    color: rgba(39, 20, 3, 0.7);
+    color: rgba(255, 255, 255, 0.7);
     background: rgba(214, 204, 195, 0.2);
-    border: 1px solid rgba(39, 20, 3, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     height: 40px;
     border-radius: 12px;
     padding-right: 10px;
@@ -70,16 +68,16 @@ body .account-log-reg .btn-reg{
     margin: 30px 115px;
 }
 body .account-log-reg .forgot-pass{
-    color: #271403 !important;
+    color: #ffffff !important;
     font-size: 14px;
 }
 body .account-log-reg .btn-outline-pink{
     padding: 10px 45px;
     border-radius: 30px;
-    color: #9F3D4B;
-    border: 1px solid #9F3D4B;
+    color: #ffc320;
+    border: 1px solid #ffc320;
 }
 body .account-log-reg .btn-outline-pink:hover{
-    color: #FFF8F4;
-    background-color: #9F3D4B;
+    color: #ffffff;
+    background-color: #ffc320;
 }
